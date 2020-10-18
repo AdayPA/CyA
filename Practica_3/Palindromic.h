@@ -23,8 +23,8 @@
 // 15/10/2020 - Small changes and using threads
 // 16/10/2020 - Changes in the Write method
 // 17/10/2020 - Commenting the code
-//#ifndef PALINDROMIC_H_
-//#define PALINDROMIC_H_
+#ifndef PALINDROMIC_H_
+#define PALINDROMIC_H_
 
 #include <string>
 #include <tuple>
@@ -50,4 +50,4 @@ class Palindromic {
     void Write(void);
 };
 
-//#endif 
+#endif 

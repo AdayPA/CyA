@@ -22,12 +22,10 @@
 // 16/10/2020 - Changes in the Write method
 // 17/10/2020 - Commenting the code
 
-//#ifndef PALINDROMIC_cc_
-//#define PALINDROMIC_cc_
+#ifndef PALINDROMIC_cc_
+#define PALINDROMIC_cc_
 
 #include "Palindromic.h"
-
-
 
 #include <iostream>
 #include <fstream>
@@ -118,4 +116,4 @@ void Palindromic::Write(void) {
   }
 }
 
-//#endif 
+#endif 

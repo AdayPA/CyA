@@ -45,8 +45,6 @@ const int kMINIMUN = 1;
 const char kEMPTY = '\0';
 const std::string kEXPLAIN = "--help";
 
-
-
 void Help(void) {
   /**
  ** Función declarada que retorna al comando "./palindrome_prod --help" un breve
