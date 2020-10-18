@@ -3,22 +3,20 @@
 // Degree of Computer Science
 // Subject: Computabilidad y Algoritmia (CyA)
 // Course/Year: 2º 
-// Práctica 3 CyA - Productos capicúa
+// @praxis: Number 3 CyA - "Productos Capicúas"
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 14/11/2020
-// @brief palindrome_prod.cc: Contiene las directrices básicas de ejecución del proyecto
-//                             Dado dado un número entero n > 0, encuentra los números capicúas 
-//                             resultantes de multiplicar dos números de n dígitos cada uno, 
-//                             almacenándolos en un fichero de texto.
-//                      
-//                      
-//                      
+// @brief palindrome_prod.cc:  Contains the basic's guidelines to exec the project.
+//                             Given a integer (n > 0) finds the palindomics numbers 
+//                             obtained from multipliying two numbers of n digits 
+//                             (both of them), storing them in a output file.            
+//                                                       
 // References: 
 // https://es.wikipedia.org/wiki/Capic%C3%BAa#:~:text=En%20matem%C3%A1ticas%2C%20la%20palabra%20capic%C3%BAa,%2C%202882%2C%202442%2C%209102019.
 // Lab exercise:
 // https://github.com/fsande/CyA-P03-ProductosCapicua/blob/master/ProductosCapicua.md
-// How to compile it:
+// @compile:
 // $ make
 // $ make clean
 // Version Control:
@@ -27,16 +25,17 @@
 // 16/10/2020 - Changes in the Write method
 // 17/10/2020 - Commenting the code
 
-#include "Palindromic.cc"
+#include "Palindromic.h"
 
-#include <errno.h>   // for errno
-#include <limits.h>  // for INT_MAX
-#include <stdlib.h>  // for strtol
+#include <errno.h>   
+#include <limits.h>  
+#include <stdlib.h>  
 
-#include <cstdlib>
+#include <cstdlib>   
 #include <iostream>   
 #include <string>
 
+extern const int kBASE = 10;
 const int kFILE_IN = 1;
 const int kFILE_OUT = 2;
 const int kFIRST = 1;
@@ -47,12 +46,12 @@ const char kEMPTY = '\0';
 const std::string kEXPLAIN = "--help";
 
 
-/**
+
+void Help(void) {
+  /**
  ** Función declarada que retorna al comando "./palindrome_prod --help" un breve
  ** texto explicativo del funcionamiento del programa.
  */
-void Help(void) {
-  //xaxaxaxaxa cambiar
   std::cout << "Modo de empleo: ./G2CNF input.gra output.gra" << std::endl;
 }
 
