@@ -1,0 +1,2 @@
+1.- ¿La salida es en orden creciente?
+2.- En la funcion MaxNum, ¿los "1" son correctos en el estilo de google c++?

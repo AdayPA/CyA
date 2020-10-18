@@ -7,7 +7,7 @@
 // Autor: Aday Padilla Amaya
 // Correo: alu0100843453@ull.edu.es
 // Fecha: 07/10/2020
-// Archivo erathistenes: Contiene las directrices básicas de ejecución del proyecto
+// Archivo erathostenes: Contiene las directrices básicas de ejecución del proyecto
 //                       Dado un numero entero N, leído desde la línea de comandos, 
 //                       el programa imprime los valores primos hasta N. 
 //                       Para ello utiliza el algoritmo de Eratóstenes contenido en 
@@ -35,11 +35,12 @@ int main(int argc, char** argv) {
   long conv = strtol(argv[1], &p, 10);
 
   // Filtramos la entrada
-  if (errno != 0 || *p != '\0' || conv > INT_MAX || conv < 0) {
+    if (errno != 0 || *p != '\0' || conv > INT_MAX || conv < 0) {
     std::cout << "Has introducido numero incorrecto" << std::endl;
   } else if (conv == 1 || conv == 0) {
     std::cout << "El número " << conv << " no es primo" << std::endl; 
   } else if (conv == 2) {
+    std::cout << "El número 1 no es primo" << std::endl;
     std::cout << "El número 2 es primo" << std::endl;
   } else {
     num = conv;    
