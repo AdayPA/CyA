@@ -76,8 +76,7 @@ int main(int argc, char** argv) {
       **
       **
       */
-      Vector <int> w();
-      w.write(std::cout);
+      
       break;
     }
     default: {
