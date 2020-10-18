@@ -65,7 +65,6 @@ std::ostream& Vector<T>::write(std::ostream& os) const{
         return os;
 }
 
-//PARA EL FALLO DEL ENLAZADOR
 template class Vector<int>;
 template class Vector<float>;
 template class Vector<double>;
