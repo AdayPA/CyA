@@ -11,8 +11,7 @@
 //                             Given a integer (n > 0) finds the palindomics numbers 
 //                             obtained from multipliying two numbers of n digits 
 //                             (both of them), storing them in a output file.          
-// @compile:
-// $ make                                                    
+// @compile: $ make                                                    
 // References: 
 // https://es.wikipedia.org/wiki/Capic%C3%BAa#:~:text=En%20matem%C3%A1ticas%2C%20la%20palabra%20capic%C3%BAa,%2C%202882%2C%202442%2C%209102019.
 // Lab exercise:
@@ -75,7 +74,7 @@ std::cout << std::endl;
 }
 
 void BadImput (void) {
-  // Message output when the program get the wrong input arguments.
+  // Message output when the program gets the wrong input arguments.
   std::cout << "Usage: ./palindrome_prod Number_of_Digits Output_File" << std::endl;
   std::cout << "Try: './palindrome_prod --help' for more information." << std::endl;
 }

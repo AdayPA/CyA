@@ -10,19 +10,17 @@
 // @brief Palindromic.h:  Header file of the class Palindromic.
 //                        This class aim to obtain the product and 
 //                        store the result in a output file.          
-//                                                       
+// @compile: $ make                                                    
 // References: 
 // https://es.wikipedia.org/wiki/Capic%C3%BAa#:~:text=En%20matem%C3%A1ticas%2C%20la%20palabra%20capic%C3%BAa,%2C%202882%2C%202442%2C%209102019.
 // Lab exercise:
 // https://github.com/fsande/CyA-P03-ProductosCapicua/blob/master/ProductosCapicua.md
-// @compile:
-// $ make
-// $ make clean
 // Version Control:
 // 14/10/2020 - First version of the code 
 // 15/10/2020 - Small changes and using threads
 // 16/10/2020 - Changes in the Write method
 // 17/10/2020 - Commenting the code
+
 #ifndef PALINDROMIC_H_
 #define PALINDROMIC_H_
 

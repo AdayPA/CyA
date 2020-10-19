@@ -7,15 +7,12 @@
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 14/11/2020
-// @brief Palindromic.cc:  Implementation file of Palindromic class.                            
-//                                                                                         
+// @brief Palindromic.cc:  Implementation file of Palindromic class.                                                                                                                  
+// @compile: $ make                                                  
 // References: 
 // https://es.wikipedia.org/wiki/Capic%C3%BAa#:~:text=En%20matem%C3%A1ticas%2C%20la%20palabra%20capic%C3%BAa,%2C%202882%2C%202442%2C%209102019.
 // Lab exercise:
 // https://github.com/fsande/CyA-P03-ProductosCapicua/blob/master/ProductosCapicua.md
-// @compile:
-// $ make
-// $ make clean
 // Version Control:
 // 14/10/2020 - First version of the code 
 // 15/10/2020 - Small changes and using threads
@@ -34,7 +31,7 @@
 
 extern const int kBASE;
 const std::string kErrFilName = "error_file";
-const std::string kMSymbol = " * ";
+const std::string kMultSymbol = " * ";
 const std::string kEqualSymbol = " = ";
 
 Palindromic::Palindromic() {}
@@ -97,7 +94,9 @@ const int Palindromic::MinNumber(void) {
 }
 
 void Palindromic::Write(void) {
-  /// @brief this function will create a file and write the result in it.
+  /// @brief this function will create a file and write the result in it. If
+  /// the program cant create the file, we report the error in a file with 
+  /// the execution time of the program.
   std::ofstream outputfile;
   outputfile.open(get_outputFile());
   if (outputfile.is_open()) {     // If the file opens correctly
@@ -106,7 +105,7 @@ void Palindromic::Write(void) {
       << std::endl;
       for (const auto &i : my_palindroms)
         outputfile << std::get<0>(i) << kEqualSymbol << std::get<1>(i) 
-        << kMSymbol << std::get<2>(i) << std::endl;
+        << kMultSymbol << std::get<2>(i) << std::endl;
     }
     outputfile.close();
   } else {                        // If we couldn't open the file
