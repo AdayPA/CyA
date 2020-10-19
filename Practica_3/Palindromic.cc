@@ -40,6 +40,7 @@ const std::string kEqualSymbol = " = ";
 Palindromic::Palindromic() {}
 
 Palindromic::Palindromic(int digits, std::string output_file) {
+  /// @brief setting the vaule for the private attributes and calling the funcs.
   set_numDigits(digits);
   set_outputFile(output_file);
   FindPalin();
@@ -49,13 +50,18 @@ Palindromic::Palindromic(int digits, std::string output_file) {
 Palindromic::~Palindromic() {}
 
 void Palindromic::FindPalin(void) {
+  /// For the nested loop, first we calculate both of the loop range with the funcs 
+  /// MinNumber() and MaxNumber(). Then we use an auxiliary integer for extract one
+  /// by one each valor of the result and we queue the valor in a new value, which 
+  /// will be the reverse of the result. If both values are the same, its a 
+  /// palindromic number
   for (int multiplicand = MinNumber(); multiplicand <= MaxNumber(); multiplicand++) {
     for (int multiplier = MinNumber(); multiplier <= MaxNumber(); multiplier++) {
       int result, aux_result, digit, rev_result = 0;
       result = multiplicand * multiplier;
       aux_result = result;
       do {
-        digit = result % kBASE;
+        digit = result % kBASE;   
         rev_result = (rev_result * kBASE) + digit;
         result = result / kBASE;
       } while (result != 0);
@@ -67,6 +73,8 @@ void Palindromic::FindPalin(void) {
 }
 
 const int Palindromic::MaxNumber(void) {
+  /// @brief this func calculate the maximun value of an inserted digit,
+  /// e.g; n = 3 -> Maxnumber = 999;
   int num_digit = get_numDigits();
   int min_num = 1;
   while (num_digit != 0) { 
@@ -77,6 +85,8 @@ const int Palindromic::MaxNumber(void) {
 }
 
 const int Palindromic::MinNumber(void) {
+  /// @brief this func calculate the minimun value of an inserted digit,
+  /// e.g; n = 3 -> Maxnumber = 100;
   int num_digit = get_numDigits() - 1;
   int max_num = 1;
   while (num_digit != 0) { 
@@ -87,28 +97,30 @@ const int Palindromic::MinNumber(void) {
 }
 
 void Palindromic::Write(void) {
+  /// @brief this function will create a file and write the result in it.
   std::ofstream outputfile;
   outputfile.open(get_outputFile());
-  if(outputfile.is_open()) {
-    if(outputfile.good()) {
+  if (outputfile.is_open()) {     // If the file opens correctly
+    if (outputfile.good()) {
       outputfile << "Total numbers of palindroms: " << my_palindroms.size() 
       << std::endl;
-      for(const auto &i : my_palindroms)
+      for (const auto &i : my_palindroms)
         outputfile << std::get<0>(i) << kEqualSymbol << std::get<1>(i) 
         << kMSymbol << std::get<2>(i) << std::endl;
     }
     outputfile.close();
-  } else {
+  } else {                        // If we couldn't open the file
     std::ofstream err_file;
     time_t rawtime;
     struct tm * timeinfo;
     time (&rawtime);
     timeinfo = localtime (&rawtime);
     err_file.open(kErrFilName);
-    if(err_file.is_open()) {
-      if(err_file.good()) {
+    if (err_file.is_open()) {     // Reporting the error in a new file 
+      if (err_file.good()) {
         err_file << "Report of execution command at " << asctime(timeinfo);
-        err_file << "Error occurred saving the palindorms result of N = " << get_numDigits() << "." << std::endl;
+        err_file << "Error occurred saving the palindorms result of N = " 
+          << get_numDigits() << std::endl;
         err_file << "Error opening the file.";
       }
     }

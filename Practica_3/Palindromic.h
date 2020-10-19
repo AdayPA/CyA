@@ -37,17 +37,27 @@ class Palindromic {
     ~Palindromic();
 
   private:
-    int numDigits_;
+    /// @brief the digit (n) inserted is stored here, also we will use
+    ///        getters and setters to access it.
+    int numDigits_;          
+    inline void set_numDigits(int& numDigits) { numDigits_ = numDigits; };
+    inline const int& get_numDigits(void) { return numDigits_; };
+    /// @brief the output file name is stored here as string, also we will use
+    ///        getters and setters to access it.
     std::string outputFile_;
     inline void set_outputFile(const std::string& filename) { outputFile_ = filename; };
     inline const std::string& get_outputFile (void) { return outputFile_; };
-    inline void set_numDigits(int& numDigits) { numDigits_ = numDigits; };
-    inline const int& get_numDigits(void) { return numDigits_; };
+    /// @brief after finding the palindroms, we will save then in a vector of tuple,
+    ///        where; result-multiplier-multiplicant is the current order.
     std::vector<std::tuple<int,int,int>> my_palindroms;
+    /// @brief FindPalin as the func name says, will find the paldindromic number.
     void FindPalin(void);
+    /// @brief this both funcions will calculate the maximun and minimun number for
+    /// the multiplier loop, e.g; with n = 3 -> Max: 999 / Min: 100.
     const int MaxNumber(void);
     const int MinNumber(void);
+    /// @brief this function will create a file and write the result in it.
     void Write(void);
 };
 
-#endif 
+#endif //PALINDROMIC_H_
