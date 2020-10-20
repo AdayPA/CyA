@@ -53,7 +53,7 @@ void Palindromic::FindPalin(void) {
   /// will be the reverse of the result. If both values are the same, its a 
   /// palindromic number
   for (int multiplicand = MinNumber(); multiplicand <= MaxNumber(); multiplicand++) {
-    for (int multiplier = MinNumber(); multiplier <= MaxNumber(); multiplier++) {
+    for (int multiplier = multiplicand; multiplier <= MaxNumber(); multiplier++) {
       int result, aux_result, digit, rev_result = 0;
       result = multiplicand * multiplier;
       aux_result = result;
@@ -62,7 +62,7 @@ void Palindromic::FindPalin(void) {
         rev_result = (rev_result * kBASE) + digit;
         result = result / kBASE;
       } while (result != 0);
-      if (aux_result == rev_result) {
+      if ((aux_result == rev_result)){
         my_palindroms.push_back(std::make_tuple(rev_result,multiplicand,multiplier));
       }
     }
@@ -101,8 +101,8 @@ void Palindromic::Write(void) {
   outputfile.open(get_outputFile());
   if (outputfile.is_open()) {     // If the file opens correctly
     if (outputfile.good()) {
-      outputfile << "Total numbers of palindroms: " << my_palindroms.size() 
-      << std::endl;
+      // outputfile << "Total numbers of palindroms: " << my_palindroms.size() 
+      // << std::endl;
       for (const auto &i : my_palindroms)
         outputfile << std::get<0>(i) << kEqualSymbol << std::get<1>(i) 
         << kMultSymbol << std::get<2>(i) << std::endl;
