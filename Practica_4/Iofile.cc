@@ -21,14 +21,42 @@
 #define IOFILE_CC_
 
 #include "Iofile.h"
+#include "Fibonacci.h"
 
-Iofile::Iofile() {}
+#include <fstream>
+#include <iostream>
 
-Iofile::Iofile(std::string input, std::string output) {
+IOFile::IOFile() {}
+
+IOFile::IOFile(std::string input, std::string output) {
   set_inputFile(input);
   set_outputFile(output);
+  std::cout << count_lines(input);
+  //Fibonacci fibonacci(get_line(get_inputFile(),1), get_line(get_inputFile(),2), count_lines(get_inputFile()));
 }
 
-Iofile::~Iofile() {}
+IOFile::~IOFile() {}
 
-#endif 
+std::string IOFile::get_line(const std::string filename, const int& line_number) {
+  std::ifstream inputfile(filename);
+  auto temp(1);
+  std::string line;
+  while((!(inputfile.eof())) && (temp < line_number)) {
+    std::getline(inputfile,line);
+    ++temp;
+  }; 
+  std::getline(inputfile,line);
+  return line;
+}
+
+int IOFile::count_lines (const std::string file){
+  int lines = 0;
+  std::ifstream file_to_count(file);
+  while (!(file_to_count.eof())) {
+    ++lines;
+    file_to_count.ignore();
+  }
+  return lines;
+}
+
+#endif

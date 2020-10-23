@@ -92,7 +92,7 @@ int main(int argc, char** argv) {
     case kThird: {    // executed as: $ ./palindrome_prod.cc 1st_arg 2nd_arg
       std::string output_file(argv[kFileOut]);
       std::string input_file(argv[kFileIn]);
-            
+      IOFile fibonacci(input_file,output_file); 
       break;
     }
     default: {        //executed as: everything else

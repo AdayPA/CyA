@@ -22,22 +22,27 @@
 
 #include <string>
 
-class Iofile {
+class IOFile {
   public:
-    Iofile();
-    Iofile(std::string, std::string);
-    ~Iofile();
+    IOFile();
+    IOFile(std::string, std::string);
+    ~IOFile();
 
   private:
     std::string inputFile_;
-    inline void set_inputFile(const std::string& filename) { outputFile_ = filename; };
-    inline const std::string& get_inputFile (void) { return outputFile_; };
+    inline void set_inputFile(const std::string& filename) { inputFile_ = filename; };
+    inline std::string& get_inputFile (void) { return inputFile_; };
     std::string outputFile_;
     inline void set_outputFile(const std::string& filename) { outputFile_ = filename; };
     inline const std::string& get_outputFile (void)  { return outputFile_; };
-    std::string const get_line ();
+    std::string get_line (const std::string, const int&);
+    int count_lines (const std::string);
+    constexpr const int& count_char (void);
+    // permissions
+    // size for file
+    // add txt
 
-    
+
 };
 
-#endif //PALINDROMIC_H_
+#endif //IOFILE_H_
