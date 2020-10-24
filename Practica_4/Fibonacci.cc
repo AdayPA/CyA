@@ -44,14 +44,14 @@ void Fibonacci::DoFibonacci(void) {
     std::string temp_second_element = Get_secondElement();
     std::string aux;
     fibonacci_string_Serie.push_back(temp_first_element), fibonacci_string_Serie.push_back(temp_second_element);
-    for (int i = 0; i < Get_fibonacciIterations(); ++i) {
+    for (int i = 0; i < Get_fibonacciIterations() - 2; ++i) {
       aux = temp_first_element + temp_second_element;
       temp_first_element = temp_second_element;
       temp_second_element = aux;
       fibonacci_string_Serie.push_back(aux);
     }
   } else {
-    int temp_first_element = std::stoi (Get_firstElement(),nullptr,0);
+   /* int temp_first_element = std::stoi (Get_firstElement(),nullptr,0);
     int temp_second_element = std::stoi (Get_secondElement(),nullptr,0);
     int aux;
     fibonacci_int_Serie.push_back(temp_first_element), fibonacci_int_Serie.push_back(temp_second_element);
@@ -60,14 +60,14 @@ void Fibonacci::DoFibonacci(void) {
       temp_first_element = temp_second_element;
       temp_second_element = aux;
       fibonacci_int_Serie.push_back(aux);
-    }
+    }*/
   }
 }
 
 bool Fibonacci::Is_Fibonacci(const std::string& element, const int& position) const {
   if (element == fibonacci_string_Serie.at(position-1))
     return true;
-  else if ( std::stoi(element,nullptr,0) == fibonacci_int_Serie.at(position-1))
+  else if ( std::stoi(element,NULL,10) == fibonacci_int_Serie.at(position-1))
     return true;
   else
     return false;
