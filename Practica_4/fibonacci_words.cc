@@ -16,7 +16,9 @@
 // https://github.com/fsande/CyA-P04-FibonacciWords/blob/master/FibonacciWords.md
 // Version Control:
 // 21/10/2020 - First version of the code 
-
+// 22/10/2020 - The core is done
+// 23/10/2020 - Added IOFile
+// 24/10/2020 - Added functionalities and output is good
 
 #include "Iofile.h"
 
@@ -50,19 +52,19 @@ std::cout << kBoldOpen << "NAME" << kBoldClose << std::endl;
 std::cout << kTab << "fibonacci_words" << std::endl;
 std::cout << std::endl;
 std::cout << kBoldOpen << "SYNOPSIS" << kBoldClose << std::endl;
-std::cout << kTab << "palindrome_prod [FILE_IN] [FILE_OUT]" << std::endl;
+std::cout << kTab << "fibonacci_words [FILE_IN] [FILE_OUT]" << std::endl;
 std::cout << std::endl;
 std::cout << kBoldOpen << "DESCRIPTION" << kBoldClose << std::endl;
-std::cout << kTab << "This program finds the palindomics numbers obtained from " << 
-  "multipliying two numbers of n digits (both of them), storing them in " <<
-  "a output file" << std::endl;
+std::cout << kTab << "This program finds the fibonacci sequence obtained from " << 
+  "concatenating the first elements, and showing the result in a " <<
+  "output file" << std::endl;
 std::cout << std::endl;
 std::cout << kTab << "Mandatory arguments:" << std::endl;
 std::cout << std::endl;
-std::cout << kTab << "[DIGIT] " << std::endl;
-std::cout << kTab << kTab << "the number must be N > 0 " << std::endl;
+std::cout << kTab << "[FILE_IN] " << std::endl;
+std::cout << kTab << kTab << "input file with the sequence to compare " << std::endl;
 std::cout << std::endl;
-std::cout << kTab << "[FILE] " << std::endl;
+std::cout << kTab << "[FILE_OUT] " << std::endl;
 std::cout << kTab << kTab << "name of the output file; it will be created or " << 
   "overwritten " << std::endl;
 std::cout << std::endl;
@@ -89,7 +91,7 @@ int main(int argc, char** argv) {
       }
        break;
     }
-    case kThird: {    // executed as: $ ./palindrome_prod.cc 1st_arg 2nd_arg
+    case kThird: {    // executed as: $ ./fibonacci_words.cc 1st_arg 2nd_arg
       std::string output_file(argv[kFileOut]);
       std::string input_file(argv[kFileIn]);
       IOFile fibonacci(input_file,output_file); 
