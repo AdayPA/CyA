@@ -42,11 +42,10 @@ IOFile::IOFile(std::string input, std::string output) {
   std::ofstream output_stream;
   output_stream.open(Get_outputFile());
   Fibonacci fibonacci(Get_line(Get_inputFile(),1), Get_line(Get_inputFile(),2), Count_lines(Get_inputFile()));
-  /*
   if (output_stream.is_open()) {
     if (output_stream.good()) {
       for (int file_elements = 1; file_elements <= Count_lines(Get_inputFile()); ++file_elements) {
-        if (fibonacci.Is_Fibonacci(Get_line(Get_inputFile(),file_elements),file_elements)) {
+        if (fibonacci.Is_Fibonacci(Get_line(Get_inputFile(),file_elements - 1),file_elements - 1)) {
           output_stream << Get_line(Get_inputFile(),file_elements) << kMessageTrue << file_elements << std::endl;
         } else {
           output_stream << Get_line(Get_inputFile(),file_elements) << kMessageFalse << std::endl;
@@ -54,7 +53,8 @@ IOFile::IOFile(std::string input, std::string output) {
       } // for
     } // second if (.good)
   } // first if (is_open)
-  */
+  
+  
 }
   
 IOFile::~IOFile() {}

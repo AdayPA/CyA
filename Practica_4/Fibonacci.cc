@@ -43,33 +43,31 @@ void Fibonacci::DoFibonacci(void) {
     std::string temp_first_element = Get_firstElement();
     std::string temp_second_element = Get_secondElement();
     std::string aux;
-    fibonacciSerie.push_back(temp_first_element), fibonacciSerie.push_back(temp_second_element);
+    fibonacci_string_Serie.push_back(temp_first_element), fibonacci_string_Serie.push_back(temp_second_element);
     for (int i = 0; i < Get_fibonacciIterations(); ++i) {
       aux = temp_first_element + temp_second_element;
       temp_first_element = temp_second_element;
       temp_second_element = aux;
-      fibonacciSerie.push_back(aux);
+      fibonacci_string_Serie.push_back(aux);
     }
   } else {
     int temp_first_element = std::stoi (Get_firstElement(),nullptr,0);
     int temp_second_element = std::stoi (Get_secondElement(),nullptr,0);
-    //int temp_second_element = Get_secondElement();
-   // std::string aux;
-    //fibonacciSerie.push_back(temp_first_element), fibonacciSerie.push_back(temp_second_element);
-   // for (int i = 0; i < Get_fibonacciIterations(); ++i) {
-   //   aux = temp_first_element + temp_second_element;
-   //   temp_first_element = temp_second_element;
-    //  temp_second_element = aux;
-    //  fibonacciSerie.push_back(aux);
-   // }
-   std::cout << "primer: " << temp_first_element << std::endl;
-   std::cout << "sec: " << temp_second_element << std::endl;
-   std::cout << "sum: " << temp_second_element + temp_first_element << std::endl;
+    int aux;
+    fibonacci_int_Serie.push_back(temp_first_element), fibonacci_int_Serie.push_back(temp_second_element);
+    for (int i = 0; i < Get_fibonacciIterations(); ++i) {
+      aux = temp_first_element + temp_second_element;
+      temp_first_element = temp_second_element;
+      temp_second_element = aux;
+      fibonacci_int_Serie.push_back(aux);
+    }
   }
 }
 
 bool Fibonacci::Is_Fibonacci(const std::string& element, const int& position) const {
-  if (element == fibonacciSerie.at(position-1))
+  if (element == fibonacci_string_Serie.at(position-1))
+    return true;
+  else if ( std::stoi(element,nullptr,0) == fibonacci_int_Serie.at(position-1))
     return true;
   else
     return false;

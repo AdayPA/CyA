@@ -44,8 +44,9 @@ class Fibonacci {
     int fibonacciIterations_;
     inline void Set_fibonacciIterations(int& iterations) { fibonacciIterations_ = iterations; };
     inline const int& Get_fibonacciIterations(void) { return fibonacciIterations_; };
-   // std::vector<std::string> fibonacciSerie;
-    std::vector<std::variant<type1, type2, type3>> vectorName;
+    std::vector<std::string> fibonacci_string_Serie;
+    std::vector<int> fibonacci_int_Serie;
+    //std::vector<std::variant<type1, type2, type3>> vectorName;
     const bool IsDigit(const std::string&);
     void DoFibonacci(void);
 };
