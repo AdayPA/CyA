@@ -30,10 +30,30 @@ Fibonacci::Fibonacci() {}
 Fibonacci::Fibonacci(std::string first, std::string second, int iterations) {
   set_firstElement(first), set_secondElement(second);
   set_fibonacciIterations(iterations);
+  doFibonacci();
   
  }
 
 Fibonacci::~Fibonacci() {}
 
+void Fibonacci::doFibonacci(void){
+  std::string temp_first_element = get_firstElement();
+  std::string temp_second_element = get_secondElement();
+  std::string aux;
+  fibonacciSerie.push_back(temp_first_element), fibonacciSerie.push_back(temp_second_element);
+  for (int i = 0; i < get_fibonacciIterations(); ++i){
+    aux = temp_first_element + temp_second_element;
+    temp_first_element = temp_second_element;
+    temp_second_element = aux;
+    fibonacciSerie.push_back(aux);
+  }
+}
+
+bool Fibonacci::is_Fibonacci(const std::string& element, const int& position) const {
+  if (element == fibonacciSerie.at(position))
+    return true;
+  else
+    return false;
+}
 
 #endif 

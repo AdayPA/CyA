@@ -27,6 +27,7 @@ class Fibonacci {
   public:
     Fibonacci();
     Fibonacci(std::string first, std::string second, int iterations);
+    bool is_Fibonacci(const std::string&, const int&) const;
     ~Fibonacci();
 
   private:
@@ -39,7 +40,7 @@ class Fibonacci {
     inline void set_fibonacciIterations(int& iterations) { fibonacciIterations_ = iterations; };
     inline const int& get_fibonacciIterations(void) { return fibonacciIterations_; };
     std::vector<std::string> fibonacciSerie;
-    //doFibonacci();
+    void doFibonacci(void);
 };
 
 #endif //FIBONACCI_H_

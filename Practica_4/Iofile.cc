@@ -31,8 +31,8 @@ IOFile::IOFile() {}
 IOFile::IOFile(std::string input, std::string output) {
   set_inputFile(input);
   set_outputFile(output);
-  std::cout << count_lines(input);
-  //Fibonacci fibonacci(get_line(get_inputFile(),1), get_line(get_inputFile(),2), count_lines(get_inputFile()));
+  Fibonacci fibonacci(get_line(get_inputFile(),1), get_line(get_inputFile(),2), count_lines(get_inputFile()));
+  
 }
 
 IOFile::~IOFile() {}
@@ -52,9 +52,9 @@ std::string IOFile::get_line(const std::string filename, const int& line_number)
 int IOFile::count_lines (const std::string file){
   int lines = 0;
   std::ifstream file_to_count(file);
-  while (!(file_to_count.eof())) {
+  std::string unused;
+  while (std::getline(file_to_count,unused)) {
     ++lines;
-    file_to_count.ignore();
   }
   return lines;
 }
