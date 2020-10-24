@@ -38,9 +38,10 @@ class IOFile {
     std::string outputFile_;
     inline void Set_outputFile(const std::string& filename) { outputFile_ = filename; };
     inline const std::string& Get_outputFile (void)  { return outputFile_; };
-    std::string Get_line (const std::string, const int&);
+    std::string Get_line (const std::string&, const int&);
     int Count_lines (const std::string);
-    constexpr const int& Count_char (void);
+    constexpr const int& CountChar (void);
+    const bool IsDigit(const std::string&);
     // permissions
     // size for file
     // add .txt

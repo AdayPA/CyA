@@ -25,6 +25,8 @@
 
 #include <string>
 #include <vector>
+#include <variant>
+
 
 class Fibonacci {
   public:
@@ -42,7 +44,9 @@ class Fibonacci {
     int fibonacciIterations_;
     inline void Set_fibonacciIterations(int& iterations) { fibonacciIterations_ = iterations; };
     inline const int& Get_fibonacciIterations(void) { return fibonacciIterations_; };
-    std::vector<std::string> fibonacciSerie;
+   // std::vector<std::string> fibonacciSerie;
+    std::vector<std::variant<type1, type2, type3>> vectorName;
+    const bool IsDigit(const std::string&);
     void DoFibonacci(void);
 };
 

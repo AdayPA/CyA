@@ -29,6 +29,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <algorithm>
 
 const std::string kMessageTrue = " is the word number ";
 const std::string kMessageFalse = " is not a Fibonacci word";
@@ -41,9 +42,10 @@ IOFile::IOFile(std::string input, std::string output) {
   std::ofstream output_stream;
   output_stream.open(Get_outputFile());
   Fibonacci fibonacci(Get_line(Get_inputFile(),1), Get_line(Get_inputFile(),2), Count_lines(Get_inputFile()));
-  if (output_stream.is_open()){
+  /*
+  if (output_stream.is_open()) {
     if (output_stream.good()) {
-      for (int file_elements = 1; file_elements <= Count_lines(Get_inputFile()); ++file_elements){
+      for (int file_elements = 1; file_elements <= Count_lines(Get_inputFile()); ++file_elements) {
         if (fibonacci.Is_Fibonacci(Get_line(Get_inputFile(),file_elements),file_elements)) {
           output_stream << Get_line(Get_inputFile(),file_elements) << kMessageTrue << file_elements << std::endl;
         } else {
@@ -52,11 +54,12 @@ IOFile::IOFile(std::string input, std::string output) {
       } // for
     } // second if (.good)
   } // first if (is_open)
+  */
 }
   
 IOFile::~IOFile() {}
 
-std::string IOFile::Get_line(const std::string filename, const int& line_number) {
+std::string IOFile::Get_line(const std::string& filename, const int& line_number) {
   std::ifstream inputfile(filename);
   auto temp(1);
   std::string line;
@@ -68,7 +71,7 @@ std::string IOFile::Get_line(const std::string filename, const int& line_number)
   return line;
 }
 
-int IOFile::Count_lines (const std::string file){
+int IOFile::Count_lines (const std::string file) {
   int lines = 0;
   std::ifstream file_to_count(file);
   std::string unused;
@@ -78,5 +81,8 @@ int IOFile::Count_lines (const std::string file){
   return lines;
 }
 
+const bool IOFile::IsDigit(const std::string& str){
+  return std::all_of(str.begin(), str.end(), ::isdigit);
+}
 
 #endif

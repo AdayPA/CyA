@@ -26,6 +26,7 @@
 #include "Fibonacci.h"
 
 #include <iostream>
+#include <algorithm>
 
 Fibonacci::Fibonacci() {}
 
@@ -37,16 +38,33 @@ Fibonacci::Fibonacci(std::string first, std::string second, int iterations) {
 
 Fibonacci::~Fibonacci() {}
 
-void Fibonacci::DoFibonacci(void){
-  std::string temp_first_element = Get_firstElement();
-  std::string temp_second_element = Get_secondElement();
-  std::string aux;
-  fibonacciSerie.push_back(temp_first_element), fibonacciSerie.push_back(temp_second_element);
-  for (int i = 0; i < Get_fibonacciIterations(); ++i){
-    aux = temp_first_element + temp_second_element;
-    temp_first_element = temp_second_element;
-    temp_second_element = aux;
-    fibonacciSerie.push_back(aux);
+void Fibonacci::DoFibonacci(void) {
+  if ( !((IsDigit(Get_firstElement())) && (IsDigit(Get_secondElement()))) ) {
+    std::string temp_first_element = Get_firstElement();
+    std::string temp_second_element = Get_secondElement();
+    std::string aux;
+    fibonacciSerie.push_back(temp_first_element), fibonacciSerie.push_back(temp_second_element);
+    for (int i = 0; i < Get_fibonacciIterations(); ++i) {
+      aux = temp_first_element + temp_second_element;
+      temp_first_element = temp_second_element;
+      temp_second_element = aux;
+      fibonacciSerie.push_back(aux);
+    }
+  } else {
+    int temp_first_element = std::stoi (Get_firstElement(),nullptr,0);
+    int temp_second_element = std::stoi (Get_secondElement(),nullptr,0);
+    //int temp_second_element = Get_secondElement();
+   // std::string aux;
+    //fibonacciSerie.push_back(temp_first_element), fibonacciSerie.push_back(temp_second_element);
+   // for (int i = 0; i < Get_fibonacciIterations(); ++i) {
+   //   aux = temp_first_element + temp_second_element;
+   //   temp_first_element = temp_second_element;
+    //  temp_second_element = aux;
+    //  fibonacciSerie.push_back(aux);
+   // }
+   std::cout << "primer: " << temp_first_element << std::endl;
+   std::cout << "sec: " << temp_second_element << std::endl;
+   std::cout << "sum: " << temp_second_element + temp_first_element << std::endl;
   }
 }
 
@@ -57,4 +75,8 @@ bool Fibonacci::Is_Fibonacci(const std::string& element, const int& position) co
     return false;
 }
 
-#endif 
+const bool Fibonacci::IsDigit(const std::string& str){
+  return std::all_of(str.begin(), str.end(), ::isdigit);
+}
+
+#endif
