@@ -55,7 +55,6 @@ void Set::Work(std::string in) {
 std::vector<unsigned long int> Set::Range(std::vector<int> in){
   unsigned long int result = 0;
   int vect_pos = floor(in[2] / 64);
-  //test
   
 }
 
