@@ -4,11 +4,11 @@
 
 # Compiler settings - Can be customized.
 CC = g++
-CXXFLAGS = -std=c++17 -Wall
+CXXFLAGS = -std=c++11 -Wall
 LDFLAGS = 
 
 # Makefile settings - Can be customized.
-APPNAME = fibonacci_words
+APPNAME = set_calculator
 EXT = .cc
 SRCDIR = /home/usuario/cya/Practica_5
 OBJDIR = /home/usuario/cya/Practica_5

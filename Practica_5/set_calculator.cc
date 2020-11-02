@@ -7,7 +7,7 @@
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 26/11/2020
-// @brief ./.cc:  
+// @brief ./set_calculator.cc:  
 //         
 // @compile: $ make                                                    
 // References: 
@@ -48,10 +48,10 @@ void Help(void) {
  ** Explain everithing about the program.
  */
 std::cout << kBoldOpen << "NAME" << kBoldClose << std::endl;
-std::cout << kTab << "fibonacci_words" << std::endl;
+std::cout << kTab << "set_calculator" << std::endl;
 std::cout << std::endl;
 std::cout << kBoldOpen << "SYNOPSIS" << kBoldClose << std::endl;
-std::cout << kTab << "fibonacci_words [FILE_IN] [FILE_OUT]" << std::endl;
+std::cout << kTab << "set_calculator [FILE_IN] [FILE_OUT]" << std::endl;
 std::cout << std::endl;
 std::cout << kBoldOpen << "DESCRIPTION" << kBoldClose << std::endl;
 std::cout << kTab << "This program finds the fibonacci sequence obtained from " << 
@@ -71,17 +71,17 @@ std::cout << std::endl;
 
 void BadImput (void) {
   // Message output when the program gets the wrong input arguments.
-  std::cout << "Usage: ./fibonacci_words Input_File Output_File" << std::endl;
-  std::cout << "Try: './fibonacci_words --help' for more information." << std::endl;
+  std::cout << "Usage: ./set_calculator Input_File Output_File" << std::endl;
+  std::cout << "Try: './set_calculator --help' for more information." << std::endl;
 }
 
 int main(int argc, char** argv) {
   switch (argc) {     // Switch depending of the input commands
-    case kFirst: {    // executed as: $ ./fibonacci_words.cc
+    case kFirst: {    // executed as: $ ./set_calculator.cc
       BadImput();
       break;
 	  }	
-    case kSecond:	{   // executed as: $ ./fibonacci_words.cc 1st_arg 
+    case kSecond:	{   // executed as: $ ./set_calculator.cc 1st_arg 
       std::string input_file = argv[kFileIn];
       if (input_file == kExplain) {
         Help();
@@ -90,7 +90,7 @@ int main(int argc, char** argv) {
       }
        break;
     }
-    case kThird: {    // executed as: $ ./fibonacci_words.cc 1st_arg 2nd_arg
+    case kThird: {    // executed as: $ ./set_calculator 1st_arg 2nd_arg
       std::string output_file(argv[kFileOut]);
       std::string input_file(argv[kFileIn]);
       IOFile fibonacci(input_file,output_file); 

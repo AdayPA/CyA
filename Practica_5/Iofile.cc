@@ -8,7 +8,7 @@
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 26/11/2020
 // @brief ./.cc:  
-//         
+// 
 // @compile: $ make                                                    
 // References: 
 // 
@@ -22,6 +22,7 @@
 #define IOFILE_CC_
 
 #include "Iofile.h"
+#include "Set.h"
 
 #include <fstream>
 #include <iostream>
@@ -35,15 +36,19 @@ IOFile::IOFile(std::string input, std::string output) {
   Set_inputFile(input);
   Set_outputFile(output);
   OutFileSyntaxName();
-  std::ofstream output_stream;
-  output_stream.open(Get_outputFile());
-}
+  Set A;
+  A.Work(Get_line(Get_inputFile(),1));
+  //Set B;
+  //B >> Get_line(Get_inputFile(),1);
   
+
+}
+
 IOFile::~IOFile() {}
 
-void IOFile::OutFileSyntaxName (void) {
+void IOFile::OutFileSyntaxName(void) {
   std::string temp_name = Get_outputFile();
-  if ( temp_name.size() <= 4) {
+  if(temp_name.size() <= 4) {
     Set_outputFile(temp_name + kFileExt);
   } else {
     std::string aux;
@@ -61,25 +66,25 @@ std::string IOFile::Get_line(const std::string& filename, const int& line_number
   std::ifstream inputfile(filename);
   auto temp(1);
   std::string line;
-  while((!(inputfile.eof())) && (temp < line_number)) {
-    std::getline(inputfile,line);
+  while( (!(inputfile.eof())) && (temp < line_number)) {
+    std::getline(inputfile, line);
     ++temp;
-  }; 
-  std::getline(inputfile,line);
+  } 
+  std::getline(inputfile, line);
   return line;
 }
 
-int IOFile::Count_lines (const std::string file) {
+int IOFile::Count_lines(const std::string file) {
   int lines = 0;
   std::ifstream file_to_count(file);
   std::string unused;
-  while (std::getline(file_to_count,unused)) {
+  while (std::getline(file_to_count, unused)) {
     ++lines;
   }
   return lines;
 }
 
-const bool IOFile::IsDigit(const std::string& str){
+const bool IOFile::IsDigit(const std::string& str)  {
   return std::all_of(str.begin(), str.end(), ::isdigit);
 }
 
