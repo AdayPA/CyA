@@ -33,10 +33,13 @@
 #include <math.h> 
 
 Set::Set() {
+  size_of_set_ = 64;
   set_ = 0;
 }
 
-Set::Set(int& size) {}
+Set::Set(int size) {
+  size_of_set_ = size;
+}
 
 Set::~Set() {
 
@@ -49,7 +52,12 @@ void Set::Work(std::string in) {
 }
 
 std::string Set::Write() {
-  std::string result;
+  for (auto& i : intergers_) {
+    if ( i >= size_of_set_) {
+      intergers_.erase(std::remove(intergers_.begin(), intergers_.end(), i), intergers_.end());
+    }
+  }
+    std::string result;
     result += "{";
     for (auto& i : intergers_)
       if (i != intergers_.back()) {
@@ -207,17 +215,17 @@ void Set::SetOutput(std::ofstream& out) {
 
 unsigned long int Set::Convert(std::vector<int> in) {
   unsigned long int result = 0;
-  for(unsigned int i = 0; i < in.size(); ++i){
+  for(unsigned int i = 0; i < in.size(); ++i) {
     unsigned long int num = 1;
-    for ( int j = 0; j < in[i]; ++j){
-      num = num << 1;
-    }
+      for ( int j = 0; j < in[i]; ++j) {
+        num = num << 1;
+      } 
     result = result | num;
   }
   return result;
 }
 
-std::vector<unsigned long int> Set::Convert2 (std::vector<std::vector<int>> data){
+std::vector<unsigned long int> Set::Convert2 (std::vector<std::vector<int>> data) {
   std::vector<unsigned long int> result;
   for (unsigned int i = 0; i < data.size(); ++i ) {
     result.push_back(Convert(data[i]));
@@ -235,7 +243,7 @@ void Set::PrintBits (unsigned long int num) {
     printf("\n");
 }
 
-void Set::PrintVectorSet(std::vector<unsigned long int> data){
+void Set::PrintVectorSet(std::vector<unsigned long int> data) {
   for (unsigned int i = 0; i < data.size(); ++i) {
     PrintBits(data[i]);
   }

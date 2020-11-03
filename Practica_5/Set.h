@@ -31,8 +31,9 @@
 class Set {
   public:
     Set();
-    Set(int&);
+    Set(int);
     ~Set();
+    int size_of_set_;
     void Work (std::string);
     void SetOutput (std::ofstream&);
     std::string Write();
@@ -45,6 +46,7 @@ class Set {
     void operator-(int);
     void PrintSet (void);
     void PrintVectorSet(std::vector<unsigned long int>);
+    inline int GetSizeOfSet(void) {return size_of_set_; };
 
 
   private:
