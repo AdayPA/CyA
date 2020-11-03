@@ -412,11 +412,7 @@ void Set::operator=(std::string in) {
   std::vector<int> test = ExtractIntegerWords(in);
   set_storage = Convert2(Range((test)));
 }
-/*
-void Set::operator>>(Set a, std::string& in){
-  Work(in);
-}
-*/
+
 void Set::operator + ( int sum) {
   /// @brief overload of +
   std::vector<int> temp;
@@ -447,5 +443,10 @@ std::ostream& operator<<(std::ostream& os, Set& a) {
   a.PrintSet();
   return os;
 }
-
+/*
+std::istream& operator>>(std::istream& in, Set& a) {
+  std::istringstream in(str);
+  return in;
+}
+*/
 #endif

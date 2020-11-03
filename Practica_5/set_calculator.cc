@@ -54,14 +54,13 @@ std::cout << kBoldOpen << "SYNOPSIS" << kBoldClose << std::endl;
 std::cout << kTab << "set_calculator [FILE_IN] [FILE_OUT]" << std::endl;
 std::cout << std::endl;
 std::cout << kBoldOpen << "DESCRIPTION" << kBoldClose << std::endl;
-std::cout << kTab << "This program finds the fibonacci sequence obtained from " << 
-  "concatenating the first elements, and showing the result in a " <<
-  "output file" << std::endl;
+std::cout << kTab << "This program read the set, transform it and operate with it " <<
+ "in a bit level and showing the result in a output file" << std::endl;
 std::cout << std::endl;
 std::cout << kTab << "Mandatory arguments:" << std::endl;
 std::cout << std::endl;
 std::cout << kTab << "[FILE_IN] " << std::endl;
-std::cout << kTab << kTab << "input file with the sequence to compare " << std::endl;
+std::cout << kTab << kTab << "input file with set for operate " << std::endl;
 std::cout << std::endl;
 std::cout << kTab << "[FILE_OUT] " << std::endl;
 std::cout << kTab << kTab << "name of the output file; it will be created or " << 
@@ -93,7 +92,7 @@ int main(int argc, char** argv) {
     case kThird: {    // executed as: $ ./set_calculator 1st_arg 2nd_arg
       std::string output_file(argv[kFileOut]);
       std::string input_file(argv[kFileIn]);
-      IOFile fibonacci(input_file,output_file); 
+      IOFile calculator(input_file,output_file); 
       break;
     }
     default: {        //executed as: everything else

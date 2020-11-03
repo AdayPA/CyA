@@ -84,6 +84,7 @@ class Set {
 };
 
 std::ostream& operator<<(std::ostream& os, Set& a);
+//std::istream& operator>>(std::ostream& in, Set& a);
 
 
 #endif //SET_H_
