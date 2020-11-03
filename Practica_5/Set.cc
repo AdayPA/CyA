@@ -7,16 +7,20 @@
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 26/11/2020
-// @brief ./.cc:  
-// 
+// @brief Set.h :  Implementation of Set.h
+//                 
 // @compile: $ make                                                    
 // References: 
-// 
+// https://en.wikipedia.org/wiki/Set_(mathematics)
+// https://en.wikipedia.org/wiki/Union_(set_theory)
 // Lab exercise:
-// 
+// https://github.com/fsande/CyA-P05-Sets/blob/master/Sets.md
 // Version Control:
 // 26/10/2020 - First version of the code 
-// 
+// 28/10/2020 - Adding the lecture filtering
+// 29/10/2020 - Converting to bits
+// 31/10/2020 - Adding operations
+// 2/10/2020 -  Writting the output
 
 #ifndef SET_CC_
 #define SET_CC_
@@ -46,12 +50,14 @@ Set::~Set() {
 }
 
 void Set::Work(std::string in) {
+  /// @brief calling private functions for make the class work.
   expression_ = in;
   Operate(FindOperators(in),in);
   TransformToInt();
 }
 
 std::string Set::Write() {
+  /// @brief writting the result to the file
   for (auto& i : intergers_) {
     if ( i >= size_of_set_) {
       intergers_.erase(std::remove(intergers_.begin(), intergers_.end(), i), intergers_.end());
@@ -71,10 +77,12 @@ std::string Set::Write() {
 }
 
 void Set::Clear() {
+  /// @brief clear the set
   set_ = 0;
 }
 
 bool Set::IsEmpty() {
+  /// @brief return true if set is empty
   if (set_ == 0) {
     return true;
   } else {
@@ -83,6 +91,7 @@ bool Set::IsEmpty() {
 }
 
 bool Set::Belong(int number) {
+  /// @brief return true if the element belong to the set
   unsigned long int temp = set_;
   for ( int i = 0; i < number; ++i) {
     temp >>= 1;
@@ -95,6 +104,7 @@ bool Set::Belong(int number) {
 }
 
 void Set::TransformToInt (void) {
+  /// @brief take the bits and transform it to a legible int
   intergers_.resize(0);
   int shift = 0;
   for (unsigned int i = 0; i < set_storage.size(); ++i) {
@@ -113,6 +123,7 @@ void Set::TransformToInt (void) {
 }
 
 std::vector<std::vector<int>> Set::Range(std::vector<int> in) {
+  /// @brief split the int to a vector with the propper value range
   max_elements_ = 0;
   std::vector<std::vector< int>> data;
   for (unsigned int i = 0; i < in.size(); ++i) {
@@ -129,6 +140,7 @@ std::vector<std::vector<int>> Set::Range(std::vector<int> in) {
 }
 
 void Set::Operate(std::string operators, std::string operand) {
+  /// @brief reads the operator and do the related math
   if (operators == "!+!") {
     std::vector<std::string> v = Split (operand, "+" );
     std::vector<int> test = ExtractIntegerWords(v[0]);
@@ -197,11 +209,12 @@ void Set::Operate(std::string operators, std::string operand) {
     std::vector<int> test = ExtractIntegerWords(operand);
     set_storage = Convert2(Range(test));
   } else {
-    std::cout << "error de lectura" << std::endl;
+    //std::cout << "error de lectura" << std::endl;
   } 
 }
 
 bool Set::CheckSyntax(std::string in) {
+  /// @brief check is input have a correct syntax
  /* std::regex a("(({.*}|!{.*}) (\+|\-|\*|\=) ({.*}|!{.*}))");
   if ( std::regex_match (in, a) ) 
         std::cout << "String 'a' matches regular expression 'b' \n"; 
@@ -214,6 +227,7 @@ void Set::SetOutput(std::ofstream& out) {
 }
 
 unsigned long int Set::Convert(std::vector<int> in) {
+  /// @brief transform the vector with int to the equal bit set
   unsigned long int result = 0;
   for(unsigned int i = 0; i < in.size(); ++i) {
     unsigned long int num = 1;
@@ -226,6 +240,7 @@ unsigned long int Set::Convert(std::vector<int> in) {
 }
 
 std::vector<unsigned long int> Set::Convert2 (std::vector<std::vector<int>> data) {
+  /// @brief same function of Convert but for 2d vector
   std::vector<unsigned long int> result;
   for (unsigned int i = 0; i < data.size(); ++i ) {
     result.push_back(Convert(data[i]));
@@ -235,6 +250,7 @@ std::vector<unsigned long int> Set::Convert2 (std::vector<std::vector<int>> data
 
 
 void Set::PrintBits (unsigned long int num) {
+  /// @brief prints the bits
   int i;
     for (i = (sizeof(unsigned long int) * 8) - 1; i >= 0; i--) {
         char c = (num & (1LL << i))? '1' : '0';
@@ -244,6 +260,7 @@ void Set::PrintBits (unsigned long int num) {
 }
 
 void Set::PrintVectorSet(std::vector<unsigned long int> data) {
+  /// @brief prints all the bits of the vector
   for (unsigned int i = 0; i < data.size(); ++i) {
     PrintBits(data[i]);
   }
@@ -255,6 +272,7 @@ const unsigned long int Set::Union (unsigned long int sum1, unsigned long int su
 }
 
 std::vector<unsigned long int> Set::Union2 (std::vector<unsigned long int> sum1, std::vector<unsigned long int> sum2){
+  /// @brief works like Union but for all the bits of the vector
   std::vector<unsigned long int> result;
   unsigned long int trash = 0;
   if (sum1.size() < sum2.size()) {
@@ -274,10 +292,12 @@ std::vector<unsigned long int> Set::Union2 (std::vector<unsigned long int> sum1,
 }
 
 unsigned long int Set::Complement (unsigned long int num) {
+  /// @brief return the complement of the number
   return  ~(num);
 }
 
 std::vector<unsigned long int> Set::Complement2 (std::vector<unsigned long int> num) {
+  /// @brief works like Complement but for all the bits of the vector
   std::vector<unsigned long int> result;
   for (unsigned int i = 0; i < num.size(); ++i) {
     result.push_back(Complement(num[i]));
@@ -286,11 +306,13 @@ std::vector<unsigned long int> Set::Complement2 (std::vector<unsigned long int> 
 }
 
 unsigned long int Set::RelativeComplement (unsigned long int sum1, unsigned long int sum2) {
+  /// @brief thos func does the relative complement of the set
   unsigned long int temp = Complement(sum1);
   return Intersection(sum2,temp);
 }
 
 std::vector<unsigned long int> Set::RelativeComplement2 (std::vector<unsigned long int> sum1, std::vector<unsigned long int> sum2){
+  /// @brief works like RelativeComplement but for all the bits of the vector
   std::vector<unsigned long int> result;
   unsigned long int trash = 0;
   if (sum1.size() < sum2.size()) {
@@ -310,10 +332,12 @@ std::vector<unsigned long int> Set::RelativeComplement2 (std::vector<unsigned lo
 }
 
 unsigned long int Set::Intersection (unsigned long int sum1, unsigned long int sum2) {
+  /// @brief this return the intersection of the set
   return sum1 & sum2;
 }
 
 std::vector<unsigned long int> Set::Intersection2 (std::vector<unsigned long int> sum1, std::vector<unsigned long int> sum2){
+  /// @brief works like Intersection but for all the bits of the vector
   std::vector<unsigned long int> result;
   unsigned long int trash = 0;
   if (sum1.size() < sum2.size()) {
@@ -333,6 +357,7 @@ std::vector<unsigned long int> Set::Intersection2 (std::vector<unsigned long int
 }
 
 std::string Set::FindOperators (std::string input) {
+  /// @brief this func find the operators from a string
   std::string operation;
   for (unsigned int i = 0; i < input.size(); i++) {
     if (input[i] == '!') operation += "!";
@@ -344,6 +369,7 @@ std::string Set::FindOperators (std::string input) {
 }
 
 std::vector<std::string> Set::Split (std::string str, std::string delim) {
+  /// @brief this func split in 2 the string and store them in vector, depending of the char
   std::vector<std::string> tokens;
   size_t prev = 0, pos = 0;
   do {
@@ -358,6 +384,7 @@ std::vector<std::string> Set::Split (std::string str, std::string delim) {
 }
 
 std::vector<int> Set::ExtractIntegerWords(std::string str) {
+  /// @brief this func return a vector with the ints of a given string
   str.erase(std::remove(str.begin(), str.end(), '{'), str.end());
   str.erase(std::remove(str.begin(), str.end(), '!'), str.end());
   str.erase(std::remove(str.begin(), str.end(), '}'), str.end());
@@ -381,6 +408,7 @@ void Set::PrintSet (void) {
 }
 
 void Set::operator=(std::string in) {
+  /// @brief overload of =
   std::vector<int> test = ExtractIntegerWords(in);
   set_storage = Convert2(Range((test)));
 }
@@ -390,6 +418,7 @@ void Set::operator>>(Set a, std::string& in){
 }
 */
 void Set::operator + ( int sum) {
+  /// @brief overload of +
   std::vector<int> temp;
   temp.push_back(sum);
   unsigned long int num = Convert (temp);
@@ -397,6 +426,7 @@ void Set::operator + ( int sum) {
 }
 
 void Set::operator - ( int sum) {
+  /// @brief overload of -
   std::vector<int> temp;
   temp.push_back(sum);
   unsigned long int num = Convert (temp);
@@ -404,6 +434,7 @@ void Set::operator - ( int sum) {
 }
 
 bool Set::operator==(Set in) {
+  /// @brief overload of ==
   if (in.set_ == set_) {
     return true;
   } else {
@@ -412,6 +443,7 @@ bool Set::operator==(Set in) {
 }
 
 std::ostream& operator<<(std::ostream& os, Set& a) {
+  /// @brief overload of <<
   a.PrintSet();
   return os;
 }

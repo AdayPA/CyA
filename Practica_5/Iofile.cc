@@ -7,7 +7,7 @@
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 26/11/2020
-// @brief ./.cc:  
+// @brief ./.cc:  Implementation of Iofile.h
 // 
 // @compile: $ make                                                    
 // References: 

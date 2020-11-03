@@ -7,7 +7,7 @@
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 26/11/2020
-// @brief ./.cc:  
+// @brief ./.cc:  This class help us to manage input and outpu files
 //         
 // @compile: $ make                                                    
 // References: 

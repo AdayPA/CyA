@@ -7,16 +7,20 @@
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 26/11/2020
-// @brief Set.h :  
-//         
+// @brief Set.h :  This class receive a set as string and transform it
+//                 into int and operates it with the bits.
 // @compile: $ make                                                    
 // References: 
-// 
+// https://en.wikipedia.org/wiki/Set_(mathematics)
+// https://en.wikipedia.org/wiki/Union_(set_theory)
 // Lab exercise:
-// 
+// https://github.com/fsande/CyA-P05-Sets/blob/master/Sets.md
 // Version Control:
 // 26/10/2020 - First version of the code 
-// 
+// 28/10/2020 - Adding the lecture filtering
+// 29/10/2020 - Converting to bits
+// 31/10/2020 - Adding operations
+// 2/10/2020 -  Writting the output
 
 #ifndef SET_H_
 #define SET_H_
