@@ -36,11 +36,22 @@ IOFile::IOFile(std::string input, std::string output) {
   Set_inputFile(input);
   Set_outputFile(output);
   OutFileSyntaxName();
-  Set A;
-  A.Work(Get_line(Get_inputFile(),1));
-  //Set B;
-  //B >> Get_line(Get_inputFile(),1);
-  
+  std::ofstream output_stream;
+  output_stream.open(output);
+  if (output_stream.is_open()) {
+    Set A;
+    for (int i = 1; i <= Count_lines(input); ++i) {
+      A.Work(Get_line(Get_inputFile(),i));
+      output_stream << Get_line(Get_inputFile(),i) << " = " << A.Write() << std::endl;
+    }
+  }
+  Set B;
+  Set C;
+  B = "{1, 2}";
+  B + 3;
+  B.Belong(1);
+  B.Clear();
+  C == B;
 
 }
 

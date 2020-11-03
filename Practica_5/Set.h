@@ -25,6 +25,7 @@
 #include <sstream>
 #include <vector>
 #include <iostream>
+#include <fstream>
 
 
 class Set {
@@ -33,18 +34,24 @@ class Set {
     Set(int&);
     ~Set();
     void Work (std::string);
-    void read (std::string);
-    void write(std::string);
+    void SetOutput (std::ofstream&);
+    std::string Write();
+    void Clear();
+    bool IsEmpty();
+    bool Belong(int);
     void operator=(std::string);
-    //void operator>>(Set, std::string&);
-   // Set operator+(Set, int);
+    bool operator==(Set);
     void operator+(int);
+    void operator-(int);
     void PrintSet (void);
+    void PrintVectorSet(std::vector<unsigned long int>);
 
 
   private:
     std::vector<unsigned long int> set_storage;
+    std::vector<int> intergers_;
     unsigned long int set_;
+    std::string expression_;
     std::string expression1_;
     std::string expression2_;
     std::string result_;
@@ -53,15 +60,24 @@ class Set {
     std::string FindOperators(std::string);
     void Operate(std::string, std::string );
     bool CheckSyntax(std::string);
-    std::vector<unsigned long int> Range(std::vector<int>);
+    std::vector<std::vector<int>>  Range(std::vector<int>);
     unsigned long int Convert (std::vector<int>);
+    std::vector<unsigned long int> Convert2 (std::vector<std::vector<int>>);
     unsigned long int Complement (unsigned long int);
-    unsigned long int Union (unsigned long int, unsigned long int);
+    std::vector<unsigned long int> Complement2 (std::vector<unsigned long int>);
+    const unsigned long int Union (unsigned long int, unsigned long int);
+    std::vector<unsigned long int> Union2 (std::vector<unsigned long int>, std::vector<unsigned long int>);
     unsigned long int Intersection (unsigned long int, unsigned long int);
+    std::vector<unsigned long int> Intersection2 (std::vector<unsigned long int>, std::vector<unsigned long int>);
     unsigned long int RelativeComplement (unsigned long int, unsigned long int);
+    std::vector<unsigned long int> RelativeComplement2 (std::vector<unsigned long int>, std::vector<unsigned long int>);
     void PrintBits (unsigned long int);
     std::vector<int> ExtractIntegerWords(std::string);
-
+    void TransformToInt (void);
+    std::istream& operator>>(std::istream& in);
 };
+
+std::ostream& operator<<(std::ostream& os, Set& a);
+
 
 #endif //SET_H_
