@@ -60,7 +60,8 @@ std::string Set::Write() {
   /// @brief writting the result to the file
   for (auto& i : intergers_) {
     if ( i >= size_of_set_) {
-      intergers_.erase(std::remove(intergers_.begin(), intergers_.end(), i), intergers_.end());
+      intergers_.erase(std::remove(intergers_.begin(), intergers_.end(), i), 
+                                                          intergers_.end());
     }
   }
     std::string result;
@@ -145,7 +146,8 @@ void Set::Operate(std::string operators, std::string operand) {
     std::vector<std::string> v = Split (operand, "+" );
     std::vector<int> test = ExtractIntegerWords(v[0]);
     std::vector<int> test1 = ExtractIntegerWords(v[1]);
-    set_storage = Union2(Complement2(Convert2(Range(test))), Complement2(Convert2(Range(test1))));
+    set_storage = Union2(Complement2(Convert2(Range(test))), 
+                        Complement2(Convert2(Range(test1))));
   } else if (operators == "+!") {
     std::vector<std::string> v = Split (operand, "+" );
     std::vector<int> test = ExtractIntegerWords(v[0]);
@@ -155,7 +157,8 @@ void Set::Operate(std::string operators, std::string operand) {
     std::vector<std::string> v = Split (operand, "+" );
     std::vector<int> test = ExtractIntegerWords(v[0]);
     std::vector<int> test1 = ExtractIntegerWords(v[1]);
-    set_storage = Union2(Complement2(Convert2(Range(test))), Convert2(Range(test1)));
+    set_storage = Union2(Complement2(Convert2(Range(test))), 
+                                    Convert2(Range(test1)));
   } else if (operators == "+") {
     std::vector<std::string> v = Split (operand, "+" );
     std::vector<int> test = ExtractIntegerWords(v[0]);
@@ -165,22 +168,26 @@ void Set::Operate(std::string operators, std::string operand) {
     std::vector<std::string> v = Split (operand, "-" );
     std::vector<int> test = ExtractIntegerWords(v[0]);
     std::vector<int> test1 = ExtractIntegerWords(v[1]);
-    set_storage = RelativeComplement2(Convert2(Range(test)),Convert2(Range(test1)));
+    set_storage = RelativeComplement2(Convert2(Range(test)), 
+                                    Convert2(Range(test1)));
   } else if (operators == "!-") {
     std::vector<std::string> v = Split (operand, "-" );
     std::vector<int> test = ExtractIntegerWords(v[0]);
     std::vector<int> test1 = ExtractIntegerWords(v[1]);
-    set_storage = RelativeComplement2(Complement2(Convert2(Range(test))), Convert2(Range(test1)));
+    set_storage = RelativeComplement2(Complement2(Convert2(Range(test))), 
+                                                  Convert2(Range(test1)));
   } else if (operators == "!-!") {
     std::vector<std::string> v = Split (operand, "-" );
     std::vector<int> test = ExtractIntegerWords(v[0]);
     std::vector<int> test1 = ExtractIntegerWords(v[1]);
-    set_storage = RelativeComplement2(Complement2(Convert2(Range(test))), Complement2(Convert2(Range(test1))));
+    set_storage = RelativeComplement2(Complement2(Convert2(Range(test))), 
+                                      Complement2(Convert2(Range(test1))));
   } else if (operators == "-!") {
     std::vector<std::string> v = Split (operand, "-" );
     std::vector<int> test = ExtractIntegerWords(v[0]);
     std::vector<int> test1 = ExtractIntegerWords(v[1]);
-    set_storage = RelativeComplement2(Convert2(Range(test)), Complement2(Convert2(Range(test1))));
+    set_storage = RelativeComplement2(Convert2(Range(test)), 
+                        Complement2(Convert2(Range(test1))));
   } else if (operators == "*") {
     std::vector<std::string> v = Split (operand, "*" );
     std::vector<int> test = ExtractIntegerWords(v[0]);
@@ -190,17 +197,20 @@ void Set::Operate(std::string operators, std::string operand) {
     std::vector<std::string> v = Split (operand, "*" );
     std::vector<int> test = ExtractIntegerWords(v[0]);
     std::vector<int> test1 = ExtractIntegerWords(v[1]);
-    set_storage = Intersection2(Complement2(Convert2(Range(test))),Convert2(Range(test1)));
+    set_storage = Intersection2(Complement2(Convert2(Range(test))),
+                                            Convert2(Range(test1)));
   } else if (operators == "!*!") {
     std::vector<std::string> v = Split (operand, "*" );
     std::vector<int> test = ExtractIntegerWords(v[0]);
     std::vector<int> test1 = ExtractIntegerWords(v[1]);
-    set_storage = Intersection2(Complement2(Convert2(Range(test))), Complement2(Convert2(Range(test1))));
+    set_storage = Intersection2(Complement2(Convert2(Range(test))), 
+                              Complement2(Convert2(Range(test1))));
   } else if (operators == "*!") {
     std::vector<std::string> v = Split (operand, "*" );
     std::vector<int> test = ExtractIntegerWords(v[0]);
     std::vector<int> test1 = ExtractIntegerWords(v[1]);
-    set_storage = Intersection2(Convert2(Range(test)), Complement2(Convert2(Range(test1))));
+    set_storage = Intersection2(Convert2(Range(test)), 
+                  Complement2(Convert2(Range(test1))));
   } else if (operators == "!") {
     std::vector<std::string> v = Split (operand, "!" );
     std::vector<int> test = ExtractIntegerWords(v[0]);
@@ -224,6 +234,16 @@ bool Set::CheckSyntax(std::string in) {
 
 void Set::SetOutput(std::ofstream& out) {
  // output_ = out;
+}
+
+int& Set::GetMaxElements(void) {
+  /// @brief getter of max_elements_
+  return max_elements_;
+}
+
+void Set::SetMaxElements(int& element) {
+  /// @brief setter of max_elements_
+  max_elements_ = element;
 }
 
 unsigned long int Set::Convert(std::vector<int> in) {
@@ -267,11 +287,12 @@ void Set::PrintVectorSet(std::vector<unsigned long int> data) {
 }
 
 
-const unsigned long int Set::Union (unsigned long int sum1, unsigned long int sum2) {
+const unsigned long int Set::Union(unsigned long int sum1, unsigned long int sum2) {
   return sum1 | sum2;
 }
 
-std::vector<unsigned long int> Set::Union2 (std::vector<unsigned long int> sum1, std::vector<unsigned long int> sum2){
+std::vector<unsigned long int> Set::Union2(std::vector<unsigned long int> sum1, 
+                                            std::vector<unsigned long int> sum2) {
   /// @brief works like Union but for all the bits of the vector
   std::vector<unsigned long int> result;
   unsigned long int trash = 0;
@@ -311,7 +332,8 @@ unsigned long int Set::RelativeComplement (unsigned long int sum1, unsigned long
   return Intersection(sum2,temp);
 }
 
-std::vector<unsigned long int> Set::RelativeComplement2 (std::vector<unsigned long int> sum1, std::vector<unsigned long int> sum2){
+std::vector<unsigned long int> Set::RelativeComplement2 (std::vector<unsigned long int> sum1,
+                                                       std::vector<unsigned long int> sum2) {
   /// @brief works like RelativeComplement but for all the bits of the vector
   std::vector<unsigned long int> result;
   unsigned long int trash = 0;
@@ -336,7 +358,8 @@ unsigned long int Set::Intersection (unsigned long int sum1, unsigned long int s
   return sum1 & sum2;
 }
 
-std::vector<unsigned long int> Set::Intersection2 (std::vector<unsigned long int> sum1, std::vector<unsigned long int> sum2){
+std::vector<unsigned long int> Set::Intersection2 (std::vector<unsigned long int> sum1, 
+                                                  std::vector<unsigned long int> sum2) {
   /// @brief works like Intersection but for all the bits of the vector
   std::vector<unsigned long int> result;
   unsigned long int trash = 0;
@@ -369,7 +392,8 @@ std::string Set::FindOperators (std::string input) {
 }
 
 std::vector<std::string> Set::Split (std::string str, std::string delim) {
-  /// @brief this func split in 2 the string and store them in vector, depending of the char
+  /// @brief this func split in 2 the string and store them in vector, 
+  //         depending of the char
   std::vector<std::string> tokens;
   size_t prev = 0, pos = 0;
   do {

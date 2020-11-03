@@ -31,7 +31,6 @@
 #include <iostream>
 #include <fstream>
 
-
 class Set {
   public:
     Set();
@@ -52,19 +51,18 @@ class Set {
     void PrintVectorSet(std::vector<unsigned long int>);
     inline int GetSizeOfSet(void) {return size_of_set_; };
 
-
   private:
     std::vector<unsigned long int> set_storage;
     std::vector<int> intergers_;
     unsigned long int set_;
     std::string expression_;
-    std::string expression1_;
-    std::string expression2_;
     std::string result_;
     int max_elements_;
+    int& GetMaxElements(void);
+    void SetMaxElements(int&);
     std::vector<std::string> Split (std::string,std::string);
     std::string FindOperators(std::string);
-    void Operate(std::string, std::string );
+    void Operate(std::string, std::string);
     bool CheckSyntax(std::string);
     std::vector<std::vector<int>>  Range(std::vector<int>);
     unsigned long int Convert (std::vector<int>);

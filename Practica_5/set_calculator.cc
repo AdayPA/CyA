@@ -22,8 +22,6 @@
 // 31/10/2020 - Adding operations
 // 2/10/2020 -  Writting the output
 
-
-
 #include "Iofile.h"
 
 #include <errno.h>   
@@ -34,7 +32,6 @@
 #include <iostream>   
 #include <string>
 
-extern const int kBASE = 10;            // Numeric base
 const int kFileIn = 1;
 const int kFileOut = 2;
 const int kFirst = 1;
