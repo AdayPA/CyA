@@ -39,20 +39,24 @@ DFA::DFA(std::string sequence, std::string pattern) {
 
 void DFA::BuildMachine(void) {
   automaton_.resize(0);
-  for(unsigned int nodes = 0; nodes <= GetPattern().length(); ++nodes) {
-      Node* a = new Node {nodes, pattern_[nodes], false};
-      automaton_.push_back(a);
-      if (nodes == GetPattern().length()) {
-        Node* a = new Node {nodes, ' ', true};
-        automaton_.push_back(a);
-      }
+  for(unsigned int nodes = 0; nodes < GetPattern().length(); ++nodes) {
+    Node* a = new Node {nodes, pattern_[nodes], false};
+    automaton_.push_back(a);
   }
+  Node* a = new Node {unsigned(GetPattern().length()), ' ', true};
+  automaton_.push_back(a);
 }
 
 bool DFA::FindPattern(void) {
+  unsigned int pos_node = 0;
   for (unsigned int seq_loop = 0; seq_loop < GetSequence().length(); ++seq_loop) {
-    if (GetSequence()[seq_loop] == ) {
-
+    if (GetSequence()[seq_loop] == automaton_[pos_node]->transition) {
+      if (pos_node == (automaton_.size() - 2)) {
+        return true;
+      }
+      ++pos_node;
+    } else {
+      pos_node = 0;
     }
   }
   return false;
