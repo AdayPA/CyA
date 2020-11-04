@@ -60,7 +60,7 @@ IOFile::IOFile(std::string pattern, std::string input, std::string output) {
     /// @brief Constructor of P6
   Set_inputFile(input);
   Set_outputFile(output);
-  Set A(input, pattern);
+  Set A(Get_line(Get_inputFile(),1), pattern);
 
 }
 

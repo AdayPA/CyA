@@ -24,8 +24,16 @@
 #define DFA_H_
 
 #include <string>
+#include <vector>
 
 class DFA {
+  private:
+    struct Node {
+    unsigned int num_;
+    char transition;
+    bool accepted;
+  };
+
   public:
     DFA();
     DFA(std::string,std::string);
@@ -38,13 +46,10 @@ class DFA {
     std::string sequence_;
     std::string GetSequence(void);
     void SetSequence(std::string&);
-
-  struct Node {
-    int num_;
-    char transition;
-    bool accepted;
-  };
-    
+    int pattern_repetitions_;               //Number of repetitions
+    std::vector<Node*> automaton_;
+    void BuildMachine(void);
+    bool FindPattern(void);
 };
 
 #endif //DFA_H_

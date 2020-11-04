@@ -24,6 +24,8 @@
 
 #include "DFA.h"
 
+#include <iostream>
+
 DFA::DFA() {}
 
 DFA::~DFA() {}
@@ -31,7 +33,29 @@ DFA::~DFA() {}
 DFA::DFA(std::string sequence, std::string pattern) {
   SetPattern(pattern);
   SetSequence(sequence);
+  BuildMachine();
+  FindPattern();
+}
 
+void DFA::BuildMachine(void) {
+  automaton_.resize(0);
+  for(unsigned int nodes = 0; nodes <= GetPattern().length(); ++nodes) {
+      Node* a = new Node {nodes, pattern_[nodes], false};
+      automaton_.push_back(a);
+      if (nodes == GetPattern().length()) {
+        Node* a = new Node {nodes, ' ', true};
+        automaton_.push_back(a);
+      }
+  }
+}
+
+bool DFA::FindPattern(void) {
+  for (unsigned int seq_loop = 0; seq_loop < GetSequence().length(); ++seq_loop) {
+    if (GetSequence()[seq_loop] == ) {
+
+    }
+  }
+  return false;
 }
 
 std::string DFA::GetPattern(void) {
