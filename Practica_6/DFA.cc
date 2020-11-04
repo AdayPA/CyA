@@ -28,7 +28,14 @@
 
 DFA::DFA() {}
 
-DFA::~DFA() {}
+DFA::~DFA() {
+  std::vector<Node*>::iterator myIter=automaton_.begin();
+  while(myIter!=automaton_.end()) {
+	  delete(*myIter);
+	  ++myIter;
+  }
+  automaton_.clear();
+}
 
 DFA::DFA(std::string sequence, std::string pattern) {
   SetPattern(pattern);
