@@ -32,6 +32,7 @@
 #include <sstream>
 #include <algorithm>
 #include <regex>
+#include <bitset>
 
 #include <stdio.h>
 #include <math.h> 
@@ -48,12 +49,14 @@ Set::Set(int size) {
 }
 
 Set::Set(std::string sequence, std::string pattern) {
+  size_of_set_ = 64;
   SetAlphabet();  
   ConvertAlphabet();
   SetPattern(pattern);
   ConvertPattern();
-  PrintVectorSet(set_alphabet_);
-  PrintVectorSet(set_pattern_);
+//  PrintVectorSet(set_alphabet_);
+ // PrintVectorSet(set_pattern_);
+ Belong(set_alphabet_, set_pattern_);
 }
 
 Set::~Set() {}
@@ -96,6 +99,41 @@ void Set::ConvertPattern(void) {
   }
   std::vector<std::vector<int>> vector2d = Range(numbers);
   set_pattern_ = Convert2 (vector2d);
+}
+
+bool Set::Belong(std::vector<unsigned long int> alphabet, 
+                  std::vector<unsigned long int> pattern) {
+  /**   This function returns true if pattern ⊆ alphabet (pattern is a subset of alphabet)
+  **    Table:  (1 means a∈A)
+  **    Alphabet | Pattern | F | 'F
+  **    ---------------------------
+  **        0         0      1    0             We will implement F since is eassier
+  **        0         1      0    1
+  **        1         0      1    0
+  **        1         1      1    0
+  **
+  **  
+  **/
+  unsigned long int trash = 0;
+  // But first we need to set both of the vector to the same size
+  if (alphabet.size() < pattern.size()) {
+    for (unsigned int i = alphabet.size() ; i < pattern.size(); ++i) {
+      alphabet.push_back(trash);
+    }
+  } else if (alphabet.size() > pattern.size()) {
+   for (unsigned int i = pattern.size() ; i < alphabet.size(); ++i) {
+      pattern.push_back(trash);
+    }
+  } for (unsigned int vec_iter = 0; vec_iter < alphabet.size(); ++vec_iter) {
+    std::bitset<64> temp_alphabet (alphabet[vec_iter]);
+    std::bitset<64> temp_pattern (pattern[vec_iter]);
+    for (int long_iter = 0; long_iter < size_of_set_;  ++long_iter) {
+      if (((temp_alphabet[long_iter] == 0) && (temp_pattern[long_iter] == 1))) {
+        return false;
+      }
+    }
+  }
+  return true;
 }
 
 ///////////////////// Work done in P5 ///////////////////
