@@ -33,6 +33,7 @@ const std::string kFileExt = ".txt";
 IOFile::IOFile() {}
 
 IOFile::IOFile(std::string input, std::string output) {
+  /// @brief Constructor of P5
   Set_inputFile(input);
   Set_outputFile(output);
   OutFileSyntaxName();
@@ -55,9 +56,10 @@ IOFile::IOFile(std::string input, std::string output) {
 }
 
 IOFile::IOFile(std::string pattern, std::string input, std::string output) {
+    /// @brief Constructor of P6
   Set_inputFile(input);
   Set_outputFile(output);
-  Set A;
+  Set A(input, pattern);
 
 }
 

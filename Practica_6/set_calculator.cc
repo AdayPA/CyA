@@ -86,13 +86,13 @@ int main(int argc, char** argv) {
       break;
 	  }	
     case kSecond:	{   // executed as: $ ./set_calculator.cc 1st_arg 
-      std::string input_file = argv[kFileIn];
-      if ((input_file == kExplain) || (input_file == kExplain2) ) {
+      std::string temp = argv[kFirst];
+      if ((temp == kExplain) || (temp == kExplain2)) {
         Help();
       } else {
         BadImput();
       }
-       break;
+      break;
     }
     case kThird: {    // executed as: $ ./set_calculator 1st_arg 2nd_arg
       BadImput();
@@ -102,7 +102,7 @@ int main(int argc, char** argv) {
       std::string output_file(argv[kFileOut]);
       std::string input_file(argv[kFileIn]);
       std::string pattern(argv[kPattern]);
-      //IOFile calculator(input_file,output_file); 
+      IOFile calculator(pattern,input_file,output_file); 
       break;
     }
     default: {        //executed as: everything else

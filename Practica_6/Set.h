@@ -56,12 +56,15 @@ class Set {
   private:
     std::string pattern_string_;                  // save the pattern
     std::string alphabet_;                        // alphabet of the set
-    void SetAlphabet(void);   
+    void SetPattern(std::string);                 // setter of pattern
+    void SetAlphabet(void);                       // automatic setter of alphabet
     void ConvertAlphabet(void);
     void ConvertPattern(void);
-    std::vector<unsigned long int> set_alphabet;
-    std::vector<unsigned long int> set_pattern;
-    bool Belong(void);
+    std::vector<unsigned long int> set_alphabet_;
+    std::vector<unsigned long int> set_pattern_;
+    bool Belong(std::vector<unsigned long int>, std::vector<unsigned long int> );
+    int ConvertToASCII(std::string);
+    int ConvertToASCII(char);
     ////////////////////////// p5 ///////////////////////
     std::vector<unsigned long int> set_storage;
     std::vector<int> intergers_;
@@ -71,7 +74,7 @@ class Set {
     int max_elements_;
     int& GetMaxElements(void);
     void SetMaxElements(int&);
-    std::vector<std::string> Split (std::string,std::string);
+    std::vector<std::string> Split (std::string, std::string);
     std::string FindOperators(std::string);
     void Operate(std::string, std::string);
     bool CheckSyntax(std::string);
@@ -81,11 +84,14 @@ class Set {
     unsigned long int Complement (unsigned long int);
     std::vector<unsigned long int> Complement2 (std::vector<unsigned long int>);
     const unsigned long int Union (unsigned long int, unsigned long int);
-    std::vector<unsigned long int> Union2 (std::vector<unsigned long int>, std::vector<unsigned long int>);
+    std::vector<unsigned long int> Union2 (std::vector<unsigned long int>, 
+                                          std::vector<unsigned long int>);
     unsigned long int Intersection (unsigned long int, unsigned long int);
-    std::vector<unsigned long int> Intersection2 (std::vector<unsigned long int>, std::vector<unsigned long int>);
+    std::vector<unsigned long int> Intersection2 (std::vector<unsigned long int>, 
+                                                  std::vector<unsigned long int>);
     unsigned long int RelativeComplement (unsigned long int, unsigned long int);
-    std::vector<unsigned long int> RelativeComplement2 (std::vector<unsigned long int>, std::vector<unsigned long int>);
+    std::vector<unsigned long int> RelativeComplement2 (std::vector<unsigned long int>, 
+                                                        std::vector<unsigned long int>);
     void PrintBits (unsigned long int);
     std::vector<int> ExtractIntegerWords(std::string);
     void TransformToInt (void);

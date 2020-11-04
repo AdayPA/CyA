@@ -48,19 +48,55 @@ Set::Set(int size) {
 }
 
 Set::Set(std::string sequence, std::string pattern) {
-  SetAlphabet();
-  
+  SetAlphabet();  
+  ConvertAlphabet();
+  SetPattern(pattern);
+  ConvertPattern();
+  PrintVectorSet(set_alphabet_);
+  PrintVectorSet(set_pattern_);
 }
 
+Set::~Set() {}
 
-Set::~Set() {
-
+void Set::SetPattern(std::string in) {
+  pattern_string_ = in;
 }
 
 void Set::SetAlphabet(void) {
+  /// @brief we set here the alphabet
   alphabet_ = "abcdefghijklmnopqrstuvwxyz";
 }
 
+int Set::ConvertToASCII(std::string in) {
+  /// @brief convert the string value to ascii number
+  char temp = in.at(0);
+  return int(temp);
+}
+
+int Set::ConvertToASCII(char in) {
+  /// @brief convert the string value to ascii number
+  return int(in);
+}
+
+void Set::ConvertAlphabet(void) {
+  /// @brief we convert the alphabet string to a vector of bits (our set)
+  std::vector<int> numbers;
+  for (unsigned int i = 0; i < alphabet_.length(); ++i) {
+    numbers.push_back(ConvertToASCII(alphabet_[i]));
+  }
+  std::vector<std::vector<int>> vector2d = Range(numbers);
+  set_alphabet_ = Convert2 (vector2d);
+}
+
+void Set::ConvertPattern(void) {
+  /// @brief we convert the pattern to a vector of bits (our set)
+  std::vector<int> numbers;
+  for (unsigned int i = 0; i < pattern_string_.length(); ++i) {
+    numbers.push_back(ConvertToASCII(pattern_string_[i]));
+  }
+  std::vector<std::vector<int>> vector2d = Range(numbers);
+  set_pattern_ = Convert2 (vector2d);
+}
 
 ///////////////////// Work done in P5 ///////////////////
 
