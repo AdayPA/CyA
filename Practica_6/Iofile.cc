@@ -6,16 +6,17 @@
 // @praxis: Number 5 CyA - "Sets"
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
-// @date: 26/11/2020
-// @brief ./.cc:  Implementation of Iofile.h
-// 
+// @date: 04/11/2020
+// @brief IOFile.cc :  
+//                 
 // @compile: $ make                                                    
 // References: 
-// 
+// https://es.wikipedia.org/wiki/B%C3%BAsqueda_de_patrones
+// https://es.wikipedia.org/wiki/ASCII
 // Lab exercise:
-// 
+// https://github.com/garamira/CyA-P06-Patterns
 // Version Control:
-// 26/10/2020 - First version of the code 
+// 04/11/2020 - First version of the code 
 // 
 
 #ifndef IOFILE_CC_

@@ -6,26 +6,24 @@
 // @praxis: Number 5 CyA - "Sets"
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
-// @date: 26/11/2020
-// @brief Set.h :  Implementation of Set.h
+// @date: 04/11/2020
+// @brief Set.cc :  
 //                 
 // @compile: $ make                                                    
 // References: 
-// https://en.wikipedia.org/wiki/Set_(mathematics)
-// https://en.wikipedia.org/wiki/Union_(set_theory)
+// https://es.wikipedia.org/wiki/B%C3%BAsqueda_de_patrones
+// https://es.wikipedia.org/wiki/ASCII
 // Lab exercise:
-// https://github.com/fsande/CyA-P05-Sets/blob/master/Sets.md
+// https://github.com/garamira/CyA-P06-Patterns
 // Version Control:
-// 26/10/2020 - First version of the code 
-// 28/10/2020 - Adding the lecture filtering
-// 29/10/2020 - Converting to bits
-// 31/10/2020 - Adding operations
-// 2/10/2020 -  Writting the output
+// 04/11/2020 - First version of the code 
+// 
 
 #ifndef SET_CC_
 #define SET_CC_
 
 #include "Set.h"
+#include "DFA.h"
 
 #include <fstream>
 #include <iostream>
@@ -56,7 +54,10 @@ Set::Set(std::string sequence, std::string pattern) {
   ConvertPattern();
 //  PrintVectorSet(set_alphabet_);
  // PrintVectorSet(set_pattern_);
- Belong(set_alphabet_, set_pattern_);
+  if (Belong(set_alphabet_, set_pattern_)) {
+    DFA(sequence, pattern);
+  }
+  
 }
 
 Set::~Set() {}

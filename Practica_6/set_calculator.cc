@@ -6,21 +6,18 @@
 // @praxis: Number 5 CyA - "Sets"
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
-// @date: 26/11/2020
-// @brief set_calculator.cc :  This is the main of the praxis
+// @date: 04/11/2020
+// @brief pattern.cc :  This is the main of the praxis
 //                 
 // @compile: $ make                                                    
 // References: 
-// https://en.wikipedia.org/wiki/Set_(mathematics)
-// https://en.wikipedia.org/wiki/Union_(set_theory)
+// https://es.wikipedia.org/wiki/B%C3%BAsqueda_de_patrones
+// https://es.wikipedia.org/wiki/ASCII
 // Lab exercise:
-// https://github.com/fsande/CyA-P05-Sets/blob/master/Sets.md
+// https://github.com/garamira/CyA-P06-Patterns
 // Version Control:
-// 26/10/2020 - First version of the code 
-// 28/10/2020 - Adding the lecture filtering
-// 29/10/2020 - Converting to bits
-// 31/10/2020 - Adding operations
-// 2/10/2020 -  Writting the output
+// 04/11/2020 - First version of the code 
+// 
 
 #include "Iofile.h"
 
@@ -49,14 +46,14 @@ const std::string kExplain2 = "-h";
 
 void Help(void) {
   /**
- ** Summary when the program is executed as: "./set_calculator --help" 
+ ** Summary when the program is executed as: "./pattern --help" 
  ** Explain everithing about the program.
  */
 std::cout << kBoldOpen << "NAME" << kBoldClose << std::endl;
-std::cout << kTab << "set_calculator" << std::endl;
+std::cout << kTab << "pattern" << std::endl;
 std::cout << std::endl;
 std::cout << kBoldOpen << "SYNOPSIS" << kBoldClose << std::endl;
-std::cout << kTab << "set_calculator [FILE_IN] [FILE_OUT]" << std::endl;
+std::cout << kTab << "pattern [FILE_IN] [FILE_OUT]" << std::endl;
 std::cout << std::endl;
 std::cout << kBoldOpen << "DESCRIPTION" << kBoldClose << std::endl;
 std::cout << kTab << "This program read the set, transform it and operate with it " <<
@@ -75,17 +72,17 @@ std::cout << std::endl;
 
 void BadImput (void) {
   // Message output when the program gets the wrong input arguments.
-  std::cout << "Usage: ./set_calculator Input_File Output_File" << std::endl;
-  std::cout << "Try: './set_calculator --help' for more information." << std::endl;
+  std::cout << "Usage: ./pattern Input_File Output_File" << std::endl;
+  std::cout << "Try: './pattern --help' for more information." << std::endl;
 }
 
 int main(int argc, char** argv) {
   switch (argc) {     // Switch depending of the input commands
-    case kFirst: {    // executed as: $ ./set_calculator.cc
+    case kFirst: {    // executed as: $ ./pattern.cc
       BadImput();
       break;
 	  }	
-    case kSecond:	{   // executed as: $ ./set_calculator.cc 1st_arg 
+    case kSecond:	{   // executed as: $ ./pattern.cc 1st_arg 
       std::string temp = argv[kFirst];
       if ((temp == kExplain) || (temp == kExplain2)) {
         Help();
@@ -94,11 +91,11 @@ int main(int argc, char** argv) {
       }
       break;
     }
-    case kThird: {    // executed as: $ ./set_calculator 1st_arg 2nd_arg
+    case kThird: {    // executed as: $ ./pattern 1st_arg 2nd_arg
       BadImput();
       break;
     }
-    case kFourth: {    // executed as: $ ./set_calculator 1st_arg 2nd_arg
+    case kFourth: {    // executed as: $ ./pattern 1st_arg 2nd_arg 3rd_arg
       std::string output_file(argv[kFileOut]);
       std::string input_file(argv[kFileIn]);
       std::string pattern(argv[kPattern]);
