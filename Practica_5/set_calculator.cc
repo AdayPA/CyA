@@ -43,6 +43,7 @@ const std::string kBoldOpen = "\e[1m";
 const std::string kBoldClose = "\e[0m";
 const std::string kTab = "\t";
 const std::string kExplain = "--help";
+const std::string kExplain2 = "-h";
 
 void Help(void) {
   /**
@@ -84,7 +85,7 @@ int main(int argc, char** argv) {
 	  }	
     case kSecond:	{   // executed as: $ ./set_calculator.cc 1st_arg 
       std::string input_file = argv[kFileIn];
-      if (input_file == kExplain) {
+      if ((input_file == kExplain) || (input_file == kExplain2) ) {
         Help();
       } else {
         BadImput();

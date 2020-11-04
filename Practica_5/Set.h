@@ -37,6 +37,7 @@ class Set {
     Set(int);
     ~Set();
     int size_of_set_;
+    int counter_mod_;
     void Work (std::string);
     void SetOutput (std::ofstream&);
     std::string Write();

@@ -39,10 +39,12 @@
 Set::Set() {
   size_of_set_ = 64;
   set_ = 0;
+  counter_mod_ = 0;
 }
 
 Set::Set(int size) {
   size_of_set_ = size;
+  counter_mod_ = 0;
 }
 
 Set::~Set() {
@@ -142,6 +144,7 @@ std::vector<std::vector<int>> Set::Range(std::vector<int> in) {
 
 void Set::Operate(std::string operators, std::string operand) {
   /// @brief reads the operator and do the related math
+  if (counter_mod_ < 2) {
   if (operators == "!+!") {
     std::vector<std::string> v = Split (operand, "+" );
     std::vector<int> test = ExtractIntegerWords(v[0]);
@@ -221,6 +224,15 @@ void Set::Operate(std::string operators, std::string operand) {
   } else {
     //std::cout << "error de lectura" << std::endl;
   } 
+  } else {
+    std::vector<std::string> v = Split (operand, "+" );
+    std::vector<int> test = ExtractIntegerWords(v[0]);
+    set_storage = Convert2(Range(test)); 
+    for (int i = 0; i <= counter_mod_; ++i) { 
+      std::vector<int> test1 = ExtractIntegerWords(v[i]);
+      set_storage = Union2(Convert2(Range(test1)), set_storage);
+    }
+  }
 }
 
 bool Set::CheckSyntax(std::string in) {
@@ -385,7 +397,10 @@ std::string Set::FindOperators (std::string input) {
   for (unsigned int i = 0; i < input.size(); i++) {
     if (input[i] == '!') operation += "!";
     else if (input[i] == '-') operation += "-";
-    else if (input[i] == '+') operation += "+";
+    else if (input[i] == '+') {
+      operation += "+";
+      counter_mod_ = counter_mod_ + 1;
+    }
     else if (input[i] == '*') operation += "*";
   }
   return operation;

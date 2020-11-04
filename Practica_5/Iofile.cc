@@ -39,7 +39,7 @@ IOFile::IOFile(std::string input, std::string output) {
   std::ofstream output_stream;
   output_stream.open(output);
   if (output_stream.is_open()) {
-    Set A(129);
+    Set A;
     for (int i = 1; i <= Count_lines(input); ++i) {
       A.Work(Get_line(Get_inputFile(),i));
       output_stream << Get_line(Get_inputFile(),i) << " = " << A.Write() << std::endl;
