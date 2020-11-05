@@ -28,7 +28,10 @@
 
 DFA::DFA() {}
 
-DFA::~DFA() {
+DFA::~DFA() {/**
+ * @brief 
+ * 
+ */
   std::vector<Node*>::iterator myIter=automaton_.begin();
   while(myIter!=automaton_.end()) {
 	  delete(*myIter);
