@@ -3,7 +3,7 @@
 // Degree of Computer Science
 // Subject: Computabilidad y Algoritmia (CyA)
 // Course/Year: 2º 
-// @praxis: Number 5 CyA - "Sets"
+// @praxis: Number 6 CyA - "Sets"
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 04/11/2020

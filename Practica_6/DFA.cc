@@ -3,7 +3,7 @@
 // Degree of Computer Science
 // Subject: Computabilidad y Algoritmia (CyA)
 // Course/Year: 2º 
-// @praxis: Number 5 CyA - "Sets"
+// @praxis: Number 6 CyA - "Sets"
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 04/11/2020
@@ -28,10 +28,7 @@
 
 DFA::DFA() {}
 
-DFA::~DFA() {/**
- * @brief 
- * 
- */
+DFA::~DFA() {
   std::vector<Node*>::iterator myIter=automaton_.begin();
   while(myIter!=automaton_.end()) {
 	  delete(*myIter);
@@ -45,6 +42,14 @@ DFA::DFA(std::string sequence, std::string pattern) {
   SetSequence(sequence);
   BuildMachine();
   FindPattern();
+}
+
+std::string DFA::Write() {
+  std::string result = "No";
+  if (FindPattern()) {
+    result = "Si";
+  }
+  return result;
 }
 
 void DFA::BuildMachine(void) {

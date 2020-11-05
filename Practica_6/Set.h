@@ -3,7 +3,7 @@
 // Degree of Computer Science
 // Subject: Computabilidad y Algoritmia (CyA)
 // Course/Year: 2º 
-// @praxis: Number 5 CyA - "Sets"
+// @praxis: Number 6 CyA - "Sets"
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 04/11/2020
@@ -18,6 +18,7 @@
 // Version Control:
 // 04/11/2020 - First version of the code 
 // 
+
 #ifndef SET_H_
 #define SET_H_
 
@@ -38,6 +39,8 @@ class Set {
     void Work (std::string);
     void SetOutput (std::ofstream&);
     std::string Write();
+    void SaveResult(std::string);
+    std::string GetResult();
     void Clear();
     bool IsEmpty();
     bool Belong(int);
@@ -52,12 +55,16 @@ class Set {
   private:
     std::string pattern_string_;                  // save the pattern
     std::string alphabet_;                        // alphabet of the set
+    std::string sequence_string_;
     void SetPattern(std::string);                 // setter of pattern
     void SetAlphabet(void);                       // automatic setter of alphabet
+    void SetSequence(std::string);                // setter of sequence
     void ConvertAlphabet(void);
     void ConvertPattern(void);
+    void ConvertSequence(void);
     std::vector<unsigned long int> set_alphabet_;
     std::vector<unsigned long int> set_pattern_;
+    std::vector<unsigned long int> set_sequence_;
     bool Belong(std::vector<unsigned long int>, std::vector<unsigned long int> );
     int ConvertToASCII(std::string);
     int ConvertToASCII(char);

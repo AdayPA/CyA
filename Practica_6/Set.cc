@@ -3,7 +3,7 @@
 // Degree of Computer Science
 // Subject: Computabilidad y Algoritmia (CyA)
 // Course/Year: 2º 
-// @praxis: Number 5 CyA - "Sets"
+// @praxis: Number 6 CyA - "Sets"
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 04/11/2020
@@ -47,20 +47,38 @@ Set::Set(int size) {
 }
 
 Set::Set(std::string sequence, std::string pattern) {
-  size_of_set_ = 64;
+  size_of_set_ = 300;
   SetAlphabet();  
   ConvertAlphabet();
   SetPattern(pattern);
   ConvertPattern();
+  SetSequence(sequence);
+  ConvertSequence();
 //  PrintVectorSet(set_alphabet_);
  // PrintVectorSet(set_pattern_);
-  if (Belong(set_alphabet_, set_pattern_)) {
-    DFA(sequence, pattern);
+  if ( (Belong(set_alphabet_, set_pattern_)) && 
+       (Belong(set_alphabet_, set_sequence_)) ) {
+    DFA A(sequence, pattern);
+    SaveResult(A.Write());
+  } else {
+    SaveResult(" Error");
   }
-  
+}
+
+std::string Set::GetResult() {
+  return result_;
+}
+
+void Set::SaveResult(std::string in) {
+  result_ = in;
 }
 
 Set::~Set() {}
+
+void Set::SetSequence(std::string in) {
+  sequence_string_ = in;
+}
+
 
 void Set::SetPattern(std::string in) {
   pattern_string_ = in;
@@ -100,6 +118,16 @@ void Set::ConvertPattern(void) {
   }
   std::vector<std::vector<int>> vector2d = Range(numbers);
   set_pattern_ = Convert2 (vector2d);
+}
+
+void Set::ConvertSequence(void) {
+    /// @brief we convert the sequence to a vector of bits (our set)
+  std::vector<int> numbers;
+  for (unsigned int i = 0; i < sequence_string_.length(); ++i) {
+    numbers.push_back(ConvertToASCII(sequence_string_[i]));
+  }
+  std::vector<std::vector<int>> vector2d = Range(numbers);
+  set_sequence_ = Convert2 (vector2d);
 }
 
 bool Set::Belong(std::vector<unsigned long int> alphabet, 

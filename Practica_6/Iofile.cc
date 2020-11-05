@@ -3,7 +3,7 @@
 // Degree of Computer Science
 // Subject: Computabilidad y Algoritmia (CyA)
 // Course/Year: 2º 
-// @praxis: Number 5 CyA - "Sets"
+// @praxis: Number 6 CyA - "Sets"
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 04/11/2020
@@ -60,8 +60,13 @@ IOFile::IOFile(std::string pattern, std::string input, std::string output) {
     /// @brief Constructor of P6
   Set_inputFile(input);
   Set_outputFile(output);
-  Set A(Get_line(Get_inputFile(),1), pattern);
-
+  OutFileSyntaxName();
+  std::ofstream output_stream;
+  output_stream.open(output);
+  for (int i = 1; i <= Count_lines(input); ++i) {
+      Set A(Get_line(Get_inputFile(),i), pattern);
+      output_stream << Get_line(Get_inputFile(),i) << "\t\t\t" << A.GetResult() << std::endl;
+    }
 }
 
 IOFile::~IOFile() {}
