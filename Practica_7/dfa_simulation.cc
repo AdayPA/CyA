@@ -72,8 +72,8 @@ std::cout << std::endl;
 
 void BadImput (void) {
   // Message output when the program gets the wrong input arguments.
-  std::cout << "Usage: ./pattern Input_File Output_File" << std::endl;
-  std::cout << "Try: './pattern --help' for more information." << std::endl;
+  std::cout << "Usage: ./dfa_simulation  input.dfa input.txt output.txt" << std::endl;
+  std::cout << "Try: './dfa_simulation --help' for more information." << std::endl;
 }
 
 int main(int argc, char** argv) {

@@ -86,7 +86,7 @@ IOFile::IOFile(std::string input_dfa, std::string input_txt, std::string output)
   int accept_loop = std::stoi (Get_line(Get_inputDFA(),current_line));
   ++current_line;
   for (int i = 0; i < accept_loop; ++i) {
-    A.SetStates(Get_line(Get_inputDFA(),i + current_line));
+    A.SetAcceptStates(Get_line(Get_inputDFA(),i + current_line));
   }
   current_line = current_line + accept_loop;
 
@@ -101,8 +101,11 @@ IOFile::IOFile(std::string input_dfa, std::string input_txt, std::string output)
     std::vector<std::string> temp_ = Split(Get_line(Get_inputDFA(),i + current_line), " ");
     A.SetTransition(temp_);
   }
-
-
+  A.Recon("01");
+  A.Recon("1");
+  A.Recon("101111000001");
+  A.Recon("110");
+  A.Recon("11");
 }
 
 IOFile::~IOFile() {}

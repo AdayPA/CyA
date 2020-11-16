@@ -41,6 +41,8 @@ class DFA {
     void SetStart (std::string);
     void SetAcceptStates (std::string);
     void SetTransition (std::vector<std::string>);
+    bool Recon(std::string);
+
 
   private:
     bool alpha_ok_;
@@ -53,7 +55,8 @@ class DFA {
     std::vector<std::string> accept_states_;
     bool nodes_ok;
     std::vector<Node*> transitions_;
-
+    bool complete_;
+    void Complete(void);
 
 };
 
