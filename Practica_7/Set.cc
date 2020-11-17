@@ -39,6 +39,8 @@ Set::Set() {
   size_of_set_ = 64;
   set_ = 0;
   counter_mod_ = 0;
+  alphabet_ = "";
+  sequence_string_ = "";
 }
 
 Set::Set(int size) {
@@ -69,8 +71,28 @@ void Set::SaveResult(std::string in) {
 
 Set::~Set() {}
 
+bool Set::BelongAlpha(std::string alpha) {
+  ConvertAlphabet();
+  SetPattern(alpha);
+  ConvertPattern();
+  return Belong(set_alphabet_,set_pattern_);
+}
+
+bool Set::BelongStates(std::string alpha) {
+  std::set<std::string> my_set;
+  for (int i = 0; i < set_states_.size(); ++i) {
+    my_set.insert(set_states_.at(i));
+  }
+  const bool is_in = my_set.find(alpha) != my_set.end();
+  return is_in;
+}
+
+void Set::SetStates(std::string state) {
+  set_states_.push_back(state);
+}
+
 void Set::SetSequence(std::string in) {
-  sequence_string_ = in;
+  sequence_string_ = sequence_string_ + in;
 }
 
 
@@ -81,6 +103,11 @@ void Set::SetPattern(std::string in) {
 void Set::SetAlphabet(void) {
   /// @brief we set here the alphabet
   alphabet_ = "abcdefghijklmnopqrstuvwxyz";
+}
+
+void Set::SetAlphabet(std::string alpha_char) {
+  /// @brief we set here the alphabet
+  alphabet_ = alphabet_ + alpha_char;
 }
 
 int Set::ConvertToASCII(std::string in) {
@@ -112,6 +139,18 @@ void Set::ConvertPattern(void) {
   }
   std::vector<std::vector<int>> vector2d = Range(numbers);
   set_pattern_ = Convert2 (vector2d);
+}
+
+void Set::ConvertStates(void) {
+  sequence_string_ = "";
+  ConvertSequence();
+  std::vector<unsigned long int> result;
+  for (unsigned int i = 0; i < set_states_.size(); ++i) {
+    sequence_string_ = set_states_.at(i);
+    ConvertSequence();
+    result = Union2(result,set_sequence_);
+  }
+  set_sequence_ = result;
 }
 
 void Set::ConvertSequence(void) {

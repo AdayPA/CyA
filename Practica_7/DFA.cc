@@ -28,7 +28,10 @@
 #include <fstream>
 
 DFA::DFA() {
-  alpha_ok_ = true;
+  start_ok_ = false;
+  accept_states_ok_ = false;
+  transitions_ok = false;
+  failed_ = false;
   complete_ = false;
   alphabet_.resize(0);
   accept_states_.resize(0);
@@ -37,109 +40,136 @@ DFA::DFA() {
 DFA::~DFA() {}
 
 void DFA::SetAlphabet (std::string character) {
-  //FILTRAR
+  dfa_set.SetAlphabet(character);
   alphabet_.push_back(character);
-
 }
 
 void DFA::SetStates (std::string states) {
-  //FILTRAR
+  dfa_set.SetStates(states);
   states_.push_back(states);
 }
 
 void DFA::SetStart (std::string start) {
-  //FILTRAR
-  start_ = start;
+  if (dfa_set.BelongStates(start)) {
+    start_ = start;
+    start_ok_ = true;
+  } else {
+    start_ok_ = false;
+    failed_ = true;
+  }
 }
 
 void DFA::SetAcceptStates (std::string state) {
-  accept_states_.push_back(state);
+  if (dfa_set.BelongStates(state)) {
+    accept_states_.push_back(state);
+    accept_states_ok_ = true;
+  } else {
+    accept_states_ok_ = false;
+    failed_ = true;
+  }
 }
 
 void DFA::SetTransition (std::vector<std::string> transition) {
-  Node* a = new Node {transition[0],transition[1],transition[2]};
-  transitions_.push_back(a);
+  if (dfa_set.BelongStates(transition[0]) && 
+      dfa_set.BelongAlpha(transition[1])  && 
+      dfa_set.BelongStates(transition[2])) {
+    Node* a = new Node {transition[0],transition[1],transition[2]};
+    transitions_.push_back(a);
+    transitions_ok = true;
+  } else {
+    transitions_ok = false;
+    failed_ = true;
+  }
 }
 
+bool DFA::CheckStatus(void) {
+  return !failed_;
+}
 void DFA::Complete(void) {
-  std::vector<Node*> temp_;
-  if (transitions_.size() == (states_.size() * alphabet_.size())) {
-    complete_ = true;
-  } else {
-    for (int state_loop = 0; state_loop < states_.size(); ++state_loop ) {
-      for (int alpha_loop = 0; alpha_loop < alphabet_.size(); ++alpha_loop) {
-        Node* a = new Node {states_.at(state_loop),
-                            alphabet_.at(alpha_loop),
-                            "Death"};
-        temp_.push_back(a);
-      }
-    }
-    int iterator = 0;
-    while (iterator < temp_.size() ) {
-      for (int i = 0; i < transitions_.size(); ++i) {
-        if ((temp_.at(iterator)->init_ == transitions_.at(i)->init_) && 
-            (temp_.at(iterator)->alpha_ == transitions_.at(i)->alpha_) ) {
-              temp_.erase(temp_.begin() + iterator);
-              iterator = 0;
+  if (CheckStatus()){
+    std::vector<Node*> temp_;
+    if (transitions_.size() == (states_.size() * alphabet_.size())) {
+      complete_ = true;
+    } else {
+      for (int state_loop = 0; state_loop < states_.size(); ++state_loop ) {
+        for (int alpha_loop = 0; alpha_loop < alphabet_.size(); ++alpha_loop) {
+          Node* a = new Node {states_.at(state_loop),
+                              alphabet_.at(alpha_loop),
+                              "Death"};
+          temp_.push_back(a);
         }
       }
-      ++iterator;
+      int iterator = 0;
+      while (iterator < temp_.size() ) {
+        for (int i = 0; i < transitions_.size(); ++i) {
+          if ((temp_.at(iterator)->init_ == transitions_.at(i)->init_) && 
+              (temp_.at(iterator)->alpha_ == transitions_.at(i)->alpha_) ) {
+                temp_.erase(temp_.begin() + iterator);
+                iterator = 0;
+          }
+        }
+        ++iterator;
+      }
+
+      for (int i = 0; i < temp_.size(); ++i) {
+        Node* a = new Node {temp_.at(i)->init_,
+                            temp_.at(i)->alpha_,
+                            "Death"};
+        std::cout << "Estado de muerte: " << temp_.at(i)->init_ << " - " <<temp_.at(i)->alpha_ << std::endl;
+        transitions_.push_back(a);
+      }
+      complete_ =  true;
     }
-    for (int i = 0; i < temp_.size(); ++i) {
-      Node* a = new Node {temp_.at(i)->init_,
-                          temp_.at(i)->alpha_,
-                          "Death"};
-      transitions_.push_back(a);
-    }
-    complete_ =  true;
   }
 }
 
-bool DFA::Recon(std::string pattern) {
-  //busco transiciones del inicio
-  Complete();
-  std::vector<int> init;
-  for (int i = 0; i < transitions_.size(); ++i) {
-    if (start_ == transitions_[i]->init_) {
-      init.push_back(i);
-    }
-  }
-  int temp = 0;
-  int ptn_position = 0;
-  std::string actual_state = start_;
-  
-  /**
-   * 
-   *  empiezo por el inicio y veo si se puede iniciar
-   * 
-  **/
-
-  while (ptn_position < pattern.size()) {
+int DFA::Recon(std::string pattern) {
+  /*
+  **  0 si no pertenece
+  **  1 si  pertenece
+  **  2 si es error
+  */
+  if (CheckStatus()) {
+    //busco transiciones del inicio
+    Complete();
+    std::vector<int> init;
     for (int i = 0; i < transitions_.size(); ++i) {
-      std::string temp;
-      temp.push_back(pattern.at(ptn_position));
-      if ((actual_state == transitions_[i]->init_) && 
-          ( temp == transitions_[i]->alpha_ )) {
-        actual_state = transitions_[i]->end_;
-        break;
+      if (start_ == transitions_[i]->init_) {
+        init.push_back(i);
       }
     }
-    ++ptn_position;
-  } // while
+    int temp = 0;
+    int ptn_position = 0;
+    std::string actual_state = start_;
+    
+    /**
+     * 
+     *  empiezo por el inicio y veo si se puede iniciar
+     * 
+    **/
 
-  bool trigger = false;
-
-  for (int j = 0; j < accept_states_.size(); ++j) {
-    if (actual_state == accept_states_[j]) {
-      trigger = true;
+    while (ptn_position < pattern.size()) {
+      for (int i = 0; i < transitions_.size(); ++i) {
+        std::string temp;
+        temp.push_back(pattern.at(ptn_position));
+        if ((actual_state == transitions_[i]->init_) && 
+            ( temp == transitions_[i]->alpha_ )) {
+          actual_state = transitions_[i]->end_;
+          break;
+        }
+      }
+      ++ptn_position;
+    } // while
+    int trigger = 0;
+    for (int j = 0; j < accept_states_.size(); ++j) {
+      if (actual_state == accept_states_[j]) {
+        trigger = 1;
+      }
     }
-  }
-  if (trigger) {
-    std::cout << "acepta: " << pattern << std::endl;
+    return trigger;
   } else {
-    std::cout << "no acepta: " << pattern << std::endl;
+    return 2;
   }
-  return trigger;
 }
 
 #endif

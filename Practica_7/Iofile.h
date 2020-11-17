@@ -47,6 +47,7 @@ class IOFile {
     constexpr const int& CountChar (void);
     const bool IsDigit(const std::string&);
     void OutFileSyntaxName (void);
+    void OutputOpenError (void);
     std::vector<std::string> Split (std::string, std::string);
     // permissions
     // size for file

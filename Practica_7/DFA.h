@@ -22,6 +22,8 @@
 #ifndef DFA_H_
 #define DFA_H_
 
+#include "Set.h"
+
 #include <string>
 #include <vector>
 
@@ -41,23 +43,22 @@ class DFA {
     void SetStart (std::string);
     void SetAcceptStates (std::string);
     void SetTransition (std::vector<std::string>);
-    bool Recon(std::string);
-
+    int Recon(std::string);
 
   private:
-    bool alpha_ok_;
+    Set dfa_set;
     std::vector<std::string> alphabet_;
-    bool states_ok_;
     std::vector<std::string> states_;
+    bool failed_;
     bool start_ok_;
     std::string start_;
     bool accept_states_ok_;
     std::vector<std::string> accept_states_;
-    bool nodes_ok;
+    bool transitions_ok;
     std::vector<Node*> transitions_;
     bool complete_;
+    bool CheckStatus(void);
     void Complete(void);
-
 };
 
 #endif //DFA_H_

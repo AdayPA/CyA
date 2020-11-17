@@ -27,6 +27,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <set>
 
 class Set {
   public:
@@ -51,20 +52,26 @@ class Set {
     void PrintSet (void);
     void PrintVectorSet(std::vector<unsigned long int>);
     inline int GetSizeOfSet(void) {return size_of_set_; };
+    void SetAlphabet(std::string);
+    void SetStates(std::string);
+    bool BelongAlpha(std::string);
+    bool BelongStates(std::string);
 
   private:
     std::string pattern_string_;                  // save the pattern
     std::string alphabet_;                        // alphabet of the set
-    std::string sequence_string_;
+    std::string sequence_string_;                 // states aswell
+    std::vector<std::string> set_states_;
     void SetPattern(std::string);                 // setter of pattern
     void SetAlphabet(void);                       // automatic setter of alphabet
     void SetSequence(std::string);                // setter of sequence
+    void ConvertStates(void);
     void ConvertAlphabet(void);
     void ConvertPattern(void);
     void ConvertSequence(void);
-    std::vector<unsigned long int> set_alphabet_;
-    std::vector<unsigned long int> set_pattern_;
-    std::vector<unsigned long int> set_sequence_;
+    std::vector<unsigned long int> set_alphabet_; // alphabet
+    std::vector<unsigned long int> set_pattern_;  // what to check
+    std::vector<unsigned long int> set_sequence_; // States
     bool Belong(std::vector<unsigned long int>, std::vector<unsigned long int> );
     int ConvertToASCII(std::string);
     int ConvertToASCII(char);
