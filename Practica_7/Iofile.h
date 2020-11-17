@@ -49,6 +49,7 @@ class IOFile {
     void OutFileSyntaxName (void);
     void OutputOpenError (void);
     std::vector<std::string> Split (std::string, std::string);
+    std::string ClearComments(std::string new_file_name);
     // permissions
     // size for file
     // error type

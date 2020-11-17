@@ -115,7 +115,6 @@ void DFA::Complete(void) {
         Node* a = new Node {temp_.at(i)->init_,
                             temp_.at(i)->alpha_,
                             "Death"};
-        std::cout << "Estado de muerte: " << temp_.at(i)->init_ << " - " <<temp_.at(i)->alpha_ << std::endl;
         transitions_.push_back(a);
       }
       complete_ =  true;

@@ -26,8 +26,11 @@
 #include "Set.h"
 #include "DFA.h"
 
+#include <stdio.h>
+
 #include <fstream>
 #include <iostream>
+#include <regex> 
 #include <algorithm>
 
 const std::string kFileExt = ".txt";
@@ -38,11 +41,13 @@ IOFile::IOFile(std::string input, std::string output) {}
 
 IOFile::IOFile(std::string input_dfa, std::string input_txt, std::string output) {
   /// @brief Constructor of P7
-  Set_inputDFA(input_dfa);
-  Set_inputFile(input_txt);
+  //Set_inputFile(input_txt);
+  ClearComments(input_txt);
+  Set_inputFile("temp_input.txt");
+  ClearComments(input_dfa);
+  Set_inputDFA("temp_input.dfa");
   Set_outputFile(output);
   OutFileSyntaxName();
-
   DFA A;
 
   /****************************************************************************
@@ -51,7 +56,7 @@ IOFile::IOFile(std::string input_dfa, std::string input_txt, std::string output)
    * 
   ****************************************************************************/
 
-  int alpha_loop = std::stoi (Get_line(input_dfa,1));
+  int alpha_loop = std::stoi (Get_line(Get_inputDFA(),1));
   int current_line = 2;
   for (int i = 0; i < alpha_loop; ++i) {
     A.SetAlphabet(Get_line(Get_inputDFA(),i + current_line));
@@ -190,6 +195,22 @@ std::vector<std::string> IOFile::Split (std::string str, std::string delim) {
   }
   while (pos < str.length() && prev < str.length());
   return tokens;
+}
+
+std::string IOFile::ClearComments(std::string new_file_name) {
+  std::ofstream output_stream;
+  output_stream.open("temp_" + new_file_name);
+  std::regex comment("(//.*)");
+  //std::regex comment2("(\t+|\s+|\r\n)((\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+)|(.*))");
+  std::string unused;
+  std::ifstream file_to_count(new_file_name);
+  while (std::getline(file_to_count, unused)) {
+    if (!std::regex_match(unused, comment)) {
+      output_stream << unused << std::endl;
+    }
+  }
+  output_stream.close();
+  return new_file_name;
 }
 
 #endif
