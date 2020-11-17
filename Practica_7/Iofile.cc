@@ -116,14 +116,14 @@ IOFile::IOFile(std::string input_dfa, std::string input_txt, std::string output)
   std::ofstream output_stream;
   output_stream.open(Get_outputFile());
   if (output_stream.is_open()) {
-      for (int i = 1; i <= Count_lines(input_txt); ++i) {
+      for (int i = 1; i <= Count_lines(Get_inputFile()); ++i) {
         output_stream << Get_line(Get_inputFile(),i);
-        if (A.Recon(Get_line(Get_inputFile(),i))) {
+        if (A.Recon(Get_line(Get_inputFile(),i)) == 1) {
           output_stream << "\t\t\t\t\t\t\t\tYes" << std::endl;
-        } else if (!A.Recon(Get_line(Get_inputFile(),i))) {
+        } if (A.Recon(Get_line(Get_inputFile(),i)) == 0) {
           output_stream << "\t\t\t\t\t\t\t\tNo" << std::endl;
-        } else if (A.Recon(Get_line(Get_inputFile(),i)) == 2) {
-          output_stream << "\t\t\t\t\t\t\t\tError, please check DFA syntax" << std::endl;
+        } if (A.Recon(Get_line(Get_inputFile(),i)) == 2) {
+          output_stream << "\t\t\t\t\t\t\t\tError, please check syntax" << std::endl;
         }
     }
   } else {

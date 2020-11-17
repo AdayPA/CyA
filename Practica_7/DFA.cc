@@ -128,46 +128,50 @@ int DFA::Recon(std::string pattern) {
   **  1 si  pertenece
   **  2 si es error
   */
-  if (CheckStatus()) {
-    //busco transiciones del inicio
-    Complete();
-    std::vector<int> init;
-    for (int i = 0; i < transitions_.size(); ++i) {
-      if (start_ == transitions_[i]->init_) {
-        init.push_back(i);
-      }
-    }
-    int temp = 0;
-    int ptn_position = 0;
-    std::string actual_state = start_;
-    
-    /**
-     * 
-     *  empiezo por el inicio y veo si se puede iniciar
-     * 
-    **/
-
-    while (ptn_position < pattern.size()) {
+  if (!dfa_set.BelongAlpha(pattern)) {
+    return 2;
+  } else {
+    if (CheckStatus()) {
+      //busco transiciones del inicio
+      Complete();
+      std::vector<int> init;
       for (int i = 0; i < transitions_.size(); ++i) {
-        std::string temp;
-        temp.push_back(pattern.at(ptn_position));
-        if ((actual_state == transitions_[i]->init_) && 
-            ( temp == transitions_[i]->alpha_ )) {
-          actual_state = transitions_[i]->end_;
-          break;
+        if (start_ == transitions_[i]->init_) {
+          init.push_back(i);
         }
       }
-      ++ptn_position;
-    } // while
-    int trigger = 0;
-    for (int j = 0; j < accept_states_.size(); ++j) {
-      if (actual_state == accept_states_[j]) {
-        trigger = 1;
+      int temp = 0;
+      int ptn_position = 0;
+      std::string actual_state = start_;
+      
+      /**
+       * 
+       *  empiezo por el inicio y veo si se puede iniciar
+       * 
+      **/
+
+      while (ptn_position < pattern.size()) {
+        for (int i = 0; i < transitions_.size(); ++i) {
+          std::string temp;
+          temp.push_back(pattern.at(ptn_position));
+          if ((actual_state == transitions_[i]->init_) && 
+              ( temp == transitions_[i]->alpha_ )) {
+            actual_state = transitions_[i]->end_;
+            break;
+          }
+        }
+        ++ptn_position;
+      } // while
+      int trigger = 0;
+      for (int j = 0; j < accept_states_.size(); ++j) {
+        if (actual_state == accept_states_[j]) {
+          trigger = 1;
+        }
       }
+      return trigger;
+    } else {
+      return 2;
     }
-    return trigger;
-  } else {
-    return 2;
   }
 }
 
