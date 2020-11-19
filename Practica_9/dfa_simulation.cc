@@ -3,20 +3,19 @@
 // Degree of Computer Science
 // Subject: Computabilidad y Algoritmia (CyA)
 // Course/Year: 2º 
-// @praxis: Number 5 CyA - "Sets"
+// @praxis: Number 9 CyA - "Sets"
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
-// @date: 04/11/2020
-// @brief pattern.cc :  This is the main of the praxis
+// @date: 19/11/2020
+// @brief  :  
 //                 
 // @compile: $ make                                                    
 // References: 
-// https://es.wikipedia.org/wiki/B%C3%BAsqueda_de_patrones
-// https://es.wikipedia.org/wiki/ASCII
+// 
 // Lab exercise:
-// https://github.com/garamira/CyA-P06-Patterns
+// 
 // Version Control:
-// 04/11/2020 - First version of the code 
+// 19/11/2020 - Preparing the main 
 // 
 
 #include "Iofile.h"
@@ -36,6 +35,7 @@ const int kFirst = 1;
 const int kSecond = 2;
 const int kThird = 3;
 const int kFourth = 4;
+const int kFifth = 5;
 const int kMinimun = 1;                 // N > 0
 const char kNewLine = '\0';
 const std::string kBoldOpen = "\e[1m";
@@ -81,13 +81,11 @@ void BadImput (void) {
 
 int main(int argc, char** argv) {
   switch (argc) {     // Switch depending of the input commands
-    case kFirst: {    // executed as: $ ./pattern.cc
-      std::cout << "kfirst" << std::endl;
-      IOFile dfa; 
+    case kFirst: {    // executed as: $ ./name
       BadImput();
       break;
 	  }	
-    case kSecond:	{   // executed as: $ ./pattern.cc 1st_arg 
+    case kSecond:	{   // executed as: $ ./name 1st_arg 
       std::string temp = argv[kFirst];
       if ((temp == kExplain) || (temp == kExplain2)) {
         Help();
@@ -96,17 +94,21 @@ int main(int argc, char** argv) {
       }
       break;
     }
-    case kThird: {    // executed as: $ ./pattern 1st_arg 2nd_arg
+    case kThird: {    // executed as: $ ./name 1st_arg 2nd_arg
       BadImput();
       break;
     }
-    case kFourth: {    // executed as: $ ./pattern 1st_arg 2nd_arg 3rd_arg
+    case kFourth: {    // executed as: $ ./name 1st_arg 2nd_arg 3rd_arg
       std::string output_file(argv[kFileOut]);
       std::string input_txt(argv[kFileIn]);
       std::string input_dfa(argv[kDfa]);
       IOFile dfa(); 
       break;
     }
+    case kFifth: {    // executed as: $ ./name 1st_arg 2nd_arg 3rd_arg 4th_arg
+      break;
+    }
+
     default: {        //executed as: everything else
       BadImput();
       break;

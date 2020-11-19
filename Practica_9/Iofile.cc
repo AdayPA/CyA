@@ -38,6 +38,7 @@
 const std::string kFileExt = ".txt";
 
 IOFile::IOFile() {
+  ClearComments("ejemplo.txt");
 }
 
 IOFile::~IOFile() {}
