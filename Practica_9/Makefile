@@ -10,8 +10,8 @@ LDFLAGS =
 # Makefile settings - Can be customized.
 APPNAME = dfa_simulation
 EXT = .cc
-SRCDIR = /home/usuario/cya/Practica_7
-OBJDIR = /home/usuario/cya/Practica_7
+SRCDIR = /home/usuario/cya/Practica_9
+OBJDIR = /home/usuario/cya/Practica_9
 
 ############## Do not change anything from here downwards! #############
 SRC = $(wildcard $(SRCDIR)/*$(EXT))

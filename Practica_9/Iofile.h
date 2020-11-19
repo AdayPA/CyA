@@ -33,8 +33,6 @@
 class IOFile {
   public:
     IOFile();
-    IOFile(std::string, std::string);
-    IOFile(std::string, std::string, std::string);
     ~IOFile();
 
   private:
@@ -55,6 +53,7 @@ class IOFile {
     void OutputOpenError (void);
     std::vector<std::string> Split (std::string, std::string);
     std::string ClearComments(std::string new_file_name);
+    void RemoveFile(const char * file_to_remove);
     // permissions
     // size for file
     // error type

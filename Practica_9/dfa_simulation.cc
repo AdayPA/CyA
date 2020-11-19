@@ -82,6 +82,8 @@ void BadImput (void) {
 int main(int argc, char** argv) {
   switch (argc) {     // Switch depending of the input commands
     case kFirst: {    // executed as: $ ./pattern.cc
+      std::cout << "kfirst" << std::endl;
+      IOFile dfa; 
       BadImput();
       break;
 	  }	
@@ -102,7 +104,7 @@ int main(int argc, char** argv) {
       std::string output_file(argv[kFileOut]);
       std::string input_txt(argv[kFileIn]);
       std::string input_dfa(argv[kDfa]);
-      IOFile dfa(input_dfa,input_txt,output_file); 
+      IOFile dfa(); 
       break;
     }
     default: {        //executed as: everything else

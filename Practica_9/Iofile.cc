@@ -37,106 +37,7 @@
 
 const std::string kFileExt = ".txt";
 
-IOFile::IOFile() {}
-
-IOFile::IOFile(std::string input, std::string output) {}
-
-IOFile::IOFile(std::string input_dfa, std::string input_txt, std::string output) {
-  /**
-   *  @brief Constructor of IOFile for P7
-   *  First, we clear the comments, then later we works with the DFA
-   * 
-   * */
-  //Set_inputFile(input_txt);
-  std::string temp_1 = "temp_";
-  std::string temp_2 = "temp_";
-  ClearComments(input_txt);
-  Set_inputFile(temp_1.append(input_txt));
-  ClearComments(input_dfa);
-  Set_inputDFA(temp_2.append(input_dfa));
-  Set_outputFile(output);
-  OutFileSyntaxName();
-  DFA A;
-
-  /****************************************************************************
-   * 
-   *        We read the alphabet here and store it in the DFA
-   * 
-  ****************************************************************************/
-
-  int alpha_loop = std::stoi (Get_line(Get_inputDFA(),1));
-  int current_line = 2;
-  for (int i = 0; i < alpha_loop; ++i) {
-    A.SetAlphabet(Get_line(Get_inputDFA(),i + current_line));
-  }
-  current_line = current_line + alpha_loop;
-
-  /****************************************************************************
-   * 
-   *        We read the states of the DFA here and store it like before
-   * 
-  ****************************************************************************/
-  int states_loop = std::stoi (Get_line(Get_inputDFA(),current_line));
-  ++current_line;
-  for (int i = 0; i < states_loop; ++i) {
-    A.SetStates(Get_line(Get_inputDFA(),i + current_line));
-  }
-  current_line = current_line + states_loop;
-  
-  /****************************************************************************
-   * 
-   *        We read the start node and store it in the DFA
-   * 
-  ****************************************************************************/
-  A.SetStart(Get_line(Get_inputDFA(),current_line));
-  ++current_line;
-
-  /****************************************************************************
-   * 
-   *        We read the accept nodes here
-   * 
-  ****************************************************************************/
-  int accept_loop = std::stoi (Get_line(Get_inputDFA(),current_line));
-  ++current_line;
-  for (int i = 0; i < accept_loop; ++i) {
-    A.SetAcceptStates(Get_line(Get_inputDFA(),i + current_line));
-  }
-  current_line = current_line + accept_loop;
-
-  /****************************************************************************
-   * 
-   *        We read all the transitions of the DFA here
-   * 
-  ****************************************************************************/
-  int transition_loop = std::stoi (Get_line(Get_inputDFA(),current_line));
-  ++current_line;
-  for (int i = 0; i < transition_loop; ++i) {
-    std::vector<std::string> temp_ = Split(Get_line(Get_inputDFA(),i + current_line), " ");
-    A.SetTransition(temp_);
-  }
-  
-  /****************************************************************************
-   * 
-   *        We read the strings to check if belong to the DFA
-   * 
-  ****************************************************************************/
-
-  std::ofstream output_stream;
-  output_stream.open(Get_outputFile());
-  if (output_stream.is_open()) {
-      for (int i = 1; i <= Count_lines(Get_inputFile()); ++i) {
-        output_stream << Get_line(Get_inputFile(),i);
-        if (A.Recon(Get_line(Get_inputFile(),i)) == 1) {
-          output_stream << "\t\t\t\tYes" << std::endl;
-        } if (A.Recon(Get_line(Get_inputFile(),i)) == 0) {
-          output_stream << "\t\t\t\tNo" << std::endl;
-        } if (A.Recon(Get_line(Get_inputFile(),i)) == 2) {
-          output_stream << "\t\t\t\tError, please check syntax" << std::endl;
-        }
-    }
-  } else {
-    OutputOpenError();
-  }
+IOFile::IOFile() {
 }
 
 IOFile::~IOFile() {}
@@ -224,6 +125,10 @@ std::string IOFile::ClearComments(std::string new_file_name) {
   }
   output_stream.close();
   return new_file_name;
+}
+
+void IOFile::RemoveFile(const char * file_to_remove) {
+  remove(file_to_remove);
 }
 
 #endif
