@@ -3,21 +3,26 @@
 // Degree of Computer Science
 // Subject: Computabilidad y Algoritmia (CyA)
 // Course/Year: 2º 
-// @praxis: Number 6 CyA - "Sets"
+// @praxis: Number 7 CyA - "DFA"
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 04/11/2020
-// @brief DFA.h :  
+// @brief DFA.cc :  This class store the tuple needed to describe a DFA 
+//                  and works with string to recognize them
 //                 
 // @compile: $ make                                                    
 // References: 
-// https://es.wikipedia.org/wiki/B%C3%BAsqueda_de_patrones
-// https://es.wikipedia.org/wiki/ASCII
+// https://en.wikipedia.org/wiki/Deterministic_finite_automaton
 // Lab exercise:
-// https://github.com/garamira/CyA-P06-Patterns
+// (private link)
+// Others links:
+//  https://stackoverflow.com/questions/14975737/regular-expression-to-remove-comment
+//  https://regexr.com/5gecl
 // Version Control:
-// 04/11/2020 - First version of the code 
-// 
+// 11/11/2020 - First version of the code 
+// 13/11/2020 - core added
+// 15/11/2020 - recognition added
+//
 
 #ifndef DFA_H_
 #define DFA_H_

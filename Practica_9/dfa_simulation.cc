@@ -50,19 +50,22 @@ void Help(void) {
  ** Explain everithing about the program.
  */
 std::cout << kBoldOpen << "NAME" << kBoldClose << std::endl;
-std::cout << kTab << "pattern" << std::endl;
+std::cout << kTab << "dfa_simulation" << std::endl;
 std::cout << std::endl;
 std::cout << kBoldOpen << "SYNOPSIS" << kBoldClose << std::endl;
-std::cout << kTab << "pattern [FILE_IN] [FILE_OUT]" << std::endl;
+std::cout << kTab << "dfa_simulation [DFA_IN] [FILE_IN] [FILE_OUT]" << std::endl;
 std::cout << std::endl;
 std::cout << kBoldOpen << "DESCRIPTION" << kBoldClose << std::endl;
-std::cout << kTab << "This program read the set, transform it and operate with it " <<
- "in a bit level and showing the result in a output file" << std::endl;
+std::cout << kTab << "This program read the dfa, build it and operate with it " <<
+ "to check if the pattern belongs and shows the result in a output file" << std::endl;
 std::cout << std::endl;
 std::cout << kTab << "Mandatory arguments:" << std::endl;
 std::cout << std::endl;
+std::cout << kTab << "[DFA_IN] " << std::endl;
+std::cout << kTab << kTab << "input file with the custom dfa " << std::endl;
+std::cout << std::endl;
 std::cout << kTab << "[FILE_IN] " << std::endl;
-std::cout << kTab << kTab << "input file with set for operate " << std::endl;
+std::cout << kTab << kTab << "input file with the string to check " << std::endl;
 std::cout << std::endl;
 std::cout << kTab << "[FILE_OUT] " << std::endl;
 std::cout << kTab << kTab << "name of the output file; it will be created or " << 

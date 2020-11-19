@@ -3,20 +3,22 @@
 // Degree of Computer Science
 // Subject: Computabilidad y Algoritmia (CyA)
 // Course/Year: 2º 
-// @praxis: Number 6 CyA - "Sets"
+// @praxis: Number 7 CyA - "DFA"
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
-// @date: 04/11/2020
-// @brief IOFile.cc :  
-//                 
+// @date: 11/11/2020
+// @brief IOFile.h :  
+//                    This file implement the .h
+
 // @compile: $ make                                                    
 // References: 
-// https://es.wikipedia.org/wiki/B%C3%BAsqueda_de_patrones
-// https://es.wikipedia.org/wiki/ASCII
+// https://en.wikipedia.org/wiki/Deterministic_finite_automaton
 // Lab exercise:
-// https://github.com/garamira/CyA-P06-Patterns
+// (private link)
 // Version Control:
-// 04/11/2020 - First version of the code 
+// 11/11/2020 - First version of the code 
+// 13/11/2020 - interfaces added
+// 15/11/2020 - comment remover implemented
 // 
 
 #ifndef IOFILE_CC_
@@ -40,12 +42,18 @@ IOFile::IOFile() {}
 IOFile::IOFile(std::string input, std::string output) {}
 
 IOFile::IOFile(std::string input_dfa, std::string input_txt, std::string output) {
-  /// @brief Constructor of P7
+  /**
+   *  @brief Constructor of IOFile for P7
+   *  First, we clear the comments, then later we works with the DFA
+   * 
+   * */
   //Set_inputFile(input_txt);
+  std::string temp_1 = "temp_";
+  std::string temp_2 = "temp_";
   ClearComments(input_txt);
-  Set_inputFile("temp_input.txt");
+  Set_inputFile(temp_1.append(input_txt));
   ClearComments(input_dfa);
-  Set_inputDFA("temp_input.dfa");
+  Set_inputDFA(temp_2.append(input_dfa));
   Set_outputFile(output);
   OutFileSyntaxName();
   DFA A;
@@ -119,11 +127,11 @@ IOFile::IOFile(std::string input_dfa, std::string input_txt, std::string output)
       for (int i = 1; i <= Count_lines(Get_inputFile()); ++i) {
         output_stream << Get_line(Get_inputFile(),i);
         if (A.Recon(Get_line(Get_inputFile(),i)) == 1) {
-          output_stream << "\t\t\t\t\t\t\t\tYes" << std::endl;
+          output_stream << "\t\t\t\tYes" << std::endl;
         } if (A.Recon(Get_line(Get_inputFile(),i)) == 0) {
-          output_stream << "\t\t\t\t\t\t\t\tNo" << std::endl;
+          output_stream << "\t\t\t\tNo" << std::endl;
         } if (A.Recon(Get_line(Get_inputFile(),i)) == 2) {
-          output_stream << "\t\t\t\t\t\t\t\tError, please check syntax" << std::endl;
+          output_stream << "\t\t\t\tError, please check syntax" << std::endl;
         }
     }
   } else {
@@ -134,12 +142,14 @@ IOFile::IOFile(std::string input_dfa, std::string input_txt, std::string output)
 IOFile::~IOFile() {}
 
 void IOFile::OutputOpenError (void) {
+  /// @brief If output file got an error, we will notice it
   std::ofstream output_stream;
   output_stream.open("dfa_log_error.txt");
   output_stream << "Error opening the file.";
 }
 
 void IOFile::OutFileSyntaxName(void) {
+  /// @brief we add the .txt file to the output
   std::string temp_name = Get_outputFile();
   if(temp_name.size() <= 4) {
     Set_outputFile(temp_name + kFileExt);
@@ -156,6 +166,7 @@ void IOFile::OutFileSyntaxName(void) {
 }
 
 std::string IOFile::Get_line(const std::string& filename, const int& line_number) {
+  /// @brief Return the string of the line read.
   std::ifstream inputfile(filename);
   auto temp(1);
   std::string line;
@@ -168,6 +179,7 @@ std::string IOFile::Get_line(const std::string& filename, const int& line_number
 }
 
 int IOFile::Count_lines(const std::string file) {
+  /// @brief Count total lines from a file
   int lines = 0;
   std::ifstream file_to_count(file);
   std::string unused;
@@ -202,6 +214,7 @@ std::string IOFile::ClearComments(std::string new_file_name) {
   output_stream.open("temp_" + new_file_name);
   std::regex comment("(//.*)");
   //std::regex comment2("(\t+|\s+|\r\n)((\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+)|(.*))");
+  //std::regex comment3("/\*(.|\n)*?\*/");
   std::string unused;
   std::ifstream file_to_count(new_file_name);
   while (std::getline(file_to_count, unused)) {

@@ -11,10 +11,12 @@
 //                 
 // @compile: $ make                                                    
 // References: 
-// https://es.wikipedia.org/wiki/B%C3%BAsqueda_de_patrones
-// https://es.wikipedia.org/wiki/ASCII
+// https://en.wikipedia.org/wiki/Deterministic_finite_automaton
 // Lab exercise:
-// https://github.com/garamira/CyA-P06-Patterns
+// (private link)
+// Others links:
+//  https://stackoverflow.com/questions/14975737/regular-expression-to-remove-comment
+//  https://regexr.com/5gecl
 // Version Control:
 // 04/11/2020 - First version of the code 
 // 
@@ -72,6 +74,7 @@ void Set::SaveResult(std::string in) {
 Set::~Set() {}
 
 bool Set::BelongAlpha(std::string alpha) {
+  /// @brief return true if alpha belong to the set of alpha
   ConvertAlphabet();
   SetPattern(alpha);
   ConvertPattern();
@@ -79,8 +82,9 @@ bool Set::BelongAlpha(std::string alpha) {
 }
 
 bool Set::BelongStates(std::string alpha) {
+  /// @brief return true if the state belong to the set of state
   std::set<std::string> my_set;
-  for (int i = 0; i < set_states_.size(); ++i) {
+  for (unsigned int i = 0; i < set_states_.size(); ++i) {
     my_set.insert(set_states_.at(i));
   }
   const bool is_in = my_set.find(alpha) != my_set.end();
