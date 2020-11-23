@@ -8,11 +8,9 @@
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 23/11/2020
-// @brief Transition.cc :  
-//                  
-//                 
-// @compile: $ make                                                    
-// References: 
+// @brief Transition.cc :
+// @compile: $ make
+// References:
 // https://en.wikipedia.org/wiki/Deterministic_finite_automaton
 // Lab exercise:
 // (private link)
@@ -20,33 +18,97 @@
 //  https://stackoverflow.com/questions/14975737/regular-expression-to-remove-comment
 //  https://regexr.com/5gecl
 // Version Control:
-// 23/11/2020 - First version of the code 
-// 
-// 
+// 23/11/2020 - First version of the code
 //
+//
+//
+
 #ifndef IOFILE_CC_
 #define IOFILE_CC_
 
-#include "Iofile.h"
-#include "Set.h"
-#include "DFA.h"
+#include "/home/usuario/cya/Practica_9/Iofile.h"
+#include "/home/usuario/cya/Practica_9/DFA.h"
 
 #include <stdio.h>
 
 #include <fstream>
 #include <iostream>
-#include <regex> 
+#include <regex>
 #include <algorithm>
 
 const std::string kFileExt = ".txt";
 
-IOFile::IOFile() {
-  ClearComments("ejemplo.txt");
-}
+IOFile::IOFile() {}
 
 IOFile::~IOFile() {}
 
-void IOFile::OutputOpenError (void) {
+IOFile::IOFile(std::string& inputDFA, std::string& outputGRA) {
+  // TODO: clear comments
+  inputDFA_ = inputDFA;
+  outputFile_ = outputGRA;
+  ReadDFA();
+}
+
+void IOFile::ReadDFA(void) {
+  DFA A;
+  /****************************************************************************
+   *
+   *        We read the alphabet here and store it in the DFA
+   *
+  ****************************************************************************/
+  int alpha_loop = std::stoi (Get_line(Get_inputDFA(),1));
+  int current_line = 2;
+  for (int i = 0; i < alpha_loop; ++i) {
+    A.SetAlphabet(Get_line(Get_inputDFA(),i + current_line));
+  }
+  current_line = current_line + alpha_loop;
+
+  /****************************************************************************
+   *
+   *        We read the states of the DFA here and store it like before
+   *
+  ****************************************************************************/
+  int states_loop = std::stoi (Get_line(Get_inputDFA(),current_line));
+  ++current_line;
+  for (int i = 0; i < states_loop; ++i) {
+    A.SetStates(Get_line(Get_inputDFA(),i + current_line));
+  }
+  current_line = current_line + states_loop;
+
+  /****************************************************************************
+   *
+   *        We read the start node and store it in the DFA
+   *
+  ****************************************************************************/
+  A.SetStart(Get_line(Get_inputDFA(),current_line));
+  ++current_line;
+
+  /****************************************************************************
+   *
+   *        We read the accept nodes here
+   *
+  ****************************************************************************/
+  int accept_loop = std::stoi (Get_line(Get_inputDFA(),current_line));
+  ++current_line;
+  for (int i = 0; i < accept_loop; ++i) {
+    A.SetAcceptStates(Get_line(Get_inputDFA(),i + current_line));
+  }
+  current_line = current_line + accept_loop;
+
+  /****************************************************************************
+   * 
+   *        We read all the transitions of the DFA here
+   * 
+  ****************************************************************************/
+  int transition_loop = std::stoi (Get_line(Get_inputDFA(),current_line));
+  ++current_line;
+  for (int i = 0; i < transition_loop; ++i) {
+    std::vector<std::string> temp_ = Split(Get_line(Get_inputDFA(),i + current_line), " ");
+    A.SetTransition(temp_);
+  }
+}
+
+void IOFile::OutputOpenError(void) {
   /// @brief If output file got an error, we will notice it
   std::ofstream output_stream;
   output_stream.open("dfa_log_error.txt");
@@ -56,7 +118,7 @@ void IOFile::OutputOpenError (void) {
 void IOFile::OutFileSyntaxName(void) {
   /// @brief we add the .txt file to the output
   std::string temp_name = Get_outputFile();
-  if(temp_name.size() <= 4) {
+  if (temp_name.size() <= 4) {
     Set_outputFile(temp_name + kFileExt);
   } else {
     std::string aux;
@@ -75,10 +137,10 @@ std::string IOFile::Get_line(const std::string& filename, const int& line_number
   std::ifstream inputfile(filename);
   auto temp(1);
   std::string line;
-  while( (!(inputfile.eof())) && (temp < line_number)) {
+  while ((!(inputfile.eof())) && (temp < line_number)) {
     std::getline(inputfile, line);
     ++temp;
-  } 
+  }
   std::getline(inputfile, line);
   return line;
 }
@@ -98,8 +160,8 @@ const bool IOFile::IsDigit(const std::string& str)  {
   return std::all_of(str.begin(), str.end(), ::isdigit);
 }
 
-std::vector<std::string> IOFile::Split (std::string str, std::string delim) {
-  /// @brief this func split in 2 the string and store them in vector, 
+std::vector<std::string> IOFile::Split(std::string str, std::string delim) {
+  /// @brief this func split in 2 the string and store them in vector,
   //         depending of the char
   std::vector<std::string> tokens;
   size_t prev = 0, pos = 0;
@@ -118,8 +180,8 @@ std::string IOFile::ClearComments(std::string new_file_name) {
   std::ofstream output_stream;
   output_stream.open("temp_" + new_file_name);
   std::regex comment("(//.*)");
-  //std::regex comment2("(\t+|\s+|\r\n)((\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+)|(.*))");
-  //std::regex comment3("/\*(.|\n)*?\*/");
+  // std::regex comment2("(\t+|\s+|\r\n)((\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+)|(.*))");
+  // std::regex comment3("/\*(.|\n)*?\*/");
   std::string unused;
   std::ifstream file_to_count(new_file_name);
   while (std::getline(file_to_count, unused)) {

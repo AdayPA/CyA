@@ -8,7 +8,7 @@ CXXFLAGS = -std=c++11 -Wall
 LDFLAGS = 
 
 # Makefile settings - Can be customized.
-APPNAME = dfa_simulation
+APPNAME = dfa2g
 EXT = .cc
 SRCDIR = /home/usuario/cya/Practica_9
 OBJDIR = /home/usuario/cya/Practica_9
