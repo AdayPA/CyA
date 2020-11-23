@@ -2,25 +2,28 @@
 // College of Engineering and Tech
 // Degree of Computer Science
 // Subject: Computabilidad y Algoritmia (CyA)
-// Course/Year: 2º 
-// @praxis: Number 7 CyA - "DFA"
+// Course/Year: 2º
+// @praxis: Number 9 CyA - "Gramaticas Regulares y Autómatas Finitos. Gramatica
+//                          regular a partir de un DFA"
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
-// @date: 11/11/2020
-// @brief IOFile.h :  
-//                    This file implement the .h
-
+// @date: 23/11/2020
+// @brief Transition.cc :  
+//                  
+//                 
 // @compile: $ make                                                    
 // References: 
 // https://en.wikipedia.org/wiki/Deterministic_finite_automaton
 // Lab exercise:
 // (private link)
+// Others links:
+//  https://stackoverflow.com/questions/14975737/regular-expression-to-remove-comment
+//  https://regexr.com/5gecl
 // Version Control:
-// 11/11/2020 - First version of the code 
-// 13/11/2020 - interfaces added
-// 15/11/2020 - comment remover implemented
+// 23/11/2020 - First version of the code 
 // 
-
+// 
+//
 #ifndef IOFILE_CC_
 #define IOFILE_CC_
 

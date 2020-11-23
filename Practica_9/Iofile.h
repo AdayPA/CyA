@@ -2,14 +2,15 @@
 // College of Engineering and Tech
 // Degree of Computer Science
 // Subject: Computabilidad y Algoritmia (CyA)
-// Course/Year: 2º 
-// @praxis: Number 7 CyA - "DFA"
+// Course/Year: 2º
+// @praxis: Number 9 CyA - "Gramaticas Regulares y Autómatas Finitos. Gramatica
+//                          regular a partir de un DFA"
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
-// @date: 11/11/2020
-// @brief IOFile.h :  
-//                    This class receive the file from main and
-//                    works with them using the DFA class
+// @date: 23/11/2020
+// @brief Transition.cc :  
+//                  
+//                 
 // @compile: $ make                                                    
 // References: 
 // https://en.wikipedia.org/wiki/Deterministic_finite_automaton
@@ -19,10 +20,10 @@
 //  https://stackoverflow.com/questions/14975737/regular-expression-to-remove-comment
 //  https://regexr.com/5gecl
 // Version Control:
-// 11/11/2020 - First version of the code 
-// 13/11/2020 - interfaces added
-// 15/11/2020 - comment remover implemented
+// 23/11/2020 - First version of the code 
 // 
+// 
+//
 
 #ifndef IOFILE_H_
 #define IOFILE_H_
@@ -31,14 +32,11 @@
 #include <vector>
 
 class IOFile {
-  public:
+ public:
     IOFile();
     ~IOFile();
 
-  private:
-    std::string inputFile_;
-    inline void Set_inputFile(const std::string& filename) { inputFile_ = filename; };
-    inline std::string& Get_inputFile (void) { return inputFile_; };
+ private:
     std::string inputDFA_;
     inline void Set_inputDFA(const std::string& dfaname) { inputDFA_ = dfaname; };
     inline std::string& Get_inputDFA (void) { return inputDFA_; };
