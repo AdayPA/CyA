@@ -2,15 +2,14 @@
 // College of Engineering and Tech
 // Degree of Computer Science
 // Subject: Computabilidad y Algoritmia (CyA)
-// Course/Year: 2º 
+// Course/Year: 2º
 // @praxis: Number 6 CyA - "Sets"
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 04/11/2020
-// @brief Set.cc :  
-//                 
-// @compile: $ make                                                    
-// References: 
+// @brief Set.cc :
+// @compile: $ make
+// References:
 // https://en.wikipedia.org/wiki/Deterministic_finite_automaton
 // Lab exercise:
 // (private link)
@@ -18,8 +17,8 @@
 //  https://stackoverflow.com/questions/14975737/regular-expression-to-remove-comment
 //  https://regexr.com/5gecl
 // Version Control:
-// 04/11/2020 - First version of the code 
-// 
+// 04/11/2020 - First version of the code
+//
 
 #ifndef SET_CC_
 #define SET_CC_
@@ -52,15 +51,14 @@ Set::Set(int size) {
 
 Set::Set(std::string sequence, std::string pattern) {
   size_of_set_ = 300;
-  SetAlphabet();  
+  SetAlphabet();
   ConvertAlphabet();
   SetPattern(pattern);
   ConvertPattern();
   SetSequence(sequence);
   ConvertSequence();
-//  PrintVectorSet(set_alphabet_);
- // PrintVectorSet(set_pattern_);
-  
+  // PrintVectorSet(set_alphabet_);
+  // PrintVectorSet(set_pattern_);
 }
 
 std::string Set::GetResult() {

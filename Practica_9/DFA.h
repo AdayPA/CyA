@@ -8,11 +8,9 @@
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 23/11/2020
-// @brief DFA.h :  
-//                  
-//                 
-// @compile: $ make                                                    
-// References: 
+// @brief DFA.h :
+// @compile: $ make
+// References:
 // https://en.wikipedia.org/wiki/Deterministic_finite_automaton
 // Lab exercise:
 // (private link)
@@ -20,21 +18,20 @@
 //  https://stackoverflow.com/questions/14975737/regular-expression-to-remove-comment
 //  https://regexr.com/5gecl
 // Version Control:
-// 23/11/2020 - First version of the code 
-// 
-// 
-//
+// 23/11/2020 - First version of the code
 
-#ifndef DFA_H_
-#define DFA_H_
+#ifndef PRACTICA_9_DFA_H_
+#define PRACTICA_9_DFA_H_
 
 #include <string>
 #include <vector>
+#include <set>
 
 #include "/home/usuario/cya/Practica_9/Set.h"
+#include "/home/usuario/cya/Practica_9/Transition.h"
 
 class DFA {
-  public:
+ public:
     DFA();
     ~DFA();
     void SetAlphabet(std::string);
@@ -42,28 +39,26 @@ class DFA {
     void SetStart(std::string);
     void SetAcceptStates(std::string);
     void SetTransition(std::vector<std::string>);
-    int Recon(std::string);
+    inline std::set<std::string> GetAlphabet(void) {return alphabet_;}
+    inline std::set<std::string> GetStates(void) {return states_;}
+    inline std::set<std::string> GetAcceptStates(void) {return accept_states_;}
+    inline Transition GetTransitions(void) {return transitions_;}
+    
+    void Test(void);
 
-  private:
-      struct Node {
-      std::string init_;
-      std::string alpha_;
-      std::string end_;
-      };
-    Set dfa_set;
-    std::vector<std::string> alphabet_;
-    std::vector<std::string> states_;
+ private:
+    Transition transitions_;
+    std::set<std::string> alphabet_;
+    std::set<std::string> states_;
+    std::set<std::string> accept_states_;
+    std::string start_;
     bool failed_;
     bool start_ok_;
-    std::string start_;
     bool accept_states_ok_;
-    std::vector<std::string> accept_states_;
     bool transitions_ok;
-    std::vector<Node*> transitions_;
     bool complete_;
     bool CheckStatus(void);
     void Complete(void);
 };
 
-#endif  // DFA_H_
-
+#endif  // PRACTICA_9_DFA_H_

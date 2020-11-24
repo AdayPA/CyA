@@ -26,8 +26,8 @@
 #ifndef IOFILE_CC_
 #define IOFILE_CC_
 
-#include "/home/usuario/cya/Practica_9/Iofile.h"
-#include "/home/usuario/cya/Practica_9/DFA.h"
+#include "Iofile.h"
+#include "DFA.h"
 
 #include <stdio.h>
 
@@ -106,6 +106,8 @@ void IOFile::ReadDFA(void) {
     std::vector<std::string> temp_ = Split(Get_line(Get_inputDFA(),i + current_line), " ");
     A.SetTransition(temp_);
   }
+
+  A.Test();
 }
 
 void IOFile::OutputOpenError(void) {

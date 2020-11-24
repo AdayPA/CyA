@@ -27,16 +27,22 @@
 #define PRACTICA_9_TRANSITION_H_
 
 #include <string>
+#include <vector>
 
 class Transition {
  public:
-    Transition();
-    Transition(std::string&, std::string&, std::string&);
-    ~Transition();
+  Transition();
+  std::string GetFinalNode(std::string, std::string);
+  void Insert(std::string&, std::string&, std::string&);
+  inline int GetSize(void) {return set_transitions_.size();}
+  ~Transition();
  private:
+  struct Node {
     std::string init_state_;
-    std::string final_state_;
     std::string symbol_;
+    std::string final_state_;
+  };
+  std::vector<Node*> set_transitions_;
 };
 
 #endif  // PRACTICA_9_TRANSITION_H_
