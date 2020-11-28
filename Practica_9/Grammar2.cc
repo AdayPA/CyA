@@ -2,7 +2,7 @@
 // College of Engineering and Tech
 // Degree of Computer Science
 // Subject: Computabilidad y Algoritmia (CyA)
-// Course/Year: 2º 
+// Course/Year: 2º
 // @praxis: Number 7 CyA - "DFA"
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
@@ -51,7 +51,6 @@ void Grammar2::Test(void) {
 // P = {q → ap | δ(q, a) = p} ∪ {q → ε | q ∈ F}
 
 void Grammar2::Convert(void) {
-
   std::cout << "size antes de copia: " << produccion_.GetSize() << std::endl;
   for (int i = 0; i < transitions_2.GetSize(); ++i) {
     std::string temp = transitions_2.GetNode(i)->final_state_;
@@ -62,25 +61,23 @@ void Grammar2::Convert(void) {
                          transitions_2.GetNode(i)->final_state_);
       produccion_.Insert(transitions_2.GetNode(i)->final_state_,
                          "", "e");
-    }
-    else {
+    } else {
       produccion_.Insert(transitions_2.GetNode(i)->init_state_,
                          transitions_2.GetNode(i)->symbol_,
                          transitions_2.GetNode(i)->final_state_);
     }
   }
-
   std::cout << "size despues de copia: " << produccion_.GetSize() << std::endl;
   for (int i = 0; i < produccion_.GetSize(); ++i) {
-    std::cout << produccion_.GetNode(i)->init_state_ << " -> " << produccion_.GetNode(i)->symbol_ << produccion_.GetNode(i)->final_state_ << std::endl;
+    std::cout << produccion_.GetNode(i)->init_state_ << " -> " <<
+    produccion_.GetNode(i)->symbol_ << produccion_.GetNode(i)->final_state_
+    << std::endl;
   }
-
 }
 
 void Grammar2::Print(void) {
   std::cout << "Tamaño : " << alphabet_2.size()  << std::endl;
- for (auto it = alphabet_2.begin(); it != 
-                             alphabet_2.end(); ++it)
+  for (auto it = alphabet_2.begin(); it != alphabet_2.end(); ++it)
         std::cout << ' ' << *it;
 }
 
