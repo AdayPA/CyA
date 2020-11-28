@@ -28,7 +28,7 @@
 #include <iostream>
 #include <fstream>
 
-DFA::DFA() {
+DFA::DFA() {  
   /// @brief we set the bools to false as init
   start_ok_ = false;
   accept_states_ok_ = false;
@@ -57,7 +57,7 @@ void DFA::SetStart(std::string start) {
     start_ok_ = false;
     failed_ = true;
   }
-}
+} 
 
 void DFA::SetAcceptStates(std::string state) {
   /// @brief if start state belong to the set of states, we add it
@@ -82,10 +82,6 @@ void DFA::SetTransition(std::vector<std::string> transition) {
     transitions_ok = false;
     failed_ = true;
   }
-}
-
-void DFA::Test(void){
-  std::cout << transitions_.GetFinalNode("0mod3", "0") << std::endl;
 }
 
 #endif  // PRACTICA_9_DFA_CC_

@@ -23,13 +23,13 @@
 //
 //
 
-#ifndef PRACTICA_9_TRANSITION_H_  // PRACTICA_9_TRANSITION_H_
-#define PRACTICA_9_TRANSITION_H_
+#ifndef PRACTICA_9_PRODUCCION_H_  // PRACTICA_9_TRANSITION_H_
+#define PRACTICA_9_PRODUCCION_H_
 
 #include <string>
 #include <vector>
 
-class Transition {
+class Produccion {
  private:
   struct Node {
     std::string init_state_;
@@ -37,14 +37,13 @@ class Transition {
     std::string final_state_;
   };
  public:
-  Transition();
-  std::string GetFinalNode(std::string, std::string);
-  void Insert(std::string&, std::string&, std::string&);
-  inline int GetSize(void) {return set_transitions_.size();}
-  inline Node* GetNode(int position) {return set_transitions_[position];}
-  ~Transition();
+  Produccion();
+  void Insert(std::string, std::string, std::string);
+  inline int GetSize(void) {return set_produccion_.size();}
+  inline Node* GetNode(int position) {return set_produccion_[position];}
+  ~Produccion();
  private:
-  std::vector<Node*> set_transitions_;
+  std::vector<Node*> set_produccion_;
 };
 
-#endif  // PRACTICA_9_TRANSITION_H_
+#endif  // PRACTICA_9_PRODUCCION_H_

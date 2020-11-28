@@ -8,7 +8,7 @@
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 23/11/2020
-// @brief Transition.h :
+// @brief DFA.h :
 // @compile: $ make
 // References:
 // https://en.wikipedia.org/wiki/Deterministic_finite_automaton
@@ -19,32 +19,40 @@
 //  https://regexr.com/5gecl
 // Version Control:
 // 23/11/2020 - First version of the code
-//
-//
-//
 
-#ifndef PRACTICA_9_TRANSITION_H_  // PRACTICA_9_TRANSITION_H_
-#define PRACTICA_9_TRANSITION_H_
+#ifndef PRACTICA_9_GRAMMAR2_H_
+#define PRACTICA_9_GRAMMAR2_H_
 
 #include <string>
 #include <vector>
+#include <set>
 
-class Transition {
- private:
-  struct Node {
-    std::string init_state_;
-    std::string symbol_;
-    std::string final_state_;
-  };
+#include "/home/usuario/cya/Practica_9/Set.h"
+#include "/home/usuario/cya/Practica_9/DFA.h"
+#include "/home/usuario/cya/Practica_9/Produccion.h"
+
+class Grammar2 {
  public:
-  Transition();
-  std::string GetFinalNode(std::string, std::string);
-  void Insert(std::string&, std::string&, std::string&);
-  inline int GetSize(void) {return set_transitions_.size();}
-  inline Node* GetNode(int position) {return set_transitions_[position];}
-  ~Transition();
+    Grammar2();
+    Grammar2(DFA);
+    virtual ~Grammar2();
+    void Print(void);    
+    void Test(void);
+
  private:
-  std::vector<Node*> set_transitions_;
+    std::set<std::string> alphabet_2;
+    std::set<std::string> states_2;
+    std::set<std::string> accept_states_2;
+    std::string start_2;
+    Transition transitions_2;
+    Produccion produccion_;
+    bool failed_;
+    bool start_ok_;
+    bool accept_states_ok_;
+    bool transitions_ok;
+    bool complete_;
+    bool CheckStatus(void);
+    void Convert(void);
 };
 
-#endif  // PRACTICA_9_TRANSITION_H_
+#endif  // PRACTICA_9_GRAMMAR2_H_

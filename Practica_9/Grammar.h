@@ -20,46 +20,41 @@
 // Version Control:
 // 23/11/2020 - First version of the code
 
-#ifndef PRACTICA_9_DFA_H_
-#define PRACTICA_9_DFA_H_
+#ifndef PRACTICA_9_GRAMMAR_H_
+#define PRACTICA_9_GRAMMAR_H_
 
 #include <string>
 #include <vector>
 #include <set>
 
 #include "/home/usuario/cya/Practica_9/Set.h"
-#include "/home/usuario/cya/Practica_9/Transition.h"
+#include "/home/usuario/cya/Practica_9/DFA.h"
 
-class DFA {
+class Grammar : public DFA {
  public:
-    DFA();
-    ~DFA();
-    void SetAlphabet(std::string);
-    void SetStates(std::string);
-    void SetStart(std::string);
-    void SetAcceptStates(std::string);
-    void SetTransition(std::vector<std::string>);
-    std::string GetStart(void) {return start_;}
-    inline std::set<std::string> GetAlphabet(void) {return alphabet_;}
-    inline std::set<std::string> GetStates(void) {return states_;}
-    inline std::set<std::string> GetAcceptStates(void) {return accept_states_;}
-    inline Transition GetTransitions(void) {return transitions_;}
-
- protected:
-    std::set<std::string> alphabet_;
-    std::set<std::string> states_;
-    std::set<std::string> accept_states_;
-    std::string start_;
-    Transition transitions_;
-    bool CheckStatus(void);
+    Grammar();
+    virtual ~Grammar();
+    /*
+      void SetAlphabet(std::string);
+      void SetStates(std::string);
+      void SetStart(std::string);
+      void SetAcceptStates(std::string);
+      inline std::set<std::string> GetAlphabet(void) {return alphabet_;}
+      inline std::set<std::string> GetStates(void) {return states_;}
+      inline std::set<std::string> GetAcceptStates(void) {return accept_states_;}
+      inline Transition GetTransitions(void) {return transitions_;}
+    */
+    void Print(void);    
+    void Test(void);
 
  private:
+    std::set<std::string> alphabet_2;
     bool failed_;
     bool start_ok_;
     bool accept_states_ok_;
     bool transitions_ok;
     bool complete_;
-    void Complete(void);
+    bool CheckStatus(void);
 };
 
-#endif  // PRACTICA_9_DFA_H_
+#endif  // PRACTICA_9_GRAMMAR_H_

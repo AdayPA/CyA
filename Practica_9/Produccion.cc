@@ -8,7 +8,7 @@
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 23/11/2020
-// @brief Transition.h :
+// @brief Transition.cc :
 // @compile: $ make
 // References:
 // https://en.wikipedia.org/wiki/Deterministic_finite_automaton
@@ -19,32 +19,23 @@
 //  https://regexr.com/5gecl
 // Version Control:
 // 23/11/2020 - First version of the code
-//
-//
-//
 
-#ifndef PRACTICA_9_TRANSITION_H_  // PRACTICA_9_TRANSITION_H_
-#define PRACTICA_9_TRANSITION_H_
+#ifndef PRACTICA_9_PRODUCCION_CC_
+#define PRACTICA_9_PRODUCCION_CC_
+#include <iostream>
 
-#include <string>
-#include <vector>
+#include "/home/usuario/cya/Practica_9/Produccion.h"
 
-class Transition {
- private:
-  struct Node {
-    std::string init_state_;
-    std::string symbol_;
-    std::string final_state_;
-  };
- public:
-  Transition();
-  std::string GetFinalNode(std::string, std::string);
-  void Insert(std::string&, std::string&, std::string&);
-  inline int GetSize(void) {return set_transitions_.size();}
-  inline Node* GetNode(int position) {return set_transitions_[position];}
-  ~Transition();
- private:
-  std::vector<Node*> set_transitions_;
-};
+Produccion::Produccion() {}
 
-#endif  // PRACTICA_9_TRANSITION_H_
+Produccion::~Produccion() {}
+
+// P = {q → ap | δ(q, a) = p} ∪ {q → ε | q ∈ F}
+
+void Produccion::Insert(std::string initstate, std::string symbol,
+                                                std::string finalstate) {
+  Node* temp = new Node {initstate, symbol, finalstate};
+  set_produccion_.push_back(temp);
+}
+
+#endif  // PRACTICA_9_PRODUCCION_CC_

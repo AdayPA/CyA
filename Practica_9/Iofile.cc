@@ -28,6 +28,7 @@
 
 #include "Iofile.h"
 #include "DFA.h"
+#include "Grammar2.h"
 
 #include <stdio.h>
 
@@ -107,7 +108,9 @@ void IOFile::ReadDFA(void) {
     A.SetTransition(temp_);
   }
 
-  A.Test();
+
+  Grammar2 grammar(A);
+
 }
 
 void IOFile::OutputOpenError(void) {
