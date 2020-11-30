@@ -34,10 +34,13 @@
 class Grammar {
  public:
     Grammar();
-    Grammar(DFA);
     virtual ~Grammar();
-    void Print(void);    
-    void Test(void);
+    void SetAlphabet(std::set<std::string>);
+    void SetStates(std::set<std::string>);
+    void SetStart(std::string);
+    void SetAcceptStates(std::set<std::string>);
+    void SetProduccion(std::string, std::string, std::string);
+    void PrintFile(std::string);
 
  private:
     std::set<std::string> alphabet_2;
@@ -52,7 +55,6 @@ class Grammar {
     bool transitions_ok;
     bool complete_;
     bool CheckStatus(void);
-    void Convert(void);
 };
 
 #endif  // PRACTICA_9_GRAMMAR_H_

@@ -2,7 +2,7 @@
 // College of Engineering and Tech
 // Degree of Computer Science
 // Subject: Computabilidad y Algoritmia (CyA)
-// Course/Year: 2º 
+// Course/Year: 2º
 // @praxis: Number 7 CyA - "DFA"
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
@@ -29,7 +29,7 @@
 #include <fstream>
 #include "Iofile.h"
 
-DFA::DFA() {  
+DFA::DFA() {
   /// @brief we set the bools to false as init
   start_ok_ = false;
   accept_states_ok_ = false;
@@ -39,7 +39,7 @@ DFA::DFA() {
 }
 
 
-DFA::DFA(std::string input_dfa) {  
+DFA::DFA(std::string input_dfa) {
   /// @brief we set the bools to false as init
   start_ok_ = false;
   accept_states_ok_ = false;
@@ -53,10 +53,10 @@ DFA::DFA(std::string input_dfa) {
    *        We read the alphabet here and store it in the DFA
    *
   ****************************************************************************/
-  int alpha_loop = std::stoi (test.Get_line(input_dfa,1));
+  int alpha_loop = std::stoi(test.Get_line(input_dfa, 1));
   int current_line = 2;
   for (int i = 0; i < alpha_loop; ++i) {
-    SetAlphabet(test.Get_line(input_dfa,i + current_line));
+    SetAlphabet(test.Get_line(input_dfa, i + current_line));
   }
   current_line = current_line + alpha_loop;
 
@@ -65,10 +65,10 @@ DFA::DFA(std::string input_dfa) {
    *        We read the states of the DFA here and store it like before
    *
   ****************************************************************************/
-  int states_loop = std::stoi (test.Get_line(input_dfa,current_line));
+  int states_loop = std::stoi(test.Get_line(input_dfa, current_line));
   ++current_line;
   for (int i = 0; i < states_loop; ++i) {
-    SetStates(test.Get_line(input_dfa,i + current_line));
+    SetStates(test.Get_line(input_dfa, i + current_line));
   }
   current_line = current_line + states_loop;
 
@@ -77,7 +77,7 @@ DFA::DFA(std::string input_dfa) {
    *        We read the start node and store it in the DFA
    *
   ****************************************************************************/
-  SetStart(test.Get_line(input_dfa,current_line));
+  SetStart(test.Get_line(input_dfa, current_line));
   ++current_line;
 
   /****************************************************************************
@@ -85,10 +85,10 @@ DFA::DFA(std::string input_dfa) {
    *        We read the accept nodes here
    *
   ****************************************************************************/
-  int accept_loop = std::stoi (test.Get_line(input_dfa,current_line));
+  int accept_loop = std::stoi(test.Get_line(input_dfa, current_line));
   ++current_line;
   for (int i = 0; i < accept_loop; ++i) {
-    SetAcceptStates(test.Get_line(input_dfa,i + current_line));
+    SetAcceptStates(test.Get_line(input_dfa, i + current_line));
   }
   current_line = current_line + accept_loop;
 
@@ -97,14 +97,13 @@ DFA::DFA(std::string input_dfa) {
    *        We read all the transitions of the DFA here
    * 
   ****************************************************************************/
-  int transition_loop = std::stoi (test.Get_line(input_dfa,current_line));
+  int transition_loop = std::stoi(test.Get_line(input_dfa, current_line));
   ++current_line;
   for (int i = 0; i < transition_loop; ++i) {
-    std::vector<std::string> temp_ = test.Split(test.Get_line(input_dfa,i + current_line), " ");
+    std::vector<std::string> temp_ = test.Split(test.Get_line(input_dfa, i + current_line), " ");
     SetTransition(temp_);
   }
 }
-
 
 DFA::~DFA() {}
 
@@ -126,7 +125,7 @@ void DFA::SetStart(std::string start) {
     start_ok_ = false;
     failed_ = true;
   }
-} 
+}
 
 void DFA::SetAcceptStates(std::string state) {
   /// @brief if start state belong to the set of states, we add it
@@ -151,6 +150,32 @@ void DFA::SetTransition(std::vector<std::string> transition) {
     transitions_ok = false;
     failed_ = true;
   }
+}
+
+Grammar DFA::ConvertToGrammar(void) {
+  Grammar grammar;
+  grammar.SetAlphabet(alphabet_);
+  grammar.SetStates(states_);
+  grammar.SetAcceptStates(accept_states_);
+  grammar.SetStart(start_);
+  for (int i = 0; i < transitions_.GetSize(); ++i) {
+    grammar.SetProduccion(transitions_.GetNode(i)->init_state_,
+                         transitions_.GetNode(i)->symbol_,
+                         transitions_.GetNode(i)->final_state_);
+
+    std::cout << transitions_.GetNode(i)->init_state_ << " -> " <<
+    transitions_.GetNode(i)->symbol_ << transitions_.GetNode(i)->final_state_
+    << std::endl;
+    std::string temp = transitions_.GetNode(i)->final_state_;
+    const bool is_in_accept = accept_states_.find(temp) != accept_states_.end();
+    if (is_in_accept) {
+      grammar.SetProduccion(transitions_.GetNode(i)->final_state_,
+                         "", "ε");
+      std::cout << transitions_.GetNode(i)->final_state_ << " -> " <<
+    "" << "ε" << std::endl;
+    }
+  }
+  return grammar;
 }
 
 #endif  // PRACTICA_9_DFA_CC_

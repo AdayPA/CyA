@@ -29,6 +29,9 @@
 
 #include "/home/usuario/cya/Practica_9/Set.h"
 #include "/home/usuario/cya/Practica_9/Transition.h"
+#include "/home/usuario/cya/Practica_9/Grammar.h"
+
+class Grammar;
 
 class DFA {
  public:
@@ -45,6 +48,7 @@ class DFA {
     inline std::set<std::string> GetStates(void) {return states_;}
     inline std::set<std::string> GetAcceptStates(void) {return accept_states_;}
     inline Transition GetTransitions(void) {return transitions_;}
+    Grammar ConvertToGrammar(void);
 
  protected:
     std::set<std::string> alphabet_;

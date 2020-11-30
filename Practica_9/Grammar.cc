@@ -32,6 +32,7 @@ Grammar::Grammar() {
   /// @brief we set the bools to false as init
 }
 
+/*
 Grammar::Grammar(DFA dfa) {  
   /// @brief we set the bools to false as init
   alphabet_2 = dfa.GetAlphabet();
@@ -40,43 +41,41 @@ Grammar::Grammar(DFA dfa) {
   start_2 = dfa.GetStart();
   transitions_2 = dfa.GetTransitions();
   Convert();
-}
+}*/
 
 Grammar::~Grammar() {}
 
-
-void Grammar::Test(void) {
+void Grammar::SetAlphabet(std::set<std::string> set_alpha) {
+  alphabet_2 = set_alpha;
 }
 
-// P = {q → ap | δ(q, a) = p} ∪ {q → ε | q ∈ F}
-
-void Grammar::Convert(void) {
-  for (int i = 0; i < transitions_2.GetSize(); ++i) {
-    std::string temp = transitions_2.GetNode(i)->final_state_;
-    const bool is_in_accept = accept_states_2.find(temp) != accept_states_2.end();
-    if (is_in_accept) {
-      produccion_.Insert(transitions_2.GetNode(i)->init_state_,
-                         transitions_2.GetNode(i)->symbol_,
-                         transitions_2.GetNode(i)->final_state_);
-      produccion_.Insert(transitions_2.GetNode(i)->final_state_,
-                         "", "ε");
-    } else {
-      produccion_.Insert(transitions_2.GetNode(i)->init_state_,
-                         transitions_2.GetNode(i)->symbol_,
-                         transitions_2.GetNode(i)->final_state_);
-    }
-  }
-  for (int i = 0; i < produccion_.GetSize(); ++i) {
-    std::cout << produccion_.GetNode(i)->init_state_ << " -> " <<
-    produccion_.GetNode(i)->symbol_ << produccion_.GetNode(i)->final_state_
-    << std::endl;
-  }
+void Grammar::SetStates(std::set<std::string> set_states) {
+  states_2 = set_states;
 }
 
-void Grammar::Print(void) {
-  std::cout << "Tamaño : " << alphabet_2.size()  << std::endl;
-  for (auto it = alphabet_2.begin(); it != alphabet_2.end(); ++it)
-        std::cout << ' ' << *it;
+void Grammar::SetStart(std::string start) {
+  /// @brief if start state belong to state, we add it
+  const bool is_in = states_2.find(start) != states_2.end();
+  if (is_in) {
+    start_2 = start;
+    start_ok_ = true;
+  } else {
+    start_ok_ = false;
+    failed_ = true;
+  }
+} 
+
+void Grammar::SetAcceptStates(std::set<std::string> set_state) {
+  /// @brief if start state belong to the set of states, we add it
+  accept_states_2 = set_state;
+}
+
+void Grammar::SetProduccion(std::string init_state, std::string symbol, std::string final_state) {
+  produccion_.Insert(init_state, symbol, final_state);
+}
+
+void Grammar::PrintFile(std::string output_file) {
+  
 }
 
 #endif  // PRACTICA_9_GRAMMAR_CC_

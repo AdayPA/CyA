@@ -48,8 +48,9 @@ IOFile::IOFile(std::string& inputDFA, std::string& outputGRA) {
   inputDFA_ = inputDFA;
   outputFile_ = outputGRA;
   DFA A(inputDFA);
-  Grammar grammar(A);
-  //ReadDFA();
+  Grammar grammar;
+  grammar = A.ConvertToGrammar();
+  grammar.PrintFile(outputGRA);
 }
 
 void IOFile::ReadDFA(void) {
@@ -109,10 +110,6 @@ void IOFile::ReadDFA(void) {
     std::vector<std::string> temp_ = Split(Get_line(Get_inputDFA(),i + current_line), " ");
     A.SetTransition(temp_);
   }
-
-
-  Grammar grammar(A);
-
 }
 
 void IOFile::OutputOpenError(void) {
