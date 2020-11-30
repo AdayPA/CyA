@@ -29,32 +29,30 @@
 
 #include "/home/usuario/cya/Practica_9/Set.h"
 #include "/home/usuario/cya/Practica_9/DFA.h"
+#include "/home/usuario/cya/Practica_9/Produccion.h"
 
-class Grammar : public DFA {
+class Grammar {
  public:
     Grammar();
+    Grammar(DFA);
     virtual ~Grammar();
-    /*
-      void SetAlphabet(std::string);
-      void SetStates(std::string);
-      void SetStart(std::string);
-      void SetAcceptStates(std::string);
-      inline std::set<std::string> GetAlphabet(void) {return alphabet_;}
-      inline std::set<std::string> GetStates(void) {return states_;}
-      inline std::set<std::string> GetAcceptStates(void) {return accept_states_;}
-      inline Transition GetTransitions(void) {return transitions_;}
-    */
     void Print(void);    
     void Test(void);
 
  private:
     std::set<std::string> alphabet_2;
+    std::set<std::string> states_2;
+    std::set<std::string> accept_states_2;
+    std::string start_2;
+    Transition transitions_2;
+    Produccion produccion_;
     bool failed_;
     bool start_ok_;
     bool accept_states_ok_;
     bool transitions_ok;
     bool complete_;
     bool CheckStatus(void);
+    void Convert(void);
 };
 
 #endif  // PRACTICA_9_GRAMMAR_H_

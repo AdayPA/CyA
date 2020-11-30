@@ -33,6 +33,8 @@ class IOFile {
  public:
   IOFile();
   IOFile(std::string& inputDFA, std::string& outputGRA);
+  std::string Get_line(const std::string&, const int&);
+  std::vector<std::string> Split(std::string, std::string);
   ~IOFile();
 
  private:
@@ -50,8 +52,8 @@ class IOFile {
   std::string ClearComments(std::string new_file_name);
   inline void Set_inputDFA(const std::string& dfaname) {inputDFA_ = dfaname;}
   inline void Set_outputFile(const std::string& filename) {outputFile_ = filename;}
-  std::string Get_line(const std::string&, const int&);
-  std::vector<std::string> Split(std::string, std::string);
+  //std::string Get_line(const std::string&, const int&);
+  //std::vector<std::string> Split(std::string, std::string);
   // permissions
   // size for file
   // error type

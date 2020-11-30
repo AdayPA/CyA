@@ -33,6 +33,7 @@
 class DFA {
  public:
     DFA();
+    DFA(std::string);
     ~DFA();
     void SetAlphabet(std::string);
     void SetStates(std::string);

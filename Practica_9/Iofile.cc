@@ -28,7 +28,7 @@
 
 #include "Iofile.h"
 #include "DFA.h"
-#include "Grammar2.h"
+#include "Grammar.h"
 
 #include <stdio.h>
 
@@ -47,7 +47,9 @@ IOFile::IOFile(std::string& inputDFA, std::string& outputGRA) {
   // TODO: clear comments
   inputDFA_ = inputDFA;
   outputFile_ = outputGRA;
-  ReadDFA();
+  DFA A(inputDFA);
+  Grammar grammar(A);
+  //ReadDFA();
 }
 
 void IOFile::ReadDFA(void) {
@@ -109,7 +111,7 @@ void IOFile::ReadDFA(void) {
   }
 
 
-  Grammar2 grammar(A);
+  Grammar grammar(A);
 
 }
 

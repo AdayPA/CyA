@@ -27,6 +27,7 @@
 
 #include <iostream>
 #include <fstream>
+#include "Iofile.h"
 
 DFA::DFA() {  
   /// @brief we set the bools to false as init
@@ -36,6 +37,74 @@ DFA::DFA() {
   failed_ = false;
   complete_ = false;
 }
+
+
+DFA::DFA(std::string input_dfa) {  
+  /// @brief we set the bools to false as init
+  start_ok_ = false;
+  accept_states_ok_ = false;
+  transitions_ok = false;
+  failed_ = false;
+  complete_ = false;
+  IOFile test;
+
+  /****************************************************************************
+   *
+   *        We read the alphabet here and store it in the DFA
+   *
+  ****************************************************************************/
+  int alpha_loop = std::stoi (test.Get_line(input_dfa,1));
+  int current_line = 2;
+  for (int i = 0; i < alpha_loop; ++i) {
+    SetAlphabet(test.Get_line(input_dfa,i + current_line));
+  }
+  current_line = current_line + alpha_loop;
+
+  /****************************************************************************
+   *
+   *        We read the states of the DFA here and store it like before
+   *
+  ****************************************************************************/
+  int states_loop = std::stoi (test.Get_line(input_dfa,current_line));
+  ++current_line;
+  for (int i = 0; i < states_loop; ++i) {
+    SetStates(test.Get_line(input_dfa,i + current_line));
+  }
+  current_line = current_line + states_loop;
+
+  /****************************************************************************
+   *
+   *        We read the start node and store it in the DFA
+   *
+  ****************************************************************************/
+  SetStart(test.Get_line(input_dfa,current_line));
+  ++current_line;
+
+  /****************************************************************************
+   *
+   *        We read the accept nodes here
+   *
+  ****************************************************************************/
+  int accept_loop = std::stoi (test.Get_line(input_dfa,current_line));
+  ++current_line;
+  for (int i = 0; i < accept_loop; ++i) {
+    SetAcceptStates(test.Get_line(input_dfa,i + current_line));
+  }
+  current_line = current_line + accept_loop;
+
+  /****************************************************************************
+   * 
+   *        We read all the transitions of the DFA here
+   * 
+  ****************************************************************************/
+  int transition_loop = std::stoi (test.Get_line(input_dfa,current_line));
+  ++current_line;
+  for (int i = 0; i < transition_loop; ++i) {
+    std::vector<std::string> temp_ = test.Split(test.Get_line(input_dfa,i + current_line), " ");
+    SetTransition(temp_);
+  }
+}
+
 
 DFA::~DFA() {}
 
