@@ -74,8 +74,28 @@ void Grammar::SetProduccion(std::string init_state, std::string symbol, std::str
   produccion_.Insert(init_state, symbol, final_state);
 }
 
+
+
 void Grammar::PrintFile(std::string output_file) {
-  
+  produccion_.ClearProduccion();
+  std::ofstream output_stream;
+  output_stream.open(output_file);
+  if(output_stream.is_open()) {
+    output_stream << alphabet_2.size();
+    for (auto it = alphabet_2.begin(); it != alphabet_2.end(); ++it) {
+      output_stream << std::endl << *it;
+    }
+    output_stream << std::endl << states_2.size();
+    for (auto it = states_2.begin(); it != states_2.end(); ++it) {
+      output_stream << std::endl << *it;
+    }
+    output_stream << std::endl << start_2;
+    output_stream << std::endl << produccion_.GetSize();
+    for (int i = 0; i < produccion_.GetSize(); ++i) {
+      output_stream << std::endl << produccion_.GetNode(i)->init_state_ << 
+      " -> " << produccion_.GetNode(i)->symbol_ << produccion_.GetNode(i)->final_state_;
+    }
+  }
 }
 
 #endif  // PRACTICA_9_GRAMMAR_CC_

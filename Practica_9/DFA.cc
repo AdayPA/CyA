@@ -29,6 +29,8 @@
 #include <fstream>
 #include "Iofile.h"
 
+const std::string kEpsilon = "~";
+
 DFA::DFA() {
   /// @brief we set the bools to false as init
   start_ok_ = false;
@@ -162,17 +164,10 @@ Grammar DFA::ConvertToGrammar(void) {
     grammar.SetProduccion(transitions_.GetNode(i)->init_state_,
                          transitions_.GetNode(i)->symbol_,
                          transitions_.GetNode(i)->final_state_);
-
-    std::cout << transitions_.GetNode(i)->init_state_ << " -> " <<
-    transitions_.GetNode(i)->symbol_ << transitions_.GetNode(i)->final_state_
-    << std::endl;
     std::string temp = transitions_.GetNode(i)->final_state_;
     const bool is_in_accept = accept_states_.find(temp) != accept_states_.end();
     if (is_in_accept) {
-      grammar.SetProduccion(transitions_.GetNode(i)->final_state_,
-                         "", "ε");
-      std::cout << transitions_.GetNode(i)->final_state_ << " -> " <<
-    "" << "ε" << std::endl;
+      grammar.SetProduccion(transitions_.GetNode(i)->final_state_, "", kEpsilon);
     }
   }
   return grammar;

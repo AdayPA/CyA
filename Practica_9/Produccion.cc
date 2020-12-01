@@ -23,6 +23,8 @@
 #ifndef PRACTICA_9_PRODUCCION_CC_
 #define PRACTICA_9_PRODUCCION_CC_
 #include <iostream>
+#include <algorithm>
+#include <set>
 
 #include "/home/usuario/cya/Practica_9/Produccion.h"
 
@@ -36,6 +38,20 @@ void Produccion::Insert(std::string initstate, std::string symbol,
                                                 std::string finalstate) {
   Node* temp = new Node {initstate, symbol, finalstate};
   set_produccion_.push_back(temp);
+}
+
+void Produccion::ClearProduccion(void) {
+  unsigned int position = 0;
+  while (position < set_produccion_.size()) {
+    for (unsigned int i = position + 1; i < set_produccion_.size(); ++i) {
+      if ((set_produccion_.at(position)->init_state_ == set_produccion_.at(i)->init_state_) &&
+          (set_produccion_.at(position)->symbol_ == set_produccion_.at(i)->symbol_) && 
+          (set_produccion_.at(position)->final_state_ == set_produccion_.at(i)->final_state_)) {
+            set_produccion_.erase(set_produccion_.begin() + position);
+      }
+    }
+    ++position;
+  }
 }
 
 #endif  // PRACTICA_9_PRODUCCION_CC_

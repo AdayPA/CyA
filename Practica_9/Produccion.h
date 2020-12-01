@@ -38,10 +38,11 @@ class Produccion {
   };
  public:
   Produccion();
+  ~Produccion();
+  void ClearProduccion(void);
   void Insert(std::string, std::string, std::string);
   inline int GetSize(void) {return set_produccion_.size();}
   inline Node* GetNode(int position) {return set_produccion_[position];}
-  ~Produccion();
  private:
   std::vector<Node*> set_produccion_;
 };
