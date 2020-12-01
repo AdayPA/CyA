@@ -1,22 +1,13 @@
 2
-0
-1
+a
+b
+2
+A
+B
+A
 5
-0mod3
-1mod3
-2mod3
-cero
-q0
-q0
-11
-q0 -> 0cero
-cero -> ~
-q0 -> 11mod3
-1mod3 -> 02mod3
-1mod3 -> 10mod3
-0mod3 -> ~
-2mod3 -> 01mod3
-2mod3 -> 12mod3
-0mod3 -> 00mod3
-0mod3 -> ~
-0mod3 -> 11mod3
+A -> aB
+A -> bA
+B -> bB
+B -> aA
+A -> ~

@@ -44,10 +44,12 @@ IOFile::IOFile() {}
 IOFile::~IOFile() {}
 
 IOFile::IOFile(std::string& inputDFA, std::string& outputGRA) {
+  std::string temp_1 = "temp_";
+  ClearComments(inputDFA);
   // TODO: clear comments
-  inputDFA_ = inputDFA;
+  inputDFA_ = temp_1.append(inputDFA);
   outputFile_ = outputGRA;
-  DFA A(inputDFA);
+  DFA A(inputDFA_);
   Grammar grammar;
   grammar = A.ConvertToGrammar();
   grammar.PrintFile(outputGRA);
