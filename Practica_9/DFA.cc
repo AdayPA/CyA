@@ -142,6 +142,7 @@ void DFA::SetAcceptStates(std::string state) {
 }
 
 void DFA::SetTransition(std::vector<std::string> transition) {
+  /// @brief if the transition belong to the set of states, we add it
   const bool is_in_init_state = states_.find(transition[0]) != states_.end();
   const bool is_in_symbol = alphabet_.find(transition[1]) != alphabet_.end();
   const bool is_in_final_state = states_.find(transition[2]) != states_.end();
@@ -155,6 +156,7 @@ void DFA::SetTransition(std::vector<std::string> transition) {
 }
 
 Grammar DFA::ConvertToGrammar(void) {
+  /// @brief we add all the transitions to the productions and also the epsilon transition
   Grammar grammar;
   grammar.SetAlphabet(alphabet_);
   grammar.SetStates(states_);

@@ -77,6 +77,7 @@ void Grammar::SetProduccion(std::string init_state, std::string symbol, std::str
 
 
 void Grammar::PrintFile(std::string output_file) {
+  /// @brief we open the output file and write the result in it
   produccion_.ClearProduccion();
   std::ofstream output_stream;
   output_stream.open(output_file);

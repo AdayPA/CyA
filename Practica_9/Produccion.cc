@@ -32,15 +32,15 @@ Produccion::Produccion() {}
 
 Produccion::~Produccion() {}
 
-// P = {q → ap | δ(q, a) = p} ∪ {q → ε | q ∈ F}
-
 void Produccion::Insert(std::string initstate, std::string symbol,
                                                 std::string finalstate) {
+  /// @brief we insert the production in the vector
   Node* temp = new Node {initstate, symbol, finalstate};
   set_produccion_.push_back(temp);
 }
 
 void Produccion::ClearProduccion(void) {
+  /// @brief we erase the duplicates productions
   unsigned int position = 0;
   while (position < set_produccion_.size()) {
     for (unsigned int i = position + 1; i < set_produccion_.size(); ++i) {
