@@ -8,7 +8,7 @@
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 23/11/2020
-// @brief DFA.h :
+// @brief DFA.h : This
 // @compile: $ make
 // References:
 // https://en.wikipedia.org/wiki/Deterministic_finite_automaton
