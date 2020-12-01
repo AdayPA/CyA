@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['iofile',['IOFile',['../classIOFile.html#a1a08441371c84205a8704c6ef0811792',1,'IOFile::IOFile(std::string, std::string)'],['../classIOFile.html#a25f35de90baaae5b5b8553802285806b',1,'IOFile::IOFile(std::string, std::string, std::string)']]],
-  ['isempty',['IsEmpty',['../classSet.html#a0361a3a2b7a408514a259b326245cbc7',1,'Set']]]
+  ['dfa',['DFA',['../classDFA.html#a0739bd751a325dd162604ed63fadea69',1,'DFA::DFA()'],['../classDFA.html#ae137a053d15ac73f44137e5a2f6718af',1,'DFA::DFA(std::string)']]]
 ];

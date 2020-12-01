@@ -1,0 +1,58 @@
+\hypertarget{classGrammar}{}\section{Grammar Class Reference}
+\label{classGrammar}\index{Grammar@{Grammar}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGrammar_aa201250a002a7d07d398fee189a74427}{Grammar} ()
+\item 
+\mbox{\Hypertarget{classGrammar_ac0e288917edf6689b09ba7066ec24b96}\label{classGrammar_ac0e288917edf6689b09ba7066ec24b96}} 
+void {\bfseries Set\+Alphabet} (std\+::set$<$ std\+::string $>$)
+\item 
+\mbox{\Hypertarget{classGrammar_ae9e0c4be302e137bc2587c487d7c4b6a}\label{classGrammar_ae9e0c4be302e137bc2587c487d7c4b6a}} 
+void {\bfseries Set\+States} (std\+::set$<$ std\+::string $>$)
+\item 
+void \hyperlink{classGrammar_a8729a9cee27c29079970a78163c8ed0f}{Set\+Start} (std\+::string)
+\item 
+void \hyperlink{classGrammar_a182676fa0ce7f6ce737a2fd4c357b3e2}{Set\+Accept\+States} (std\+::set$<$ std\+::string $>$)
+\item 
+\mbox{\Hypertarget{classGrammar_a6bba075a6a8c00f3cd5182deb15e9290}\label{classGrammar_a6bba075a6a8c00f3cd5182deb15e9290}} 
+void {\bfseries Set\+Produccion} (std\+::string, std\+::string, std\+::string)
+\item 
+void \hyperlink{classGrammar_a4bb28fac57fe1177d5e95e833d3717d1}{Print\+File} (std\+::string)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGrammar_aa201250a002a7d07d398fee189a74427}\label{classGrammar_aa201250a002a7d07d398fee189a74427}} 
+\index{Grammar@{Grammar}!Grammar@{Grammar}}
+\index{Grammar@{Grammar}!Grammar@{Grammar}}
+\subsubsection{\texorpdfstring{Grammar()}{Grammar()}}
+{\footnotesize\ttfamily Grammar\+::\+Grammar (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+we set the bools to false as init 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classGrammar_a4bb28fac57fe1177d5e95e833d3717d1}\label{classGrammar_a4bb28fac57fe1177d5e95e833d3717d1}} 
+\index{Grammar@{Grammar}!Print\+File@{Print\+File}}
+\index{Print\+File@{Print\+File}!Grammar@{Grammar}}
+\subsubsection{\texorpdfstring{Print\+File()}{PrintFile()}}
+{\footnotesize\ttfamily void Grammar\+::\+Print\+File (\begin{DoxyParamCaption}\item[{std\+::string}]{output\+\_\+file }\end{DoxyParamCaption})}
+
+we open the output file and write the result in it \mbox{\Hypertarget{classGrammar_a182676fa0ce7f6ce737a2fd4c357b3e2}\label{classGrammar_a182676fa0ce7f6ce737a2fd4c357b3e2}} 
+\index{Grammar@{Grammar}!Set\+Accept\+States@{Set\+Accept\+States}}
+\index{Set\+Accept\+States@{Set\+Accept\+States}!Grammar@{Grammar}}
+\subsubsection{\texorpdfstring{Set\+Accept\+States()}{SetAcceptStates()}}
+{\footnotesize\ttfamily void Grammar\+::\+Set\+Accept\+States (\begin{DoxyParamCaption}\item[{std\+::set$<$ std\+::string $>$}]{set\+\_\+state }\end{DoxyParamCaption})}
+
+if start state belong to the set of states, we add it \mbox{\Hypertarget{classGrammar_a8729a9cee27c29079970a78163c8ed0f}\label{classGrammar_a8729a9cee27c29079970a78163c8ed0f}} 
+\index{Grammar@{Grammar}!Set\+Start@{Set\+Start}}
+\index{Set\+Start@{Set\+Start}!Grammar@{Grammar}}
+\subsubsection{\texorpdfstring{Set\+Start()}{SetStart()}}
+{\footnotesize\ttfamily void Grammar\+::\+Set\+Start (\begin{DoxyParamCaption}\item[{std\+::string}]{start }\end{DoxyParamCaption})}
+
+if start state belong to state, we add it 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Grammar.\+h\item 
+Grammar.\+cc\end{DoxyCompactItemize}

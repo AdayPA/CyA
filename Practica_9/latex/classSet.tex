@@ -1,15 +1,5 @@
 \hypertarget{classSet}{}\section{Set Class Reference}
 \label{classSet}\index{Set@{Set}}
-
-
-Collaboration diagram for Set\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=177pt]{classSet__coll__graph}
-\end{center}
-\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -25,6 +15,12 @@ void \hyperlink{classSet_aa25ad5b9d72e4d428eb564b2eb208e3b}{Work} (std\+::string
 void {\bfseries Set\+Output} (std\+::ofstream \&)
 \item 
 std\+::string \hyperlink{classSet_afc0f35a8d6903b892bb283813511fea9}{Write} ()
+\item 
+\mbox{\Hypertarget{classSet_af72ca387c44c1768ec7c7ec4e9a94f37}\label{classSet_af72ca387c44c1768ec7c7ec4e9a94f37}} 
+void {\bfseries Save\+Result} (std\+::string)
+\item 
+\mbox{\Hypertarget{classSet_afa9c6e6f6b0dedc1a397a0f8a85fc3a6}\label{classSet_afa9c6e6f6b0dedc1a397a0f8a85fc3a6}} 
+std\+::string {\bfseries Get\+Result} ()
 \item 
 void \hyperlink{classSet_abe5c5439f3665baba2da0b1f1a4c03fd}{Clear} ()
 \item 
@@ -47,6 +43,15 @@ void \hyperlink{classSet_a167b6d87b1698a61f269835c34c455cc}{Print\+Vector\+Set} 
 \item 
 \mbox{\Hypertarget{classSet_a6c55977d6e5c48ab791bbe49e832c5ba}\label{classSet_a6c55977d6e5c48ab791bbe49e832c5ba}} 
 int {\bfseries Get\+Size\+Of\+Set} (void)
+\item 
+void \hyperlink{classSet_abd4f422aa428bed3afba157f4a18c90f}{Set\+Alphabet} (std\+::string)
+\item 
+\mbox{\Hypertarget{classSet_acd8545ba5646eb4be510a19a17dd78e4}\label{classSet_acd8545ba5646eb4be510a19a17dd78e4}} 
+void {\bfseries Set\+States} (std\+::string)
+\item 
+bool \hyperlink{classSet_a80ff19b9d44830084708478bac29231b}{Belong\+Alpha} (std\+::string)
+\item 
+bool \hyperlink{classSet_a8300b84ddc30a216c3e2d1b467e606bc}{Belong\+States} (std\+::string)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -66,7 +71,19 @@ int {\bfseries counter\+\_\+mod\+\_\+}
 \subsubsection{\texorpdfstring{Belong()}{Belong()}}
 {\footnotesize\ttfamily bool Set\+::\+Belong (\begin{DoxyParamCaption}\item[{int}]{number }\end{DoxyParamCaption})}
 
-return true if the element belong to the set \mbox{\Hypertarget{classSet_abe5c5439f3665baba2da0b1f1a4c03fd}\label{classSet_abe5c5439f3665baba2da0b1f1a4c03fd}} 
+return true if the element belong to the set \mbox{\Hypertarget{classSet_a80ff19b9d44830084708478bac29231b}\label{classSet_a80ff19b9d44830084708478bac29231b}} 
+\index{Set@{Set}!Belong\+Alpha@{Belong\+Alpha}}
+\index{Belong\+Alpha@{Belong\+Alpha}!Set@{Set}}
+\subsubsection{\texorpdfstring{Belong\+Alpha()}{BelongAlpha()}}
+{\footnotesize\ttfamily bool Set\+::\+Belong\+Alpha (\begin{DoxyParamCaption}\item[{std\+::string}]{alpha }\end{DoxyParamCaption})}
+
+return true if alpha belong to the set of alpha \mbox{\Hypertarget{classSet_a8300b84ddc30a216c3e2d1b467e606bc}\label{classSet_a8300b84ddc30a216c3e2d1b467e606bc}} 
+\index{Set@{Set}!Belong\+States@{Belong\+States}}
+\index{Belong\+States@{Belong\+States}!Set@{Set}}
+\subsubsection{\texorpdfstring{Belong\+States()}{BelongStates()}}
+{\footnotesize\ttfamily bool Set\+::\+Belong\+States (\begin{DoxyParamCaption}\item[{std\+::string}]{alpha }\end{DoxyParamCaption})}
+
+return true if the state belong to the set of state \mbox{\Hypertarget{classSet_abe5c5439f3665baba2da0b1f1a4c03fd}\label{classSet_abe5c5439f3665baba2da0b1f1a4c03fd}} 
 \index{Set@{Set}!Clear@{Clear}}
 \index{Clear@{Clear}!Set@{Set}}
 \subsubsection{\texorpdfstring{Clear()}{Clear()}}
@@ -108,7 +125,13 @@ overload of == \mbox{\Hypertarget{classSet_a167b6d87b1698a61f269835c34c455cc}\la
 \subsubsection{\texorpdfstring{Print\+Vector\+Set()}{PrintVectorSet()}}
 {\footnotesize\ttfamily void Set\+::\+Print\+Vector\+Set (\begin{DoxyParamCaption}\item[{std\+::vector$<$ unsigned long int $>$}]{data }\end{DoxyParamCaption})}
 
-prints all the bits of the vector \mbox{\Hypertarget{classSet_aa25ad5b9d72e4d428eb564b2eb208e3b}\label{classSet_aa25ad5b9d72e4d428eb564b2eb208e3b}} 
+prints all the bits of the vector \mbox{\Hypertarget{classSet_abd4f422aa428bed3afba157f4a18c90f}\label{classSet_abd4f422aa428bed3afba157f4a18c90f}} 
+\index{Set@{Set}!Set\+Alphabet@{Set\+Alphabet}}
+\index{Set\+Alphabet@{Set\+Alphabet}!Set@{Set}}
+\subsubsection{\texorpdfstring{Set\+Alphabet()}{SetAlphabet()}}
+{\footnotesize\ttfamily void Set\+::\+Set\+Alphabet (\begin{DoxyParamCaption}\item[{std\+::string}]{alpha\+\_\+char }\end{DoxyParamCaption})}
+
+we set here the alphabet \mbox{\Hypertarget{classSet_aa25ad5b9d72e4d428eb564b2eb208e3b}\label{classSet_aa25ad5b9d72e4d428eb564b2eb208e3b}} 
 \index{Set@{Set}!Work@{Work}}
 \index{Work@{Work}!Set@{Set}}
 \subsubsection{\texorpdfstring{Work()}{Work()}}

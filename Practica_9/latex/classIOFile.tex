@@ -1,38 +1,31 @@
 \hypertarget{classIOFile}{}\section{I\+O\+File Class Reference}
 \label{classIOFile}\index{I\+O\+File@{I\+O\+File}}
-
-
-Collaboration diagram for I\+O\+File\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=151pt]{classIOFile__coll__graph}
-\end{center}
-\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classIOFile_a1a08441371c84205a8704c6ef0811792}{I\+O\+File} (std\+::string, std\+::string)
+\mbox{\Hypertarget{classIOFile_a4db13f6646d3b44647758fd631d2f885}\label{classIOFile_a4db13f6646d3b44647758fd631d2f885}} 
+{\bfseries I\+O\+File} (std\+::string \&input\+D\+FA, std\+::string \&output\+G\+RA)
 \item 
-\hyperlink{classIOFile_a25f35de90baaae5b5b8553802285806b}{I\+O\+File} (std\+::string, std\+::string, std\+::string)
+std\+::string \hyperlink{classIOFile_aa8710ee34b8e480e4826cdc12a4a7796}{Get\+\_\+line} (const std\+::string \&, const int \&)
+\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{classIOFile_ae2d1a905a0f4c3b5ecf73751361a04f8}{Split} (std\+::string, std\+::string)
 \end{DoxyCompactItemize}
 
 
-\subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classIOFile_a1a08441371c84205a8704c6ef0811792}\label{classIOFile_a1a08441371c84205a8704c6ef0811792}} 
-\index{I\+O\+File@{I\+O\+File}!I\+O\+File@{I\+O\+File}}
-\index{I\+O\+File@{I\+O\+File}!I\+O\+File@{I\+O\+File}}
-\subsubsection{\texorpdfstring{I\+O\+File()}{IOFile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily I\+O\+File\+::\+I\+O\+File (\begin{DoxyParamCaption}\item[{std\+::string}]{input,  }\item[{std\+::string}]{output }\end{DoxyParamCaption})}
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classIOFile_aa8710ee34b8e480e4826cdc12a4a7796}\label{classIOFile_aa8710ee34b8e480e4826cdc12a4a7796}} 
+\index{I\+O\+File@{I\+O\+File}!Get\+\_\+line@{Get\+\_\+line}}
+\index{Get\+\_\+line@{Get\+\_\+line}!I\+O\+File@{I\+O\+File}}
+\subsubsection{\texorpdfstring{Get\+\_\+line()}{Get\_line()}}
+{\footnotesize\ttfamily std\+::string I\+O\+File\+::\+Get\+\_\+line (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{const int \&}]{line\+\_\+number }\end{DoxyParamCaption})}
 
-Constructor of P5 \mbox{\Hypertarget{classIOFile_a25f35de90baaae5b5b8553802285806b}\label{classIOFile_a25f35de90baaae5b5b8553802285806b}} 
-\index{I\+O\+File@{I\+O\+File}!I\+O\+File@{I\+O\+File}}
-\index{I\+O\+File@{I\+O\+File}!I\+O\+File@{I\+O\+File}}
-\subsubsection{\texorpdfstring{I\+O\+File()}{IOFile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily I\+O\+File\+::\+I\+O\+File (\begin{DoxyParamCaption}\item[{std\+::string}]{pattern,  }\item[{std\+::string}]{input,  }\item[{std\+::string}]{output }\end{DoxyParamCaption})}
+Return the string of the line read. \mbox{\Hypertarget{classIOFile_ae2d1a905a0f4c3b5ecf73751361a04f8}\label{classIOFile_ae2d1a905a0f4c3b5ecf73751361a04f8}} 
+\index{I\+O\+File@{I\+O\+File}!Split@{Split}}
+\index{Split@{Split}!I\+O\+File@{I\+O\+File}}
+\subsubsection{\texorpdfstring{Split()}{Split()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ I\+O\+File\+::\+Split (\begin{DoxyParamCaption}\item[{std\+::string}]{str,  }\item[{std\+::string}]{delim }\end{DoxyParamCaption})}
 
-Constructor of P6 
+this func split in 2 the string and store them in vector, 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

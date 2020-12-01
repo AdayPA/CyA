@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['operator_2b',['operator+',['../classSet.html#a33786bba5f634c5023d047b5f1f1a292',1,'Set']]],
-  ['operator_2d',['operator-',['../classSet.html#a1e58afdc9befac1dbe295a0bdccfeacb',1,'Set']]],
-  ['operator_3d',['operator=',['../classSet.html#a7f28cadb13f4cc86a87f64b9f885877a',1,'Set']]],
-  ['operator_3d_3d',['operator==',['../classSet.html#a3087ba7a27e33fbb1b2a091c405ba046',1,'Set']]]
+  ['get_5fline',['Get_line',['../classIOFile.html#aa8710ee34b8e480e4826cdc12a4a7796',1,'IOFile']]],
+  ['grammar',['Grammar',['../classGrammar.html#aa201250a002a7d07d398fee189a74427',1,'Grammar']]]
 ];
