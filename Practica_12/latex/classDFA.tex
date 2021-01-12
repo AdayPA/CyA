@@ -1,0 +1,120 @@
+\hypertarget{classDFA}{}\section{D\+FA Class Reference}
+\label{classDFA}\index{D\+FA@{D\+FA}}
+
+
+Collaboration diagram for D\+FA\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{classDFA__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDFA_a0739bd751a325dd162604ed63fadea69}{D\+FA} ()
+\item 
+\hyperlink{classDFA_ae137a053d15ac73f44137e5a2f6718af}{D\+FA} (std\+::string)
+\item 
+\mbox{\Hypertarget{classDFA_af87ac312c82e52a9200c40bc3ed88704}\label{classDFA_af87ac312c82e52a9200c40bc3ed88704}} 
+void {\bfseries Set\+Alphabet} (std\+::string)
+\item 
+\mbox{\Hypertarget{classDFA_a5200a0aebc86f7261f431293f139cc97}\label{classDFA_a5200a0aebc86f7261f431293f139cc97}} 
+void {\bfseries Set\+States} (std\+::string)
+\item 
+void \hyperlink{classDFA_a075c03019b2cf946ec7a7647821d506c}{Set\+Start} (std\+::string)
+\item 
+void \hyperlink{classDFA_a4cae060f040199523c337da6c078a3d6}{Set\+Accept\+States} (std\+::string)
+\item 
+void \hyperlink{classDFA_ac7986588e884c1fc76700f1059da221f}{Set\+Transition} (std\+::vector$<$ std\+::string $>$)
+\item 
+\mbox{\Hypertarget{classDFA_ae381ce2c7fa105bab413a78009eb6a2d}\label{classDFA_ae381ce2c7fa105bab413a78009eb6a2d}} 
+std\+::string {\bfseries Get\+Start} (void)
+\item 
+\mbox{\Hypertarget{classDFA_a85978e02ffda330c1671c59529dfe787}\label{classDFA_a85978e02ffda330c1671c59529dfe787}} 
+std\+::set$<$ std\+::string $>$ {\bfseries Get\+Alphabet} (void)
+\item 
+\mbox{\Hypertarget{classDFA_a419338cef508a04d5fdaefa441ba2a66}\label{classDFA_a419338cef508a04d5fdaefa441ba2a66}} 
+std\+::set$<$ std\+::string $>$ {\bfseries Get\+States} (void)
+\item 
+\mbox{\Hypertarget{classDFA_a94eba1b9eb46f1c03b76d4c5a10033a4}\label{classDFA_a94eba1b9eb46f1c03b76d4c5a10033a4}} 
+std\+::set$<$ std\+::string $>$ {\bfseries Get\+Accept\+States} (void)
+\item 
+\mbox{\Hypertarget{classDFA_ac7b768a5e5d788adfb2b832493c7c534}\label{classDFA_ac7b768a5e5d788adfb2b832493c7c534}} 
+\hyperlink{classTransition}{Transition} {\bfseries Get\+Transitions} (void)
+\item 
+\hyperlink{classGrammar}{Grammar} \hyperlink{classDFA_a489f2637d08bf14a7336d2335bbe90e1}{Convert\+To\+Grammar} (void)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDFA_aa9795210cfe2d3d52340156a2aad821a}\label{classDFA_aa9795210cfe2d3d52340156a2aad821a}} 
+bool {\bfseries Check\+Status} (void)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDFA_a711a4a12e02863a5c77276cec9c26adf}\label{classDFA_a711a4a12e02863a5c77276cec9c26adf}} 
+std\+::set$<$ std\+::string $>$ {\bfseries alphabet\+\_\+}
+\item 
+\mbox{\Hypertarget{classDFA_a342859c374fc55b4b6840bc9ceb509e6}\label{classDFA_a342859c374fc55b4b6840bc9ceb509e6}} 
+std\+::set$<$ std\+::string $>$ {\bfseries states\+\_\+}
+\item 
+\mbox{\Hypertarget{classDFA_acd539384c98d48d82f9ea4d91d28d39c}\label{classDFA_acd539384c98d48d82f9ea4d91d28d39c}} 
+std\+::set$<$ std\+::string $>$ {\bfseries accept\+\_\+states\+\_\+}
+\item 
+\mbox{\Hypertarget{classDFA_afbc55e921d6aeb30357ed8be17cfe1e0}\label{classDFA_afbc55e921d6aeb30357ed8be17cfe1e0}} 
+std\+::string {\bfseries start\+\_\+}
+\item 
+\mbox{\Hypertarget{classDFA_a467379e924d9b124f71e1233a4294936}\label{classDFA_a467379e924d9b124f71e1233a4294936}} 
+\hyperlink{classTransition}{Transition} {\bfseries transitions\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDFA_a0739bd751a325dd162604ed63fadea69}\label{classDFA_a0739bd751a325dd162604ed63fadea69}} 
+\index{D\+FA@{D\+FA}!D\+FA@{D\+FA}}
+\index{D\+FA@{D\+FA}!D\+FA@{D\+FA}}
+\subsubsection{\texorpdfstring{D\+F\+A()}{DFA()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily D\+F\+A\+::\+D\+FA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+we set the bools to false as init \mbox{\Hypertarget{classDFA_ae137a053d15ac73f44137e5a2f6718af}\label{classDFA_ae137a053d15ac73f44137e5a2f6718af}} 
+\index{D\+FA@{D\+FA}!D\+FA@{D\+FA}}
+\index{D\+FA@{D\+FA}!D\+FA@{D\+FA}}
+\subsubsection{\texorpdfstring{D\+F\+A()}{DFA()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily D\+F\+A\+::\+D\+FA (\begin{DoxyParamCaption}\item[{std\+::string}]{input\+\_\+dfa }\end{DoxyParamCaption})}
+
+we set the bools to false as init 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classDFA_a489f2637d08bf14a7336d2335bbe90e1}\label{classDFA_a489f2637d08bf14a7336d2335bbe90e1}} 
+\index{D\+FA@{D\+FA}!Convert\+To\+Grammar@{Convert\+To\+Grammar}}
+\index{Convert\+To\+Grammar@{Convert\+To\+Grammar}!D\+FA@{D\+FA}}
+\subsubsection{\texorpdfstring{Convert\+To\+Grammar()}{ConvertToGrammar()}}
+{\footnotesize\ttfamily \hyperlink{classGrammar}{Grammar} D\+F\+A\+::\+Convert\+To\+Grammar (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+we add all the transitions to the productions and also the epsilon transition \mbox{\Hypertarget{classDFA_a4cae060f040199523c337da6c078a3d6}\label{classDFA_a4cae060f040199523c337da6c078a3d6}} 
+\index{D\+FA@{D\+FA}!Set\+Accept\+States@{Set\+Accept\+States}}
+\index{Set\+Accept\+States@{Set\+Accept\+States}!D\+FA@{D\+FA}}
+\subsubsection{\texorpdfstring{Set\+Accept\+States()}{SetAcceptStates()}}
+{\footnotesize\ttfamily void D\+F\+A\+::\+Set\+Accept\+States (\begin{DoxyParamCaption}\item[{std\+::string}]{state }\end{DoxyParamCaption})}
+
+if start state belong to the set of states, we add it \mbox{\Hypertarget{classDFA_a075c03019b2cf946ec7a7647821d506c}\label{classDFA_a075c03019b2cf946ec7a7647821d506c}} 
+\index{D\+FA@{D\+FA}!Set\+Start@{Set\+Start}}
+\index{Set\+Start@{Set\+Start}!D\+FA@{D\+FA}}
+\subsubsection{\texorpdfstring{Set\+Start()}{SetStart()}}
+{\footnotesize\ttfamily void D\+F\+A\+::\+Set\+Start (\begin{DoxyParamCaption}\item[{std\+::string}]{start }\end{DoxyParamCaption})}
+
+if start state belong to state, we add it \mbox{\Hypertarget{classDFA_ac7986588e884c1fc76700f1059da221f}\label{classDFA_ac7986588e884c1fc76700f1059da221f}} 
+\index{D\+FA@{D\+FA}!Set\+Transition@{Set\+Transition}}
+\index{Set\+Transition@{Set\+Transition}!D\+FA@{D\+FA}}
+\subsubsection{\texorpdfstring{Set\+Transition()}{SetTransition()}}
+{\footnotesize\ttfamily void D\+F\+A\+::\+Set\+Transition (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$}]{transition }\end{DoxyParamCaption})}
+
+if the transition belong to the set of states, we add it 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+F\+A.\+h\item 
+D\+F\+A.\+cc\end{DoxyCompactItemize}

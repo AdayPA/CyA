@@ -8,7 +8,7 @@
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 23/11/2020
-// @brief DFA.h : This
+// @brief Grammar.h : This class represent a regular grammar
 // @compile: $ make
 // References:
 // https://en.wikipedia.org/wiki/Deterministic_finite_automaton
@@ -41,6 +41,7 @@ class Grammar {
     void SetAcceptStates(std::set<std::string>);
     void SetProduccion(std::string, std::string, std::string);
     void PrintFile(std::string);
+    void Generadores(void);
 
  private:
     std::set<std::string> alphabet_2;

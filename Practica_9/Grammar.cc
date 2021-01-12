@@ -7,7 +7,7 @@
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
 // @date: 04/11/2020
-// @brief DFA.cc :  This is the implementation of .h
+// @brief Grammar.cc :  This is the implementation of .h
 // @compile: $ make
 // References:
 // References:
@@ -28,7 +28,9 @@
 #include <iostream>
 #include <fstream>
 
-Grammar::Grammar() {  
+const char kEpsilon[] = "~";
+
+Grammar::Grammar() {
   /// @brief we set the bools to false as init
 }
 
@@ -63,14 +65,15 @@ void Grammar::SetStart(std::string start) {
     start_ok_ = false;
     failed_ = true;
   }
-} 
+}
 
 void Grammar::SetAcceptStates(std::set<std::string> set_state) {
   /// @brief if start state belong to the set of states, we add it
   accept_states_2 = set_state;
 }
 
-void Grammar::SetProduccion(std::string init_state, std::string symbol, std::string final_state) {
+void Grammar::SetProduccion(std::string init_state, std::string symbol,
+                                              std::string final_state) {
   produccion_.Insert(init_state, symbol, final_state);
 }
 
@@ -78,10 +81,11 @@ void Grammar::SetProduccion(std::string init_state, std::string symbol, std::str
 
 void Grammar::PrintFile(std::string output_file) {
   /// @brief we open the output file and write the result in it
+  Generadores();
   produccion_.ClearProduccion();
   std::ofstream output_stream;
   output_stream.open(output_file);
-  if(output_stream.is_open()) {
+  if (output_stream.is_open()) {
     output_stream << alphabet_2.size();
     for (auto it = alphabet_2.begin(); it != alphabet_2.end(); ++it) {
       output_stream << std::endl << *it;
@@ -93,10 +97,39 @@ void Grammar::PrintFile(std::string output_file) {
     output_stream << std::endl << start_2;
     output_stream << std::endl << produccion_.GetSize();
     for (int i = 0; i < produccion_.GetSize(); ++i) {
-      output_stream << std::endl << produccion_.GetNode(i)->init_state_ << 
-      " -> " << produccion_.GetNode(i)->symbol_ << produccion_.GetNode(i)->final_state_;
+      output_stream << std::endl << produccion_.GetNode(i)->init_state_ <<
+      " -> " << produccion_.GetNode(i)->symbol_ <<
+      produccion_.GetNode(i)->final_state_;
     }
   }
 }
+
+void Grammar::Generadores(void) {
+  std::set<std::string> generadores;
+  bool trigger = true;
+  for (int i = 0; i < produccion_.GetSize(); ++i) {
+    if (produccion_.GetNode(i)->final_state_ == kEpsilon) {
+      generadores.insert(produccion_.GetNode(i)->init_state_);
+    }
+  }
+  while (trigger == true) {
+    trigger = false;
+    unsigned int size = generadores.size();
+    for (auto it = generadores.begin(); it != generadores.end(); ++it) {
+        for (int i = 0; i < produccion_.GetSize(); ++i) {
+          if (produccion_.GetNode(i)->final_state_ == *it) {
+            generadores.insert(produccion_.GetNode(i)->init_state_);
+          }
+        }
+    }
+    if (size != generadores.size()) {
+      trigger = true;
+    }
+  }
+  for (auto it = generadores.begin(); it != generadores.end(); ++it) {
+    std::cout << *it << " es generador" << std::endl;
+  }
+}
+
 
 #endif  // PRACTICA_9_GRAMMAR_CC_
