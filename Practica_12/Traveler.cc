@@ -71,7 +71,7 @@ Traveler::Traveler(std::string& inputGRA) {
       matrix.at(stoi(temp.at(0))-1).at(stoi(temp.at(1))-1) = stof(temp.at(2));
     }
   }
-  /*
+  
   std::cout << std::endl;
   for (int i = 0; i < num_cities; i++) {
     for (int j = 0; j < num_cities; j++) {
@@ -79,7 +79,7 @@ Traveler::Traveler(std::string& inputGRA) {
     }
     std::cout<< std::endl;
   }
-  */
+  
 
   Greedy();
 
@@ -87,43 +87,85 @@ Traveler::Traveler(std::string& inputGRA) {
 
 void Traveler::Greedy(void) {
   std::set<int> visited;  // ciudades visitadas
-  float path = 0;
-  int inicio = 1;         // cuidad de partida
-  float max_val = 999;
-  int temp_city = -1;
-  int actual = inicio -1;
-  std::list<int> path_finder;   // cuidades a la solucion del problema
-  visited.insert(actual); 
-  path_finder.push_back(inicio);
+  float path1 = 0;
+  float path2 = 0;
+  int inicio1 = 1;         // cuidad de partida camion 1
+  int inicio2 = 3;         // cuidad de partida camion 2
+  float max_val1 = 999;
+  float max_val2 = 999;
+  int temp_city1 = -1;
+  int temp_city2 = -1;
+  int actual1 = inicio1 -1;
+  int actual2 = inicio2 -1;
+  bool exist1 = true;
+  bool exist2 = true;
+  std::list<int> path1_finder1;   // cuidades a la solucion del problema camion 1
+  std::list<int> path1_finder2;   // cuidades a la solucion del problema camion 2
+  visited.insert(actual1); 
+  path1_finder1.push_back(inicio1);
+  path1_finder2.push_back(inicio2);
   while (visited.size() != num_cities){ 
     // mientras no halla recorrido todas las ciudades
     for (unsigned int i = 0; i < num_cities; i++) {
       // busco a que ciudades colindantes me puedo mover
       const bool is_in = visited.find(i) != visited.end();
-      if ((matrix.at(i).at(actual) != -1) && (matrix.at(i).at(actual) != 0) && (!is_in) && (matrix.at(i).at(actual) < max_val) ) {
+      if ((matrix.at(i).at(actual1) != -1) && (matrix.at(i).at(actual1) != 0) && (!is_in) && (matrix.at(i).at(actual1) < max_val1) && exist1) {
         // si la ciudad no ha sido visitada, no es la ciudad en la que estoy y el coste es menor, sera mi nuevo minimo temporal
         // hasta que compruebe todas ellas
-        temp_city  = i + 1;
-        max_val = matrix.at(i).at(actual);
+        temp_city1  = i + 1;
+        max_val1 = matrix.at(i).at(actual1);
       }
     }
-    if(max_val == 999){
+    // recorrido para el segundo camion
+    for (unsigned int i = num_cities; i == 0; i--) {
+      const bool is_in = visited.find(i) != visited.end();
+      if ((matrix.at(i).at(actual2) != -1) && (matrix.at(i).at(actual2) != 0) && (!is_in) && (matrix.at(i).at(actual2) < max_val2) && exist2) {
+        temp_city2  = i + 1;
+        max_val2 = matrix.at(i).at(actual2);
+      }
+    }
+    if(max_val1 == 999){
+      // Si se da el caso de que no hay camino posible, no saco por pantalla 
+      std::cout << "No hay caminopara recorrer todas las ciudades" << std::endl;
+      exist1 = false;
+      max_val1 = 0;
+      temp_city1++;
+      //break;
+    } 
+    if(max_val2 == 999){
       // Si se da el caso de que no hay camino posible, no saco por pantalla
-      std::cout << "No hay camino" ;
-      break;
+      std::cout << "No hay camino posible para recorrer todas las ciudades" << std::endl;
+      exist2 = false;
+      max_val2 = 0;
+      temp_city2++;
+     // break;
     }
     // ahora ya se a que ciudad moverme, asi que sumo el coste y la guardo para el recorrido y actualizo como ciudad visitada
-    path += max_val;
-    path_finder.push_back(temp_city);
-    max_val = 999;
-    actual = temp_city -1;
-    visited.insert(temp_city-1);
+    path1 += max_val1;
+    path2 += max_val2;
+    path1_finder1.push_back(temp_city1);
+    path1_finder2.push_back(temp_city2);
+    max_val1 = 999;
+    max_val2 = 999;
+    actual1 = temp_city1 -1;
+    actual2 = temp_city2 -1;
+    visited.insert(temp_city1-1);
+    visited.insert(temp_city2-1);
   }
-  std::cout << "Coste del camino: " << path << std::endl;
-  std::cout << "Recorrido de las ciudades: ";
-  for (int x : path_finder) {
+  std::cout << "Coste del camino 1: " << path1 << std::endl;
+  std::cout << "Recorrido de las ciudades camino 1: "  ;
+  for (int x : path1_finder1) {
     std::cout << x << " ";
   }
+  std::cout << std::endl;
+  std::cout << "Coste del camino 2: " << path2 << std::endl;
+  std::cout << "Recorrido de las ciudades camino 2: ";
+  for (int x : path1_finder2) {
+    std::cout << x << " ";
+  }
+  std::cout << std::endl;
+  std::cout << "Coste total: " << path2 + path1<< std::endl;
+
 }
 
 void Traveler::OutputOpenError(void) {
