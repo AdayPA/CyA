@@ -35,11 +35,13 @@ class Traveler {
   ~Traveler();
 
  private:
-  unsigned int num_cities;
-  bool directed;
-  std::vector<std::vector<float>> matrix;
-  void Greedy(void);
+  unsigned int num_cities;  //cuidades totales
+  bool directed;            //value para saber si es o no dirigido
+  std::vector<std::vector<float>> matrix; //matrix de valores de ciudades
+  void Greedy(void);        //algoritmo greedy
 
+
+  //metodos para manejo de archivos
   void OutputOpenError(void);
   constexpr const int& CountChar(void);
   int Count_lines(const std::string);

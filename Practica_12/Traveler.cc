@@ -3,22 +3,17 @@
 // Degree of Computer Science
 // Subject: Computabilidad y Algoritmia (CyA)
 // Course/Year: 2º
-// @praxis: Number 9 CyA - "Gramaticas Regulares y Autómatas Finitos. Gramatica
-//                          regular a partir de un DFA"
+// @praxis: Number 12 CyA 
 // @author: Aday Padilla Amaya
 // @e-mail: alu0100843453@ull.edu.es
-// @date: 23/11/2020
+// @date: 10/01/2021
 // @brief Traveler.cc : This file implement the header
 // @compile: $ make
 // References:
-// https://en.wikipedia.org/wiki/Deterministic_finite_automaton
 // Lab exercise:
 // (private link)
-// Others links:
-//  https://stackoverflow.com/questions/14975737/regular-expression-to-remove-comment
-//  https://regexr.com/5gecl
 // Version Control:
-// 23/11/2020 - First version of the code
+// 10/01/2021- First version of the code
 //
 //
 //
@@ -45,13 +40,15 @@ Traveler::Traveler() {}
 Traveler::~Traveler() {}
 
 Traveler::Traveler(std::string& inputGRA) {
+  //Leemos el archivo, creamos la matriz y la rellenamos con los datos.
+
   num_cities = stoi(Get_line(inputGRA,1));
   matrix.resize(num_cities);
-  for (int i = 0; i < num_cities; ++i)
+  for (unsigned int i = 0; i < num_cities; ++i)
     matrix[i].resize(num_cities);
   directed = stoi(Get_line(inputGRA,2));
-  for (int i = 0; i < num_cities; i++){
-    for (int j = 0; j < num_cities; j++) {
+  for (unsigned int i = 0; i < num_cities; i++){
+    for (unsigned int j = 0; j < num_cities; j++) {
       if ( i == j) {
         matrix.at(i).at(j) = 0;
       } else{
@@ -59,19 +56,22 @@ Traveler::Traveler(std::string& inputGRA) {
       }
     }
   }
-   std::cout << std::endl;
   if (!directed) {
+    // como no es dirigido, da igual si la ruta es 1->3 o 3->1, por 
+    // lo que copiamos el coste de la ruta en ambos sentidos
     for (int k = 3; k <= Count_lines(inputGRA); k++ ) {
       std::vector<std::string> temp = Split (Get_line(inputGRA,k), " ");
       matrix.at(stoi(temp.at(0))-1).at(stoi(temp.at(1))-1) = stof(temp.at(2));
       matrix.at(stoi(temp.at(1))-1).at(stoi(temp.at(0))-1) = stof(temp.at(2));
     }
   }else{
+    // al ser dirigido, añadimos el coste directamente a la ciudad correspondiente
     for (int k = 3; k <= Count_lines(inputGRA); k++ ) {
       std::vector<std::string> temp = Split (Get_line(inputGRA,k), " ");
       matrix.at(stoi(temp.at(0))-1).at(stoi(temp.at(1))-1) = stof(temp.at(2));
     }
   }
+  /*
   std::cout << std::endl;
   for (int i = 0; i < num_cities; i++) {
     for (int j = 0; j < num_cities; j++) {
@@ -79,42 +79,46 @@ Traveler::Traveler(std::string& inputGRA) {
     }
     std::cout<< std::endl;
   }
+  */
 
   Greedy();
 
 }
 
 void Traveler::Greedy(void) {
-  std::set<int> visited;
+  std::set<int> visited;  // ciudades visitadas
   float path = 0;
-  int inicio = 1;
+  int inicio = 1;         // cuidad de partida
   float max_val = 999;
   int temp_city = -1;
   int actual = inicio -1;
-  std::list<int> path_finder;
-  visited.insert(actual);
+  std::list<int> path_finder;   // cuidades a la solucion del problema
+  visited.insert(actual); 
   path_finder.push_back(inicio);
-  while (visited.size() != num_cities){
-    for (int i = 0; i < num_cities; i++) {
+  while (visited.size() != num_cities){ 
+    // mientras no halla recorrido todas las ciudades
+    for (unsigned int i = 0; i < num_cities; i++) {
+      // busco a que ciudades colindantes me puedo mover
       const bool is_in = visited.find(i) != visited.end();
       if ((matrix.at(i).at(actual) != -1) && (matrix.at(i).at(actual) != 0) && (!is_in) && (matrix.at(i).at(actual) < max_val) ) {
+        // si la ciudad no ha sido visitada, no es la ciudad en la que estoy y el coste es menor, sera mi nuevo minimo temporal
+        // hasta que compruebe todas ellas
         temp_city  = i + 1;
         max_val = matrix.at(i).at(actual);
-        std::cout << max_val << std::endl;
       }
     }
     if(max_val == 999){
+      // Si se da el caso de que no hay camino posible, no saco por pantalla
       std::cout << "No hay camino" ;
       break;
     }
+    // ahora ya se a que ciudad moverme, asi que sumo el coste y la guardo para el recorrido y actualizo como ciudad visitada
     path += max_val;
-    std::cout << "voy a: " << temp_city <<" con coste:"<< max_val << std::endl;
     path_finder.push_back(temp_city);
     max_val = 999;
     actual = temp_city -1;
     visited.insert(temp_city-1);
   }
-  std::cout<< std::endl;
   std::cout << "Coste del camino: " << path << std::endl;
   std::cout << "Recorrido de las ciudades: ";
   for (int x : path_finder) {
